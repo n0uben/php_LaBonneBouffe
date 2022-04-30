@@ -55,7 +55,14 @@ class IngredientManager extends Manager
     }
 
     public function modify($ingredient){
+        $bdd = $this->DBConnect();
 
+        $requete = $bdd->prepare('UPDATE Ingrédients SET nom = ?, uniteMesure = ? WHERE id = ?');
+        $requete->bindValue(1, $ingredient->getNom());
+        $requete->bindValue(2, $ingredient->getUniteMesure());
+        $requete->bindValue(3, $ingredient->getId());
+
+        $requete->execute();
     }
 
     public function delete($id){

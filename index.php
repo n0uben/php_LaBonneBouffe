@@ -15,14 +15,21 @@ foreach ($mesIngredients as $monIngredient) {
     echo $monIngredient->getNom();
     echo '<br>';
 }
+echo '<br>';
 
-$monIngredient = $ingredientManager->getById(1);
+
+$monIngredient = $ingredientManager->getById(13);
+//$monIngredient = new Ingredient("concombre", 'g');
+
 
 echo $monIngredient->getNom();
 echo '<br>';
 echo $monIngredient->getUniteMesure();
 
-//$ingredientManager->save($monIngredient);
+$monIngredient->setNom("Concombre");
+
+
+$ingredientManager->modify($monIngredient);
 
 
 
