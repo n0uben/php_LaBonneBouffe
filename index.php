@@ -23,6 +23,10 @@ switch ($page) {
         require_once './src/controller/UtilisateurController.php';
         UtilisateurController::index();
         break;
+    case 'liste-recettes':
+        require_once './src/controller/RecetteController.php';
+        RecetteController::index();
+        break;
     case 'home':
         require_once './src/controller/HomeController.php';
         HomeController::index();

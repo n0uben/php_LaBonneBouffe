@@ -54,7 +54,7 @@ class IngredientManager extends Manager
         $requete = $bdd->prepare('SELECT i.id as id, i.nom as nom, i.uniteMesure as uniteMesure, c.quantite as quantite 
                                         FROM Ingrédients i
                                         JOIN composition c ON i.id = c.id_ingredient
-                                        JOIN Recette r ON c.id_recette = r.id
+                                        JOIN Recettes r ON c.id_recette = r.id
                                         WHERE r.id = ?;
         ');
         $requete->bindValue(1, $recipeId);
