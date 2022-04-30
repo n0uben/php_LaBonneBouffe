@@ -7,7 +7,7 @@ class IngredientController
         $manager = new IngredientManager();
         $ingredients = $manager->getAll();
 
-        require_once '../views/liste-ingredients.php';
+        require_once './views/Backend/liste-ingredients.php';
 
     }
 }

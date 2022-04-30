@@ -1,6 +1,7 @@
 <?php
+define('PATH', $_SERVER['SERVER_NAME']);
 
-require_once('./views/header.php');
+require_once('./src/views/header.php');
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -15,18 +16,12 @@ if (isset($_GET['p'])) {
 
 switch ($page) {
     case 'liste-ingredients':
-        require_once './controller/IngredientController.php';
+        require_once './src/controller/IngredientController.php';
         IngredientController::index();
         break;
     default:
-        require_once './controller/IngredientController.php';
-        IngredientController::index();
+        require_once './src/controller/HomeController.php';
+        HomeController::index();
 }
 
-
-require_once('./views/footer.php');
-
-
-
-
-
+require_once('./src/views/footer.php');
