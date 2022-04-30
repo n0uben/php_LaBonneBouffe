@@ -1,5 +1,7 @@
 <?php
 
+require_once ('./templates/header.php');
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -24,6 +26,9 @@ foreach ($mesIngredients as $monIngredient) {
     echo '<br>';
 }
 echo '<br>';
+
+require_once ('./templates/footer.php');
+
 
 
 
