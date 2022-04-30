@@ -16,3 +16,13 @@ foreach ($mesIngredients as $monIngredient) {
     echo '<br>';
 }
 
+$monIngredient = $ingredientManager->getById(1);
+
+echo $monIngredient->getNom();
+echo '<br>';
+echo $monIngredient->getUniteMesure();
+
+//$ingredientManager->save($monIngredient);
+
+
+

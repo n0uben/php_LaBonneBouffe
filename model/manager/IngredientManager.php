@@ -4,8 +4,19 @@ require_once ('./model/entity/Ingredient.php');
 class IngredientManager extends Manager
 {
     public function getById($id){
-        // blablable
-        // return $ingredient;
+
+        $id = (int) $id;
+
+        $bdd = $this->DBConnect();
+
+        $requete = $bdd->prepare('SELECT * FROM Ingrédients WHERE id = ?');
+        $requete->execute(array($id));
+        $donnees = $requete->fetch(PDO::FETCH_ASSOC);
+
+        $monIngredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
+        $monIngredient->setId($donnees['id']);
+
+        return $monIngredient;
     }
 
     public function getAll(){
@@ -33,6 +44,13 @@ class IngredientManager extends Manager
     }
 
     public function save($ingredient){
+        $bdd = $this->DBConnect();
+
+        $requete = $bdd->prepare('INSERT INTO Ingrédients (nom, uniteMesure) VALUES (?, ?)');
+        $requete->bindValue(1, $ingredient->getNom());
+        $requete->bindValue(2, $ingredient->getUniteMesure());
+
+        $requete->execute();
 
     }
 
