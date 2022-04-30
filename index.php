@@ -6,8 +6,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require('./model/manager/Manager.php');
-require('./model/manager/IngredientManager.php');
+require_once './controller/IngredientController.php';
 
 $ingredientManager = new IngredientManager();
 //
@@ -26,6 +25,8 @@ foreach ($mesIngredients as $monIngredient) {
     echo '<br>';
 }
 echo '<br>';
+
+IngredientController::index();
 
 require_once ('./templates/footer.php');
 
