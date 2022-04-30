@@ -19,6 +19,10 @@ switch ($page) {
         require_once './src/controller/IngredientController.php';
         IngredientController::index();
         break;
+    case 'home':
+        require_once './src/controller/HomeController.php';
+        HomeController::index();
+        break;
     default:
         require_once './src/controller/HomeController.php';
         HomeController::index();

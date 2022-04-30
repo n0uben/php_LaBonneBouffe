@@ -29,6 +29,9 @@
                     </tbody>
                 </table>
 
+                <p><a href="/index.php?p=home">Retour au tableau de bord</a> </p>
+
+
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
-require_once './model/manager/Manager.php';
-require_once './model/entity/Ingredient.php';
+require_once './src/model/manager/Manager.php';
+require_once './src/model/entity/Ingredient.php';
 
 class IngredientManager extends Manager
 {
