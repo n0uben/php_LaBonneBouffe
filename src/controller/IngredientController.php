@@ -1,5 +1,5 @@
 <?php
-require_once './model/manager/IngredientManager.php';
+require_once './src/model/manager/IngredientManager.php';
 
 class IngredientController
 {
@@ -7,7 +7,7 @@ class IngredientController
         $manager = new IngredientManager();
         $ingredients = $manager->getAll();
 
-        require_once './views/Backend/liste-ingredients.php';
+        require_once './src/views/liste-ingredients.php';
 
     }
 }
