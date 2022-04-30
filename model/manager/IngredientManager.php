@@ -1,11 +1,12 @@
 <?php
-require_once ('./model/entity/Ingredient.php');
+require_once('./model/entity/Ingredient.php');
 
 class IngredientManager extends Manager
 {
-    public function getById($id){
+    public function getById($id)
+    {
 
-        $id = (int) $id;
+        $id = (int)$id;
 
         $bdd = $this->DBConnect();
 
@@ -19,7 +20,8 @@ class IngredientManager extends Manager
         return $monIngredient;
     }
 
-    public function getAll(){
+    public function getAll()
+    {
 
         $ingredients = [];
 
@@ -33,17 +35,44 @@ class IngredientManager extends Manager
 
             //chaque ligne devient une instance de la classe ingrédient
             $ingredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
-//            // on rajoute l’id absent du constructeur
+            // on rajoute l’id absent du constructeur
             $ingredient->setId($donnees['id']);
-//
-//          //on ajoute l’ingredient a un tableau d’ingrédients
+
+            //on ajoute l’ingredient a un tableau d’ingrédients
             $ingredients[] = $ingredient;
         }
 
         return $ingredients;
     }
 
-    public function save($ingredient){
+//    retourne un array sous la forme [[ingredient1, quantite (int)], [ingredient2, quantite (int)]]
+    public function getAllByRecipeId($recipeId)
+    {
+        $bdd = $this->DBConnect();
+
+        $requete = $bdd->prepare('SELECT i.id as id, i.nom as nom, i.uniteMesure as uniteMesure, c.quantite as quantite 
+                                        FROM Ingrédients i
+                                        JOIN composition c ON i.id = c.id_ingredient
+                                        JOIN Recette r ON c.id_recette = r.id
+                                        WHERE r.id = ?;
+        ');
+        $requete->bindValue(1, $recipeId);
+
+        $requete->execute();
+
+        $ingredients = [];
+
+        while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
+            $ingredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
+            $ingredient->setId($donnees['id']);
+
+            $ingredients[] = [$ingredient, $donnees['quantite']];
+        }
+        return $ingredients;
+    }
+
+    public function save($ingredient)
+    {
         $bdd = $this->DBConnect();
 
         $requete = $bdd->prepare('INSERT INTO Ingrédients (nom, uniteMesure) VALUES (?, ?)');
@@ -54,7 +83,8 @@ class IngredientManager extends Manager
 
     }
 
-    public function modify($ingredient){
+    public function modify($ingredient)
+    {
         $bdd = $this->DBConnect();
 
         $requete = $bdd->prepare('UPDATE Ingrédients SET nom = ?, uniteMesure = ? WHERE id = ?');
@@ -65,7 +95,8 @@ class IngredientManager extends Manager
         $requete->execute();
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $bdd = $this->DBConnect();
 
         $requete = $bdd->prepare('DELETE FROM Ingrédients WHERE id = ? ');
