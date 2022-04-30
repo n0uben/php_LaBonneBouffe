@@ -7,9 +7,7 @@ class IngredientController
         $manager = new IngredientManager();
         $ingredients = $manager->getAll();
 
-        foreach ($ingredients as $ingredient) {
-            echo $ingredient->getNom();
-            echo '<br>';
-        }
+        require_once '../views/liste-ingredients.php';
+
     }
 }
