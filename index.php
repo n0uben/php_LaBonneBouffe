@@ -18,18 +18,5 @@ foreach ($mesIngredients as $monIngredient) {
 echo '<br>';
 
 
-$monIngredient = $ingredientManager->getById(13);
-//$monIngredient = new Ingredient("concombre", 'g');
-
-
-echo $monIngredient->getNom();
-echo '<br>';
-echo $monIngredient->getUniteMesure();
-
-$monIngredient->setNom("Concombre");
-
-
-$ingredientManager->modify($monIngredient);
-
 
 

@@ -66,6 +66,12 @@ class IngredientManager extends Manager
     }
 
     public function delete($id){
+        $bdd = $this->DBConnect();
+
+        $requete = $bdd->prepare('DELETE FROM Ingrédients WHERE id = ? ');
+        $requete->bindValue(1, $id);
+
+        $requete->execute();
 
     }
 
