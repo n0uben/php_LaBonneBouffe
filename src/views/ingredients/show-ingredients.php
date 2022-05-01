@@ -1,5 +1,5 @@
 <?php
-//Liste Ingredients
+//Details Ingredients
 ?>
 
 <main>

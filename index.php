@@ -2,6 +2,7 @@
 define('PATH', $_SERVER['SERVER_NAME']);
 
 require_once('./src/views/general/header.php');
+require_once('./src/views/general/menu.php');
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -30,6 +31,10 @@ switch ($page) {
     case 'liste-utilisateurs':
         require_once './src/controller/UtilisateurController.php';
         UtilisateurController::index();
+        break;
+    case 'show-utilisateurs':
+        require_once './src/controller/UtilisateurController.php';
+        UtilisateurController::show($id);
         break;
     case 'liste-recettes':
         require_once './src/controller/RecetteController.php';

@@ -11,7 +11,17 @@ class UtilisateurManager extends Manager
      */
     public function getById(int $id): Utilisateur
     {
+        $bdd = $this->DBConnect();
 
+        $requete = $bdd->prepare('SELECT * FROM Utilisateurs WHERE id = :id');
+        $requete->bindValue(':id', $id, PDO::PARAM_INT);
+        $requete->execute();
+        $donnees = $requete->fetch(PDO::FETCH_ASSOC);
+
+        $utilisateur = new Utilisateur($donnees['email'], $donnees['mdp'], $donnees['nom'], $donnees['role']);
+        $utilisateur->setId($donnees['id']);
+
+        return $utilisateur;
     }
 
     /**

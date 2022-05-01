@@ -15,6 +15,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Role</th>
+                    <th scope="col">Actions</th>
                     </thead>
                     <tbody>
                     <?php
@@ -25,6 +26,8 @@
                             <td><?= $utilisateur->getEmail(); ?></td>
                             <td><?= $utilisateur->getNom(); ?></td>
                             <td><?= $utilisateur->getRole(); ?></td>
+                            <td><a href='index.php?p=show-utilisateurs&id=<?= $utilisateur->getId(); ?>'>Voir l’utilisateur</a></td>
+
                         </tr>
                     <?php endforeach; ?>
 

@@ -15,4 +15,16 @@ class UtilisateurController
         require_once './src/views/utilisateurs/liste-utilisateurs.php';
 
     }
+
+    /**
+     * @param string $id
+     * @return void
+     */
+    public static function show(string $id): void
+    {
+        $manager = new UtilisateurManager();
+        $utilisateur = $manager->getById($id);
+
+        require_once './src/views/utilisateurs/show-utilisateurs.php';
+    }
 }
