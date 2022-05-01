@@ -8,7 +8,7 @@ class RecetteController
         $manager = new RecetteManager();
         $recettes = $manager->getAll();
 
-        require_once './src/views/liste-recettes.php';
+        require_once './src/views/recettes/liste-recettes.php';
 
     }
 }

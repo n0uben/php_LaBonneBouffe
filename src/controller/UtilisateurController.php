@@ -8,7 +8,7 @@ class UtilisateurController
         $manager = new UtilisateurManager();
         $utilisateurs = $manager->getAll();
 
-        require_once './src/views/liste-utilisateurs.php';
+        require_once './src/views/utilisateurs/liste-utilisateurs.php';
 
     }
 }
