@@ -11,8 +11,17 @@ class RecetteManager extends Manager
      */
     public function getById(int $id): Recette
     {
-        //TEMP
-        return new Recette();
+        $bdd = $this->DBConnect();
+
+        $requete = $bdd->prepare('SELECT * FROM Recettes WHERE id = :id');
+        $requete->bindValue(':id', $id, PDO::PARAM_INT);
+        $requete->execute();
+        $donnees = $requete->fetch(PDO::FETCH_ASSOC);
+
+        $recette = new Recette($donnees['nom'], $donnees['categorie'], $donnees['niveau'], $donnees['tpsPrepa'], $donnees['tpsCuisson'], $donnees['budget'], $donnees['nbPers'], $donnees['etapes'], $donnees['utilisateurID'] );
+        $recette->setId($donnees['id']);
+
+        return $recette;
     }
 
     /**

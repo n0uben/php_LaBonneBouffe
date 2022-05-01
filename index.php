@@ -40,6 +40,10 @@ switch ($page) {
         require_once './src/controller/RecetteController.php';
         RecetteController::index();
         break;
+    case 'show-recettes':
+        require_once './src/controller/RecetteController.php';
+        RecetteController::show($id);
+        break;
     case 'home':
         require_once './src/controller/HomeController.php';
         HomeController::index();
