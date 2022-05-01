@@ -5,11 +5,20 @@ require_once './src/model/entity/Recette.php';
 
 class RecetteManager extends Manager
 {
-    public function getById($id)
+    /**
+     * @param int $id
+     * @return Recette
+     */
+    public function getById(int $id): Recette
     {
-
+        //TEMP
+        return new Recette();
     }
-    public function getAll()
+
+    /**
+     * @return Recette[]
+     */
+    public function getAll(): iterable
     {
         $recettes = [];
 
@@ -32,15 +41,30 @@ class RecetteManager extends Manager
 
         return $recettes;
     }
-    public function save($recette)
+
+    /**
+     * @param Recette $recette
+     * @return void
+     */
+    public function save(Recette $recette): void
     {
 
     }
-    public function modify($recette)
+
+    /**
+     * @param Recette $recette
+     * @return void
+     */
+    public function modify(Recette $recette): void
     {
 
     }
-    public function delete($id)
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function delete(int $id): void
     {
 
     }

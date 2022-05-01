@@ -4,7 +4,11 @@ require_once './src/model/manager/UtilisateurManager.php';
 
 class UtilisateurController
 {
-    public static function index() {
+    /**
+     * @return void
+     */
+    public static function index(): void
+    {
         $manager = new UtilisateurManager();
         $utilisateurs = $manager->getAll();
 

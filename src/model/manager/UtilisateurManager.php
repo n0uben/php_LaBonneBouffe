@@ -5,11 +5,19 @@ require_once './src/model/entity/Utilisateur.php';
 
 class UtilisateurManager extends Manager
 {
-    public function getById($id)
+    /**
+     * @param int $id
+     * @return Utilisateur
+     */
+    public function getById(int $id): Utilisateur
     {
 
     }
-    public function getAll()
+
+    /**
+     * @return Utilisateur[]
+     */
+    public function getAll(): iterable
     {
         $utilisateurs = [];
 
@@ -32,15 +40,30 @@ class UtilisateurManager extends Manager
 
         return $utilisateurs;
     }
-    public function save($utilisateur)
+
+    /**
+     * @param Utilisateur $utilisateur
+     * @return void
+     */
+    public function save(Utilisateur $utilisateur): void
     {
 
     }
-    public function modify($utilisateur)
+
+    /**
+     * @param Utilisateur $utilisateur
+     * @return void
+     */
+    public function modify(Utilisateur $utilisateur): void
     {
 
     }
-    public function delete($id)
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function delete(int $id): void
     {
 
     }

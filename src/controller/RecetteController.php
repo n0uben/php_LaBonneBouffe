@@ -4,7 +4,11 @@ require_once './src/model/manager/RecetteManager.php';
 
 class RecetteController
 {
-    public static function index() {
+    /**
+     * @return void
+     */
+    public static function index(): void
+    {
         $manager = new RecetteManager();
         $recettes = $manager->getAll();
 

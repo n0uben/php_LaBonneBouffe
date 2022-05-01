@@ -3,11 +3,27 @@ require_once './src/model/manager/IngredientManager.php';
 
 class IngredientController
 {
-    public static function index() {
+    /**
+     * @return void
+     */
+    public static function index(): void
+    {
         $manager = new IngredientManager();
         $ingredients = $manager->getAll();
 
         require_once './src/views/ingredients/liste-ingredients.php';
 
+    }
+
+    /**
+     * @param string $id
+     * @return void
+     */
+    public static function show(string $id): void
+    {
+        $manager = new IngredientManager();
+        $ingredient = $manager->getById(intval($id, 10));
+
+        require_once './src/views/ingredients/show-ingredients.php';
     }
 }

@@ -4,15 +4,17 @@ require_once './src/model/entity/Ingredient.php';
 
 class IngredientManager extends Manager
 {
-    public function getById($id)
+    /**
+     * @param int $id
+     * @return Ingredient
+     */
+    public function getById(int $id): Ingredient
     {
-
-        $id = (int)$id;
-
         $bdd = $this->DBConnect();
 
-        $requete = $bdd->prepare('SELECT * FROM Ingrédients WHERE id = ?');
-        $requete->execute(array($id));
+        $requete = $bdd->prepare('SELECT * FROM Ingrédients WHERE id = :id');
+        $requete->bindValue(':id', $id, PDO::PARAM_INT);
+        $requete->execute();
         $donnees = $requete->fetch(PDO::FETCH_ASSOC);
 
         $monIngredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
@@ -21,7 +23,10 @@ class IngredientManager extends Manager
         return $monIngredient;
     }
 
-    public function getAll()
+    /**
+     * @return Ingredient[]
+     */
+    public function getAll(): iterable
     {
 
         $ingredients = [];
@@ -46,8 +51,12 @@ class IngredientManager extends Manager
         return $ingredients;
     }
 
+    /**
+     * @param int $recipeId
+     * @return iterable
+     */
 //    retourne un array sous la forme [[ingredient1, quantite (int)], [ingredient2, quantite (int)]]
-    public function getAllByRecipeId($recipeId)
+    public function getAllByRecipe(int $recipeId): iterable
     {
         $bdd = $this->DBConnect();
 
@@ -72,7 +81,11 @@ class IngredientManager extends Manager
         return $ingredients;
     }
 
-    public function save($ingredient)
+    /**
+     * @param Ingredient $ingredient
+     * @return void
+     */
+    public function save(Ingredient $ingredient): void
     {
         $bdd = $this->DBConnect();
 
@@ -84,7 +97,11 @@ class IngredientManager extends Manager
 
     }
 
-    public function modify($ingredient)
+    /**
+     * @param Ingredient $ingredient
+     * @return void
+     */
+    public function modify(Ingredient $ingredient): void
     {
         $bdd = $this->DBConnect();
 
@@ -96,7 +113,11 @@ class IngredientManager extends Manager
         $requete->execute();
     }
 
-    public function delete($id)
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function delete(int $id): void
     {
         $bdd = $this->DBConnect();
 

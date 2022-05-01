@@ -2,7 +2,11 @@
 
 class HomeController
 {
-    public static function index() {
+    /**
+     * @return void
+     */
+    public static function index(): void
+    {
         require_once './src/views/dashboard.php';
     }
 }

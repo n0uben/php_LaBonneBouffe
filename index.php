@@ -9,15 +9,23 @@ error_reporting(E_ALL);
 
 
 $page = '';
-
 if (isset($_GET['p'])) {
     $page = htmlentities($_GET['p']);
+}
+
+$id = "";
+if (isset($_GET['id'])) {
+    $id = htmlentities($_GET['id']);
 }
 
 switch ($page) {
     case 'liste-ingredients':
         require_once './src/controller/IngredientController.php';
         IngredientController::index();
+        break;
+    case 'show-ingredients':
+        require_once './src/controller/IngredientController.php';
+        IngredientController::show($id);
         break;
     case 'liste-utilisateurs':
         require_once './src/controller/UtilisateurController.php';
