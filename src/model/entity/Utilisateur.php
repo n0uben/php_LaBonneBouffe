@@ -2,19 +2,19 @@
 
 class Utilisateur
 {
-    private $id;
-    private $email;
-    private $mdp;
-    private $nom;
-    private $role;
+    private int $id;
+    private string $email;
+    private string $mdp;
+    private string $nom;
+    private string $role;
 
     /**
-     * @param $email
-     * @param $mdp
-     * @param $nom
-     * @param $role
+     * @param string $email
+     * @param string $mdp
+     * @param string $nom
+     * @param string $role
      */
-    public function __construct($email, $mdp, $nom, $role)
+    public function __construct(string $email, string $mdp, string $nom, string $role)
     {
         $this->email = $email;
         $this->mdp = $mdp;
@@ -23,81 +23,81 @@ class Utilisateur
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * @param mixed $email
+     * @param string  $email
      */
-    public function setEmail($email)
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getMdp()
+    public function getMdp(): string
     {
         return $this->mdp;
     }
 
     /**
-     * @param mixed $mdp
+     * @param string  $mdp
      */
-    public function setMdp($mdp)
+    public function setMdp(string $mdp): void
     {
         $this->mdp = $mdp;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getNom()
+    public function getNom(): string
     {
         return $this->nom;
     }
 
     /**
-     * @param mixed $nom
+     * @param string  $nom
      */
-    public function setNom($nom)
+    public function setNom(string $nom): void
     {
         $this->nom = $nom;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getRole()
+    public function getRole(): string
     {
         return $this->role;
     }
 
     /**
-     * @param mixed $role
+     * @param string  $role
      */
-    public function setRole($role)
+    public function setRole(string $role): void
     {
         $this->role = $role;
     }

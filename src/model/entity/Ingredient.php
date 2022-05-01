@@ -2,64 +2,64 @@
 
 class Ingredient
 {
-    private $id;
-    private $nom;
-    private $uniteMesure;
+    private int $id;
+    private string $nom;
+    private string $uniteMesure;
 
     /**
-     * @param $nom
-     * @param $uniteMesure
+     * @param string $nom
+     * @param string $uniteMesure
      */
-    public function __construct($nom, $uniteMesure)
+    public function __construct(string $nom, string $uniteMesure)
     {
         $this->nom = $nom;
         $this->uniteMesure = $uniteMesure;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getNom()
+    public function getNom(): string
     {
         return $this->nom;
     }
 
     /**
-     * @param mixed $nom
+     * @param string $nom
      */
-    public function setNom($nom)
+    public function setNom(string $nom): void
     {
         $this->nom = $nom;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getUniteMesure()
+    public function getUniteMesure(): string
     {
         return $this->uniteMesure;
     }
 
     /**
-     * @param mixed $uniteMesure
+     * @param string $uniteMesure
      */
-    public function setUniteMesure($uniteMesure)
+    public function setUniteMesure(string $uniteMesure): void
     {
         $this->uniteMesure = $uniteMesure;
     }
