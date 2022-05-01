@@ -7,6 +7,6 @@ class HomeController
      */
     public static function index(): void
     {
-        require_once './src/views/dashboard.php';
+        require_once './src/view/dashboard.php';
     }
 }

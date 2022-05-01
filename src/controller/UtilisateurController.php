@@ -12,7 +12,7 @@ class UtilisateurController
         $manager = new UtilisateurManager();
         $utilisateurs = $manager->getAll();
 
-        require_once './src/views/utilisateurs/liste-utilisateurs.php';
+        require_once './src/view/utilisateurs/liste-utilisateurs.php';
 
     }
 
@@ -25,6 +25,6 @@ class UtilisateurController
         $manager = new UtilisateurManager();
         $utilisateur = $manager->getById($id);
 
-        require_once './src/views/utilisateurs/show-utilisateurs.php';
+        require_once './src/view/utilisateurs/show-utilisateurs.php';
     }
 }

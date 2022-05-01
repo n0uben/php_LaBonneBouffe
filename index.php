@@ -1,8 +1,8 @@
 <?php
 define('PATH', $_SERVER['SERVER_NAME']);
 
-require_once('./src/views/general/header.php');
-require_once('./src/views/general/menu.php');
+require_once('./src/view/general/header.php');
+require_once('./src/view/general/menu.php');
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -53,4 +53,4 @@ switch ($page) {
         HomeController::index();
 }
 
-require_once('./src/views/general/footer.php');
+require_once('./src/view/general/footer.php');

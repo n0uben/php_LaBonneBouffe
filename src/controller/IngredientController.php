@@ -11,7 +11,7 @@ class IngredientController
         $manager = new IngredientManager();
         $ingredients = $manager->getAll();
 
-        require_once './src/views/ingredients/liste-ingredients.php';
+        require_once './src/view/ingredients/liste-ingredients.php';
 
     }
 
@@ -24,6 +24,6 @@ class IngredientController
         $manager = new IngredientManager();
         $ingredient = $manager->getById(intval($id));
 
-        require_once './src/views/ingredients/show-ingredients.php';
+        require_once './src/view/ingredients/show-ingredients.php';
     }
 }
