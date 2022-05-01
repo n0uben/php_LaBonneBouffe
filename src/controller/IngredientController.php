@@ -22,7 +22,7 @@ class IngredientController
     public static function show(string $id): void
     {
         $manager = new IngredientManager();
-        $ingredient = $manager->getById(intval($id));
+        $ingredient = $manager->getOne(intval($id));
 
         require_once './src/view/ingredients/show-ingredients.php';
     }

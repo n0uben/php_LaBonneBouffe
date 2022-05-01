@@ -18,7 +18,7 @@ class RecetteController
     public static function show(string $id): void
     {
         $manager = new RecetteManager();
-        $recette = $manager->getById(intval($id));
+        $recette = $manager->getOne(intval($id));
 
         require_once './src/view/recettes/show-recettes.php';
 

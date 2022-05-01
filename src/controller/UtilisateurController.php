@@ -23,7 +23,7 @@ class UtilisateurController
     public static function show(string $id): void
     {
         $manager = new UtilisateurManager();
-        $utilisateur = $manager->getById($id);
+        $utilisateur = $manager->getOne($id);
 
         require_once './src/view/utilisateurs/show-utilisateurs.php';
     }

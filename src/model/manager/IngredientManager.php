@@ -1,14 +1,14 @@
 <?php
-require_once './src/model/manager/Manager.php';
+require_once './src/model/manager/DbManager.php';
 require_once './src/model/entity/Ingredient.php';
 
-class IngredientManager extends Manager
+class IngredientManager extends DbManager
 {
     /**
      * @param int $id
      * @return Ingredient
      */
-    public function getById(int $id): Ingredient
+    public function getOne(int $id): Ingredient
     {
         $bdd = $this->DBConnect();
 
