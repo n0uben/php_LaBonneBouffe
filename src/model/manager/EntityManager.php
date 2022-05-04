@@ -1,24 +1,24 @@
 <?php
 
+require_once './src/model/entity/Ingredient.php';
+require_once './src/model/entity/Recette.php';
+require_once './src/model/entity/Region.php';
+require_once './src/model/entity/Utilisateur.php';
+
 class EntityManager
 {
-    /**
-     * @param int $id
-     * @return Ingredient
-     */
-    public function getOne(int $id): Ingredient
+    public function getOne(int $id, string $entityName)
     {
-        $bdd = $this->DBConnect();
+        $bdd = DbManager::DBConnect();
 
-        $requete = $bdd->prepare('SELECT * FROM Ingrédients WHERE id = :id');
+        $requete = $bdd->prepare('SELECT * FROM Ingredient WHERE id = :id');
         $requete->bindValue(':id', $id, PDO::PARAM_INT);
+//        $requete->bindValue(':entityName', $entityName);
         $requete->execute();
-        $donnees = $requete->fetch(PDO::FETCH_ASSOC);
-
-        $monIngredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
-        $monIngredient->setId($donnees['id']);
-
-        return $monIngredient;
+        $requete->setFetchMode(PDO::FETCH_CLASS, $entityName);
+        $entity = $requete->fetch();
+        print_r($entity);
+        return $entity;
     }
 
     /**

@@ -1,27 +1,10 @@
 <?php
+require_once './src/model/manager/EntityManager.php';
 require_once './src/model/manager/DbManager.php';
 require_once './src/model/entity/Ingredient.php';
 
-class IngredientManager extends DbManager
+class IngredientManager extends EntityManager
 {
-    /**
-     * @param int $id
-     * @return Ingredient
-     */
-    public function getOne(int $id): Ingredient
-    {
-        $bdd = $this->DBConnect();
-
-        $requete = $bdd->prepare('SELECT * FROM Ingrédients WHERE id = :id');
-        $requete->bindValue(':id', $id, PDO::PARAM_INT);
-        $requete->execute();
-        $donnees = $requete->fetch(PDO::FETCH_ASSOC);
-
-        $monIngredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
-        $monIngredient->setId($donnees['id']);
-
-        return $monIngredient;
-    }
 
     /**
      * @return Ingredient[]
@@ -32,9 +15,9 @@ class IngredientManager extends DbManager
         $ingredients = [];
 
         // On se connecte a la bdd;
-        $bdd = $this->DBConnect();
+        $bdd = DbManager::DBConnect();
         // On execute la requete
-        $requete = $bdd->query('SELECT * FROM Ingrédients');
+        $requete = $bdd->query('SELECT * FROM Ingredient');
 
         //tant qu‘il y a des lignes en BDD
         while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
@@ -58,7 +41,7 @@ class IngredientManager extends DbManager
 //    retourne un array sous la forme [[ingredient1, quantite (int)], [ingredient2, quantite (int)]]
     public function getAllByRecipe(int $recipeId): iterable
     {
-        $bdd = $this->DBConnect();
+        $bdd = DbManager::DBConnect();
 
         $requete = $bdd->prepare('SELECT i.id as id, i.nom as nom, i.uniteMesure as uniteMesure, c.quantite as quantite 
                                         FROM Ingrédients i
@@ -87,7 +70,7 @@ class IngredientManager extends DbManager
      */
     public function save(Ingredient $ingredient): void
     {
-        $bdd = $this->DBConnect();
+        $bdd = DbManager::DBConnect();
 
         $requete = $bdd->prepare('INSERT INTO Ingrédients (nom, uniteMesure) VALUES (?, ?)');
         $requete->bindValue(1, $ingredient->getNom());
@@ -103,7 +86,7 @@ class IngredientManager extends DbManager
      */
     public function modify(Ingredient $ingredient): void
     {
-        $bdd = $this->DBConnect();
+        $bdd = DbManager::DBConnect();
 
         $requete = $bdd->prepare('UPDATE Ingrédients SET nom = ?, uniteMesure = ? WHERE id = ?');
         $requete->bindValue(1, $ingredient->getNom());
@@ -119,7 +102,7 @@ class IngredientManager extends DbManager
      */
     public function delete(int $id): void
     {
-        $bdd = $this->DBConnect();
+        $bdd = DbManager::DBConnect();
 
         $requete = $bdd->prepare('DELETE FROM Ingrédients WHERE id = ? ');
         $requete->bindValue(1, $id);

@@ -7,13 +7,12 @@ class Ingredient
     private string $uniteMesure;
 
     /**
-     * @param string $nom
-     * @param string $uniteMesure
+     * @param string|null $nom
+     * @param string|null $uniteMesure
      */
-    public function __construct(string $nom, string $uniteMesure)
-    {
-        $this->nom = $nom;
-        $this->uniteMesure = $uniteMesure;
+    public function __construct(string $nom=null, string $uniteMesure=null) {
+        if ($nom!== null) { $this->setNom($nom); }
+        if ($uniteMesure!== null) { $this->setUniteMesure($uniteMesure); }
     }
 
     /**
