@@ -14,12 +14,12 @@ class Utilisateur
      * @param string $nom
      * @param string $role
      */
-    public function __construct(string $email, string $mdp, string $nom, string $role)
+    public function __construct(string $email=null, string $mdp=null, string $nom=null, string $role=null)
     {
-        $this->email = $email;
-        $this->mdp = $mdp;
-        $this->nom = $nom;
-        $this->role = $role;
+        if ($email !== null) {$this->email = $email;}
+        if ($mdp !== null) {$this->mdp = $mdp;}
+        if ($nom !== null) {$this->nom = $nom;}
+        if ($role !== null) {$this->role = $role;}
     }
 
     /**

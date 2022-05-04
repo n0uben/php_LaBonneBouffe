@@ -24,6 +24,7 @@ class Recette
      * @param string $etapes
      * @param int $utilisateurID
      */
+    // CONSTRUCTEUR A REFACTORER AVEC ARRAY ET FOREACH
     public function __construct(string $nom, string $categorie, int $niveau, int $tpsPrepa, int $tpsCuisson, string $budget, int $nbPers, string $etapes, int $utilisateurID)
     {
         $this->nom = $nom;

@@ -1,29 +1,11 @@
 <?php
 
+require_once './src/model/manager/EntityManager.php';
 require_once './src/model/manager/DbManager.php';
 require_once './src/model/entity/Region.php';
 
-class RegionManager extends DbManager
+class RegionManager extends EntityManager
 {
-
-    /**
-     * @param int $id
-     * @return Region
-     */
-    public function getOne(int $id): Region
-    {
-        $bdd = $this->DBConnect();
-
-        $requete = $bdd->prepare('SELECT * FROM Regions WHERE id = :id');
-        $requete->bindValue(':id', $id, PDO::PARAM_INT);
-        $requete->execute();
-        $donnees = $requete->fetch(PDO::FETCH_ASSOC);
-
-        $region = new Region($donnees['nom']);
-        $region->setId($donnees['id']);
-
-        return $region;
-    }
 
     /**
      * @return Region[]

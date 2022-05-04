@@ -1,28 +1,11 @@
 <?php
 
 require_once './src/model/manager/EntityManager.php';
+require_once './src/model/manager/EntityManager.php';
 require_once './src/model/entity/Recette.php';
 
-class RecetteManager extends DbManager
+class RecetteManager extends EntityManager
 {
-    /**
-     * @param int $id
-     * @return Recette
-     */
-    public function getOne(int $id): Recette
-    {
-//        $bdd = $this->DBConnect();
-//
-//        $requete = $bdd->prepare('SELECT * FROM Recettes WHERE id = :id');
-//        $requete->bindValue(':id', $id, PDO::PARAM_INT);
-//        $requete->execute();
-//        $donnees = $requete->fetch(PDO::FETCH_ASSOC);
-//
-//        $recette = new Recette($donnees['nom'], $donnees['categorie'], $donnees['niveau'], $donnees['tpsPrepa'], $donnees['tpsCuisson'], $donnees['budget'], $donnees['nbPers'], $donnees['etapes'], $donnees['utilisateurID']);
-//        $recette->setId($donnees['id']);
-//
-//        return $recette;
-    }
 
     /**
      * @return Recette[]

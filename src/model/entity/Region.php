@@ -8,7 +8,7 @@ class Region
     /**
      * @param string $nom
      */
-    public function __construct(string $nom)
+    public function __construct(string $nom=null)
     {
         $this->nom = $nom;
     }

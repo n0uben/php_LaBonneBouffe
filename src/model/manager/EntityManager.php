@@ -11,13 +11,13 @@ class EntityManager
     {
         $bdd = DbManager::DBConnect();
 
-        $requete = $bdd->prepare('SELECT * FROM Ingredient WHERE id = :id');
-        $requete->bindValue(':id', $id, PDO::PARAM_INT);
-//        $requete->bindValue(':entityName', $entityName);
-        $requete->execute();
+        $sql = 'SELECT * FROM ' . $entityName . ' WHERE id = ' . $id;
+        print_r($sql);
+
+        $requete = $bdd->query($sql);
+
         $requete->setFetchMode(PDO::FETCH_CLASS, $entityName);
         $entity = $requete->fetch();
-        print_r($entity);
         return $entity;
     }
 
