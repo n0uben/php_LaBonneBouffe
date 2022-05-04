@@ -5,7 +5,7 @@ class DbManager
     /**
      * @return PDO
      */
-    protected function DBConnect(): PDO
+    public static function DBConnect(): PDO
     {
         $bdd = new PDO('mysql:host=localhost;dbname=LaBonneBouffeNoureuxGerber;charset=utf8', 'benjamin', 'password');
         return $bdd;
