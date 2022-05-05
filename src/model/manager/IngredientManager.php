@@ -6,33 +6,6 @@ require_once './src/model/entity/Ingredient.php';
 class IngredientManager extends EntityManager
 {
 
-    /**
-     * @return Ingredient[]
-     */
-    public function getAll(): iterable
-    {
-
-        $ingredients = [];
-
-        // On se connecte a la bdd;
-        $bdd = DbManager::DBConnect();
-        // On execute la requete
-        $requete = $bdd->query('SELECT * FROM Ingredient');
-
-        //tant qu‘il y a des lignes en BDD
-        while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-
-            //chaque ligne devient une instance de la classe ingrédient
-            $ingredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
-            // on rajoute l’id absent du constructeur
-            $ingredient->setId($donnees['id']);
-
-            //on ajoute l’ingredient a un tableau d’ingrédients
-            $ingredients[] = $ingredient;
-        }
-
-        return $ingredients;
-    }
 
     /**
      * @param int $recipeId

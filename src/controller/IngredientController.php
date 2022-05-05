@@ -9,7 +9,7 @@ class IngredientController
     public static function index(): void
     {
         $manager = new IngredientManager();
-        $ingredients = $manager->getAll();
+        $ingredients = $manager->getAll('Ingredient');
 
         require_once './src/view/ingredients/liste-ingredients.php';
 

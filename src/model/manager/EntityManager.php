@@ -11,8 +11,7 @@ class EntityManager
     {
         $bdd = DbManager::DBConnect();
 
-        $sql = 'SELECT * FROM ' . $entityName . ' WHERE id = ' . $id;
-        print_r($sql);
+        $sql = 'SELECT * FROM ' . htmlentities($entityName) . ' WHERE id = ' . htmlentities($id);
 
         $requete = $bdd->query($sql);
 
@@ -22,31 +21,30 @@ class EntityManager
     }
 
     /**
-     * @return Ingredient[]
+     * @param string $entityName
+     * @return iterable
      */
-    public function getAll(): iterable
+    public function getAll(string $entityName): iterable
     {
 
-        $ingredients = [];
+        $entities = [];
 
         // On se connecte a la bdd;
-        $bdd = $this->DBConnect();
+        $bdd = DbManager::DBConnect();
         // On execute la requete
-        $requete = $bdd->query('SELECT * FROM Ingrédients');
+        $sql = 'SELECT * FROM ' . htmlentities($entityName);
+
+        $requete = $bdd->query($sql);
+        $requete->setFetchMode(PDO::FETCH_CLASS, $entityName);
 
         //tant qu‘il y a des lignes en BDD
-        while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
+        while ($entity = $requete->fetch()) {
 
-            //chaque ligne devient une instance de la classe ingrédient
-            $ingredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
-            // on rajoute l’id absent du constructeur
-            $ingredient->setId($donnees['id']);
-
-            //on ajoute l’ingredient a un tableau d’ingrédients
-            $ingredients[] = $ingredient;
+            //on ajoute l’entité à un tableau d’ingrédients
+            $entities[] = $entity;
         }
 
-        return $ingredients;
+        return $entities;
     }
 
     /**
