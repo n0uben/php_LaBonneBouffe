@@ -50,36 +50,6 @@ class EntityManager
     }
 
     /**
-     * @param int $recipeId
-     * @return iterable
-     */
-//    retourne un array sous la forme [[ingredient1, quantite (int)], [ingredient2, quantite (int)]]
-    public function getAllByRecipe(int $recipeId): iterable
-    {
-        $bdd = $this->DBConnect();
-
-        $requete = $bdd->prepare('SELECT i.id as id, i.nom as nom, i.uniteMesure as uniteMesure, c.quantite as quantite 
-                                        FROM Ingrédients i
-                                        JOIN composition c ON i.id = c.id_ingredient
-                                        JOIN Recettes r ON c.id_recette = r.id
-                                        WHERE r.id = ?;
-        ');
-        $requete->bindValue(1, $recipeId);
-
-        $requete->execute();
-
-        $ingredients = [];
-
-        while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-            $ingredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
-            $ingredient->setId($donnees['id']);
-
-            $ingredients[] = [$ingredient, $donnees['quantite']];
-        }
-        return $ingredients;
-    }
-
-    /**
      * @param Ingredient $ingredient
      * @return void
      */
