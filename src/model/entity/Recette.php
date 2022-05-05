@@ -14,28 +14,19 @@ class Recette
     private int $utilisateurID;
 
     /**
-     * @param string $nom
-     * @param string $categorie
-     * @param int $niveau
-     * @param int $tpsPrepa
-     * @param int $tpsCuisson
-     * @param string $budget
-     * @param int $nbPers
-     * @param string $etapes
-     * @param int $utilisateurID
+     * @param array|null $donnees
      */
     // CONSTRUCTEUR A REFACTORER AVEC ARRAY ET FOREACH
-    public function __construct(string $nom, string $categorie, int $niveau, int $tpsPrepa, int $tpsCuisson, string $budget, int $nbPers, string $etapes, int $utilisateurID)
+    public function __construct(array $donnees=null)
     {
-        $this->nom = $nom;
-        $this->categorie = $categorie;
-        $this->niveau = $niveau;
-        $this->tpsPrepa = $tpsPrepa;
-        $this->tpsCuisson = $tpsCuisson;
-        $this->budget = $budget;
-        $this->nbPers = $nbPers;
-        $this->etapes = $etapes;
-        $this->utilisateurID = $utilisateurID;
+        if ($donnees !== null) {
+            foreach ($donnees as $key => $value){
+                $method = 'set' .ucfirst($key);
+                if(method_exists($this, $method)){
+                    $this->$method($value);
+                }
+            }
+        }
     }
 
     /**

@@ -9,17 +9,18 @@ class Utilisateur
     private string $role;
 
     /**
-     * @param string $email
-     * @param string $mdp
-     * @param string $nom
-     * @param string $role
+     * @param array|null $donnees
      */
-    public function __construct(string $email=null, string $mdp=null, string $nom=null, string $role=null)
+    public function __construct(array $donnees=null)
     {
-        if ($email !== null) {$this->email = $email;}
-        if ($mdp !== null) {$this->mdp = $mdp;}
-        if ($nom !== null) {$this->nom = $nom;}
-        if ($role !== null) {$this->role = $role;}
+        if ($donnees !== null) {
+            foreach ($donnees as $key => $value){
+                $method = 'set' .ucfirst($key);
+                if(method_exists($this, $method)){
+                    $this->$method($value);
+                }
+            }
+        }
     }
 
     /**

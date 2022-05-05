@@ -8,26 +8,6 @@ class UtilisateurManager extends EntityManager
 {
 
 
-    /**
-     * @return Utilisateur[]
-     */
-    public function getAll(): iterable
-    {
-        $utilisateurs = [];
-
-        $bdd = $this->DBConnect();
-        $requete = $bdd->query('SELECT * FROM Utilisateur');
-
-        while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-
-            $utilisateur = new Utilisateur($donnees['email'], $donnees['mdp'], $donnees['nom'], $donnees['role']);
-            $utilisateur->setId($donnees['id']);
-
-            $utilisateurs[] = $utilisateur;
-        }
-
-        return $utilisateurs;
-    }
 
 //    /**
 //     * @param Utilisateur $utilisateur

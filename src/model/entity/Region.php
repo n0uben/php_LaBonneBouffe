@@ -6,7 +6,7 @@ class Region
     private string $nom;
 
     /**
-     * @param string $nom
+     * @param string|null $nom
      */
     public function __construct(string $nom=null)
     {

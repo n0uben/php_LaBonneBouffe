@@ -1,5 +1,7 @@
 <?php
 
+require './src/model/manager/DbManager.php';
+
 require_once './src/model/entity/Ingredient.php';
 require_once './src/model/entity/Recette.php';
 require_once './src/model/entity/Region.php';

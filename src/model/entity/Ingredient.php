@@ -7,12 +7,17 @@ class Ingredient
     private string $uniteMesure;
 
     /**
-     * @param string|null $nom
-     * @param string|null $uniteMesure
+     * @param array|null $donnees
      */
-    public function __construct(string $nom=null, string $uniteMesure=null) {
-        if ($nom!== null) { $this->setNom($nom); }
-        if ($uniteMesure!== null) { $this->setUniteMesure($uniteMesure); }
+    public function __construct(array $donnees=null) {
+        if ($donnees !== null) {
+            foreach ($donnees as $key => $value){
+                $method = 'set' .ucfirst($key);
+                if(method_exists($this, $method)){
+                    $this->$method($value);
+                }
+            }
+        }
     }
 
     /**
