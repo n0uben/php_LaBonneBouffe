@@ -6,6 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
+                <p><a href="/index.php?p=home">Retour au tableau de bord</a> </p>
 
                 <h1>Liste des ingrédients</h1>
 
@@ -29,10 +30,6 @@
                     <?php endforeach; ?>
                     </tbody>
                 </table>
-
-                <p><a href="/index.php?p=home">Retour au tableau de bord</a> </p>
-
-
             </div>
         </div>
     </div>

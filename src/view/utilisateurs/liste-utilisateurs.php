@@ -6,6 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
+                <p><a href="/index.php?p=home">Retour au tableau de bord</a> </p>
 
                 <h1>Liste des utilisateurs</h1>
 
@@ -27,16 +28,10 @@
                             <td><?= $utilisateur->getNom(); ?></td>
                             <td><?= $utilisateur->getRole(); ?></td>
                             <td><a href='index.php?p=utilisateur&action=edit&id=<?= $utilisateur->getId(); ?>'>Voir l’utilisateur</a></td>
-
                         </tr>
                     <?php endforeach; ?>
-
                     </tbody>
                 </table>
-
-                <p><a href="/index.php?p=home">Retour au tableau de bord</a> </p>
-
-
             </div>
         </div>
     </div>

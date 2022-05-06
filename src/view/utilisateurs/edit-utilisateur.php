@@ -6,10 +6,9 @@
     <div class="container">
         <div class="row">
             <div class="col">
+                <p><a href="/index.php?p=utilisateur">Retour à la liste des utilisateurs</a> </p>
 
-                <h1>
-                    Ingrédients #<?= $utilisateur->getId(); ?>
-                </h1>
+                <h1>Ingrédients #<?= $utilisateur->getId(); ?></h1>
 
                 <table class="table table-striped">
                     <thead>
@@ -28,7 +27,6 @@
                     </tbody>
                 </table>
 
-                <p><a href="/index.php?p=utilisateur">Retour à la liste des utilisateurs</a> </p>
             </div>
         </div>
     </div>

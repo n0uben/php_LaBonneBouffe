@@ -6,10 +6,9 @@
     <div class="container">
         <div class="row">
             <div class="col">
+                <p><a href="/index.php?p=recette">Retour à la liste des recettes</a> </p>
 
-                <h1>
-                    Recette #<?= $recette->getId(); ?>
-                </h1>
+                <h1>Recette # <?= $recette->getId(); ?> </h1>
 
                 <table class="table table-striped">
                     <thead>
@@ -36,7 +35,6 @@
                     </tbody>
                 </table>
 
-                <p><a href="/index.php?p=recette">Retour à la liste des recettes</a> </p>
             </div>
         </div>
     </div>
