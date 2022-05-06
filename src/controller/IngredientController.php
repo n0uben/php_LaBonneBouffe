@@ -20,11 +20,11 @@ class IngredientController
      * @param string $id
      * @return void
      */
-    public static function show(string $id): void
+    public static function edit(string $id): void
     {
         $manager = new IngredientManager();
         $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
 
-        require_once './src/view/ingredients/show-ingredients.php';
+        require_once './src/view/ingredients/edit-ingredient.php';
     }
 }

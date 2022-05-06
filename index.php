@@ -18,35 +18,44 @@ $id = "";
 if (isset($_GET['id'])) {
     $id = htmlentities($_GET['id']);
 }
+$action = '';
+if (isset($_GET['action'])) {
+    $action = htmlentities($_GET['action']);
+}
 
 switch ($page) {
-    case 'liste-ingredients':
+    case 'ingredient':
         require_once './src/controller/IngredientController.php';
-        IngredientController::index();
+        switch ($action) {
+            case 'edit':
+                IngredientController::edit($id);
+                break;
+            default:
+                IngredientController::index();
+                break;
+        }
         break;
-    case 'show-ingredients':
-        require_once './src/controller/IngredientController.php';
-        IngredientController::show($id);
-        break;
-    case 'liste-utilisateurs':
-        require_once './src/controller/UtilisateurController.php';
-        UtilisateurController::index();
-        break;
-    case 'show-utilisateurs':
-        require_once './src/controller/UtilisateurController.php';
-        UtilisateurController::show($id);
-        break;
-    case 'liste-recettes':
+    case 'recette':
         require_once './src/controller/RecetteController.php';
-        RecetteController::index();
+        switch ($action) {
+            case 'edit':
+                RecetteController::edit($id);
+                break;
+            default:
+                RecetteController::index();
+                break;
+        }
         break;
-    case 'show-recettes':
-        require_once './src/controller/RecetteController.php';
-        RecetteController::show($id);
-        break;
-    case 'home':
-        require_once './src/controller/HomeController.php';
-        HomeController::index();
+    case 'utilisateur':
+        require_once './src/controller/UtilisateurController.php';
+        switch ($action) {
+            case 'edit':
+                UtilisateurController::edit($id);
+                break;
+            default:
+                UtilisateurController::index();
+                break;
+        }
         break;
     default:
         require_once './src/controller/HomeController.php';

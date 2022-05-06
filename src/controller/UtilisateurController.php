@@ -22,11 +22,11 @@ class UtilisateurController
      * @param string $id
      * @return void
      */
-    public static function show(string $id): void
+    public static function edit(string $id): void
     {
         $manager = new UtilisateurManager();
         $utilisateur = $manager->getOne($id, UtilisateurController::$tableName);
 
-        require_once './src/view/utilisateurs/show-utilisateurs.php';
+        require_once './src/view/utilisateurs/edit-utilisateur.php';
     }
 }

@@ -26,7 +26,7 @@
                             <td><?= $utilisateur->getEmail(); ?></td>
                             <td><?= $utilisateur->getNom(); ?></td>
                             <td><?= $utilisateur->getRole(); ?></td>
-                            <td><a href='index.php?p=show-utilisateurs&id=<?= $utilisateur->getId(); ?>'>Voir l’utilisateur</a></td>
+                            <td><a href='index.php?p=utilisateur&action=edit&id=<?= $utilisateur->getId(); ?>'>Voir l’utilisateur</a></td>
 
                         </tr>
                     <?php endforeach; ?>

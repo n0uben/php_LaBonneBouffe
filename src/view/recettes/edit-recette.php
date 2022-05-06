@@ -36,7 +36,7 @@
                     </tbody>
                 </table>
 
-                <p><a href="/index.php?p=liste-recettes">Retour à la liste des recettes</a> </p>
+                <p><a href="/index.php?p=recette">Retour à la liste des recettes</a> </p>
             </div>
         </div>
     </div>

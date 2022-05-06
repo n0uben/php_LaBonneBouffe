@@ -83,16 +83,16 @@ class EntityManager
 
     /**
      * @param int $id
+     * @param string $tablename
      * @return void
      */
-    public function delete(int $id): void
+    public function delete(int $id, string $tablename): void
     {
         $bdd = $this->DBConnect();
 
-        $requete = $bdd->prepare('DELETE FROM Ingrédients WHERE id = ? ');
-        $requete->bindValue(1, $id);
+        $sql = 'DELETE FROM '. htmlentities($tablename) . ' WHERE id = ' . htmlentities($id);
 
-        $requete->execute();
+        $requete = $bdd->query($sql);
 
     }
 }

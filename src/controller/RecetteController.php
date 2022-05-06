@@ -16,12 +16,12 @@ class RecetteController
         require_once './src/view/recettes/liste-recettes.php';
 
     }
-    public static function show(string $id): void
+    public static function edit(string $id): void
     {
         $manager = new RecetteManager();
         $recette = $manager->getOne(intval($id), RecetteController::$tableName);
 
-        require_once './src/view/recettes/show-recettes.php';
+        require_once './src/view/recettes/edit-recette.php';
 
     }
 }

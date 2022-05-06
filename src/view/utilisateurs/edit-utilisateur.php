@@ -28,7 +28,7 @@
                     </tbody>
                 </table>
 
-                <p><a href="/index.php?p=liste-utilisateurs">Retour à la liste des utilisateurs</a> </p>
+                <p><a href="/index.php?p=utilisateur">Retour à la liste des utilisateurs</a> </p>
             </div>
         </div>
     </div>
