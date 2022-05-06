@@ -33,8 +33,8 @@
                             <td><?= $recette->getTpsCuisson(); ?></td>
                             <td><?= $recette->getBudget(); ?></td>
                             <td><?= $recette->getNbPers(); ?></td>
-                            <td><a href='index.php?p=recette&action=edit&id=<?= $recette->getId(); ?>'>Voir la recette</a></td>
-                            <td><a href='index.php?p=recette&action=delete&id=<?= $recette->getId(); ?>'>Voir la recette</a></td>
+                            <td><a href='index.php?p=recette&action=edit&id=<?= $recette->getId(); ?>'>Modifier la recette</a></td>
+                            <td><a href='index.php?p=recette&action=delete&id=<?= $recette->getId(); ?>'>Supprimer la recette</a></td>
 
                         </tr>
                     <?php endforeach; ?>

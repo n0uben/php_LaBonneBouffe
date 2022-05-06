@@ -10,31 +10,39 @@
 
                 <h1>Recette # <?= $recette->getId(); ?> </h1>
 
-                <table class="table table-striped">
-                    <thead>
-                        <th scope="col">#</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Niveau</th>
-                        <th scope="col">Temps Prépa</th>
-                        <th scope="col">Temps Cuisson</th>
-                        <th scope="col">Budget</th>
-                        <th scope="col">Nb Pers.</th>
-                        <th scope="col">Étapes</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><?= $recette->getId(); ?></td>
-                            <td><?= $recette->getNom(); ?></td>
-                            <td><?= $recette->getNiveau(); ?></td>
-                            <td><?= $recette->getTpsPrepa(); ?></td>
-                            <td><?= $recette->getTpsCuisson(); ?></td>
-                            <td><?= $recette->getBudget(); ?></td>
-                            <td><?= $recette->getNbPers(); ?></td>
-                            <td><?= $recette->getEtapes(); ?></td>
-                        </tr>
-                    </tbody>
-                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="index.php?p=recette&action=update&id=<?= $recette->getId(); ?>" method="post">
+                    <div class="form-group mt-2">
+                        <label for="nom">Nom :</label>
+                        <input type="text" name="nom" class="form-control" value="<?= $recette->getNom();?>">
 
+                        <label for="niveau">Niveau :</label>
+                        <input type="text" name="niveau" class="form-control" value="<?= $recette->getNiveau();?>">
+
+                        <label for="tpsPrepa">Préparation (min) :</label>
+                        <input type="text" name="tpsPrepa" class="form-control" value="<?= $recette->getTpsPrepa();?>">
+
+                        <label for="tpsCuisson">Cuisson (min) :</label>
+                        <input type="text" name="tpsCuisson" class="form-control" value="<?= $recette->getTpsCuisson();?>">
+
+                        <label for="budget">Budget :</label>
+                        <input type="text" name="budget" class="form-control" value="<?= $recette->getBudget();?>">
+
+                        <label for="nbPers">Nombre de personnes :</label>
+                        <input type="text" name="nbPers" class="form-control" value="<?= $recette->getNbPers();?>">
+
+                        <label for="etapes">Étapes :</label>
+                        <textarea class="form-control" name="etapes" rows="6"><?= $recette->getEtapes();?></textarea>
+                    </div>
+                    <div class="form-group mt-4">
+                        <input class="btn btn-primary" type="submit" value="Enregistrer">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
