@@ -7,7 +7,7 @@ class DbManager
      */
     public static function DBConnect(): PDO
     {
-        $bdd = new PDO('mysql:host=localhost;dbname=LaBonneBouffeNoureuxGerber;charset=utf8', 'benjamin', 'password');
+        $bdd = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASSWORD);
         return $bdd;
     }
 }
