@@ -6,8 +6,6 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <p><a href="/index.php?p=home">Retour au tableau de bord</a> </p>
-
                 <h1>Liste des recettes</h1>
 
                 <table class="table table-striped">

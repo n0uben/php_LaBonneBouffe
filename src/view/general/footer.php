@@ -1,11 +1,11 @@
 <?php
 
 ?>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                Tous droits réservés 2022 - Kévin Gerber & Benjamin Noureux
+<footer class="mt-4">
+    <div class="container mt-4">
+        <div class="row mt-4">
+            <div class="col mt-4">
+                <em><small>Tous droits réservés 2022 - Kévin Gerber & Benjamin Noureux</small></em>
             </div>
         </div>
     </div>
