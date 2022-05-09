@@ -6,55 +6,5 @@ require_once './src/model/entity/Utilisateur.php';
 
 class UtilisateurManager extends EntityManager
 {
-
-
-
-//    /**
-//     * @param Utilisateur $utilisateur
-//     * @return void
-//     */
-//    public function save(Utilisateur $utilisateur): void
-//    {
-//        $bdd = $this->DBConnect();
 //
-//        $requete = $bdd->prepare('INSERT INTO Utilisateurs (email, mdp, nom, role) VALUES (:email, :mdp, :nom, :role)');
-//        $requete->bindValue(':email', $utilisateur->getEmail());
-//        $requete->bindValue(':mdp', $utilisateur->getMdp());
-//        $requete->bindValue(':nom', $utilisateur->getNom());
-//        $requete->bindValue(':role', $utilisateur->getRole());
-//
-//        $requete->execute();
-//    }
-
-//    /**
-//     * @param Utilisateur $utilisateur
-//     * @return void
-//     */
-//    public function modify(Utilisateur $utilisateur): void
-//    {
-//        $bdd = $this->DBConnect();
-//
-//        $requete = $bdd->prepare('UPDATE Utilisateurs SET email = :email, mdp = :mdp, nom = :nom, role = :role WHERE id = :id');
-//        $requete->bindValue(':email', $utilisateur->getEmail());
-//        $requete->bindValue(':mdp', $utilisateur->getMdp());
-//        $requete->bindValue(':nom', $utilisateur->getNom());
-//        $requete->bindValue(':role', $utilisateur->getRole());
-//        $requete->bindValue(':id', $utilisateur->getId());
-//
-//        $requete->execute();
-//    }
-
-//    /**
-//     * @param int $id
-//     * @return void
-//     */
-//    public function delete(int $id): void
-//    {
-//        $bdd = $this->DBConnect();
-//
-//        $requete = $bdd->prepare('DELETE FROM Utilisateurs WHERE id = :id ');
-//        $requete->bindValue(':id', $id);
-//
-//        $requete->execute();
-//    }
 }
