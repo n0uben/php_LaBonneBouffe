@@ -55,7 +55,7 @@ class EntityManager
      */
     public function save(Ingredient $ingredient): void
     {
-        $bdd = $this->DBConnect();
+        $bdd = DbManager::DBConnect();
 
         $requete = $bdd->prepare('INSERT INTO Ingrédients (nom, uniteMesure) VALUES (?, ?)');
         $requete->bindValue(1, $ingredient->getNom());
@@ -71,7 +71,7 @@ class EntityManager
      */
     public function modify(Ingredient $ingredient): void
     {
-        $bdd = $this->DBConnect();
+        $bdd = DbManager::DBConnect();
 
         $requete = $bdd->prepare('UPDATE Ingrédients SET nom = ?, uniteMesure = ? WHERE id = ?');
         $requete->bindValue(1, $ingredient->getNom());
@@ -88,7 +88,7 @@ class EntityManager
      */
     public function delete(int $id, string $tablename): void
     {
-        $bdd = $this->DBConnect();
+        $bdd = DbManager::DBConnect();
 
         $sql = 'DELETE FROM '. htmlentities($tablename) . ' WHERE id = ' . htmlentities($id);
 
