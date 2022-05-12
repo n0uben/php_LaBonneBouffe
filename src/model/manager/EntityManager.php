@@ -50,18 +50,20 @@ class EntityManager
     }
 
     /**
-     * @param Ingredient $ingredient
+     * @param mixed $entity
      * @return void
      */
-    public function save(Ingredient $ingredient): void
+    public function create($entity): void
     {
+
+
         $bdd = DbManager::DBConnect();
 
-        $requete = $bdd->prepare('INSERT INTO Ingrédients (nom, uniteMesure) VALUES (?, ?)');
-        $requete->bindValue(1, $ingredient->getNom());
-        $requete->bindValue(2, $ingredient->getUniteMesure());
+        $sql = 'INSERT INTO ' . get_class($entity) . ' ' . $entity->getKeysSQL() .' VALUES '. $entity->getValuesSQL();
 
-        $requete->execute();
+        echo $sql;
+
+        $requete = $bdd->query($sql);
 
     }
 
@@ -69,7 +71,7 @@ class EntityManager
      * @param Ingredient $ingredient
      * @return void
      */
-    public function modify(Ingredient $ingredient): void
+    public function update(Ingredient $ingredient): void
     {
         $bdd = DbManager::DBConnect();
 
@@ -90,7 +92,7 @@ class EntityManager
     {
         $bdd = DbManager::DBConnect();
 
-        $sql = 'DELETE FROM '. htmlentities($tablename) . ' WHERE id = ' . htmlentities($id);
+        $sql = 'DELETE FROM ' . htmlentities($tablename) . ' WHERE id = ' . htmlentities($id);
 
         $requete = $bdd->query($sql);
 

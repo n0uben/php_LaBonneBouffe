@@ -8,7 +8,7 @@ class Region
     /**
      * @param string|null $nom
      */
-    public function __construct(string $nom=null)
+    public function __construct(string $nom = null)
     {
         $this->nom = $nom;
     }
@@ -43,6 +43,48 @@ class Region
     public function setNom(string $nom): void
     {
         $this->nom = $nom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeysSQL(): string
+    {
+        $keys = '(';
+
+        $lastValue = end($this);
+
+        foreach ($this as $key => $value) {
+
+            $keys .= $key;
+            if ($value !== $lastValue) {
+                $keys .= ', ';
+            }
+        }
+        $keys .= ')';
+
+        return $keys;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValuesSQL(): string
+    {
+        $values = '(';
+
+        $lastValue = end($this);
+
+        foreach ($this as $key => $value) {
+
+            $values .= '"' . $value . '"';
+            if ($value !== $lastValue) {
+                $values .= ', ';
+            }
+        }
+        $values .= ')';
+
+        return $values;
     }
 
 
