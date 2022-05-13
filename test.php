@@ -1,16 +1,15 @@
 <?php
-require_once './src/model/entity/Ingredient.php';
 require_once './src/model/manager/EntityManager.php';
-require_once './src/model/manager/IngredientManager.php';
+require_once './src/model/manager/RecetteManager.php';
 require_once './config.php';
 
-$manager = new IngredientManager();
+$manager = new RecetteManager();
 
-$donnees = ['nom' => 'bavette','uniteMesure' => 'g'];
+$recettes = $manager->getAllByRegion(1);
 
-//$ingredient = new Ingredient('bavette', 'g');
-$ingredient = new Ingredient($donnees);
+foreach ($recettes as $recette) {
+    echo $recette->getNom();
+    echo '<br>';
+}
 
-echo $_SERVER['SERVER_NAME'];
-echo $_SERVER['REQUEST_URI'];
-echo $_SERVER['DOCUMENT_ROOT'];
+var_dump($recettes);
