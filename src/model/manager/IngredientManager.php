@@ -17,23 +17,21 @@ class IngredientManager extends EntityManager
         $bdd = DbManager::DBConnect();
 
         $requete = $bdd->prepare('SELECT i.id as id, i.nom as nom, i.uniteMesure as uniteMesure, c.quantite as quantite 
-                                        FROM Ingrédients i
+                                        FROM Ingredient i
                                         JOIN composition c ON i.id = c.id_ingredient
-                                        JOIN Recettes r ON c.id_recette = r.id
-                                        WHERE r.id = ?;
+                                        JOIN Recette r ON c.id_recette = r.id
+                                        WHERE r.id = :id;
         ');
-        $requete->bindValue(1, $recipeId);
-
+        $requete->bindValue(':id', $recipeId);
         $requete->execute();
 
         $ingredients = [];
 
         while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-            $ingredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
-            $ingredient->setId($donnees['id']);
-
+            $ingredient = new Ingredient($donnees);
             $ingredients[] = [$ingredient, $donnees['quantite']];
         }
+
         return $ingredients;
     }
 }

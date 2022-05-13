@@ -1,15 +1,18 @@
 <?php
+require_once './src/model/entity/Ingredient.php';
 require_once './src/model/manager/EntityManager.php';
-require_once './src/model/manager/RecetteManager.php';
+require_once './src/model/manager/IngredientManager.php';
 require_once './config.php';
 
-$manager = new RecetteManager();
+$manager = new IngredientManager();
 
-$recettes = $manager->getAllByUser(2);
+$ingredients = $manager->getAllByRecipe(1);
 
-foreach ($recettes as $recette) {
-    echo $recette->getNom();
-    echo '<br>';
+foreach ($ingredients as $ingredient) {
+    $ingredient1 = $ingredient[0];
+    $quantite = $ingredient[1];
+
+    echo "il faut ". $quantite . ' ' . $ingredient1->getUniteMesure() . " de " . $ingredient1->getNom();
+    echo "<br>";
 }
 
-var_dump($recettes);
