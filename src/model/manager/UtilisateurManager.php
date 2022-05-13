@@ -50,11 +50,42 @@ class UtilisateurManager extends EntityManager
     }
 
     public function getAll(){
+        $utilisateurs = [];
 
+        $req = $this->bdd->query('SELECT * FROM Utilisateurs');
+
+        while($donnees = $req->fetch(PDO::FETCH_ASSOC)){
+            $utilisateur = new Utilisateur();
+            $utilisateur->hydrate($donnees);
+            $utilisateurs[] = $utilisateur;
+        }
+
+        return $utilisateurs;
     }
 
-    public function update(Utilisateur $utilisateur){
+    public function update(Utilisateur $utilisateur)
+    {
+        $req = $this->bdd->prepare('UPDATE users SET email = :email, mdp = :mdp, nom = :nom, role = :role WHERE id = :id')
 
+        $req->blindValue(':email', $utilisateur->getEmail(), PDO::PARAM_STR);
+        $req->blindValue(':email', $utilisateur->getMdp(), PDO::PARAM_STR);
+        $req->blindValue(':email', $utilisateur->getNom(), PDO::PARAM_STR);
+        $req->blindValue(':email', $utilisateur->getRole(), PDO::PARAM_STR);
+
+        $req->execute();
     }
 
+    public function login($nom){
+        $req = $this->prepare('SELECT * FROM Utilisateur WHERE nom = ?');
+        $req->execute(array($seudo));
+        if($donnees = $req->fetch(PDO::FETCH_ASSOC)){
+            $utilisateur = new Utilisateur();
+            $utilisateur->hydrate($donnees);
+
+            return $utilisateur;
+        }
+        else{
+            return false;
+        }
+    }
 }
