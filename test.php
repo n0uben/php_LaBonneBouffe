@@ -15,3 +15,5 @@ echo '<br>';
 echo $ingredient->getNom();
 echo '<br>';
 echo $ingredient->getValuesSQL();
+
+$manager->create($ingredient);

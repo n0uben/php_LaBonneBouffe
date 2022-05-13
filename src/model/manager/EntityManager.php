@@ -63,24 +63,22 @@ class EntityManager
 
         echo $sql;
 
-        $requete = $bdd->query($sql);
-
+//        $requete = $bdd->query($sql);
     }
 
     /**
-     * @param Ingredient $ingredient
+     * @param mixed $entity
      * @return void
      */
-    public function update(Ingredient $ingredient): void
+    public function update($entity): void
     {
         $bdd = DbManager::DBConnect();
 
-        $requete = $bdd->prepare('UPDATE Ingrédients SET nom = ?, uniteMesure = ? WHERE id = ?');
-        $requete->bindValue(1, $ingredient->getNom());
-        $requete->bindValue(2, $ingredient->getUniteMesure());
-        $requete->bindValue(3, $ingredient->getId());
+        $sql = 'UPDATE ' . get_class($entity) . ' ' ;
 
-        $requete->execute();
+        $requete = $bdd->query($sql);
+
+
     }
 
     /**
