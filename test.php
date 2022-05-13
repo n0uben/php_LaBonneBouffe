@@ -10,5 +10,3 @@ $donnees = ['nom' => 'bavette','uniteMesure' => 'g'];
 
 //$ingredient = new Ingredient('bavette', 'g');
 $ingredient = new Ingredient($donnees);
-
-var_dump($ingredient);

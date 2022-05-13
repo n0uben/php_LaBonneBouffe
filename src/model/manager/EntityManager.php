@@ -64,6 +64,7 @@ class EntityManager
     /**
      * @param Entity $entity
      * @return void
+     * Nécessite une entité avec ID initialisé
      */
     public function update(Entity $entity): void
     {
