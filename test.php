@@ -5,7 +5,7 @@ require_once './config.php';
 
 $manager = new RecetteManager();
 
-$recettes = $manager->getAllByRegion(1);
+$recettes = $manager->getAllByUser(2);
 
 foreach ($recettes as $recette) {
     echo $recette->getNom();
