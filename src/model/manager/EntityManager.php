@@ -1,6 +1,7 @@
 <?php
 
-require './src/model/manager/DbManager.php';
+require_once './src/model/manager/DbManager.php';
+require_once './src/model/manager/QueryBuilder.php';
 
 require_once './src/model/entity/Ingredient.php';
 require_once './src/model/entity/Recette.php';
@@ -45,52 +46,42 @@ class EntityManager
             //on ajoute l’entité à un tableau d’ingrédients
             $entities[] = $entity;
         }
-
         return $entities;
     }
 
     /**
-     * @param mixed $entity
+     * @param Entity $entity
      * @return void
      */
-    public function create($entity): void
+    public function create(Entity $entity): void
     {
-
-
         $bdd = DbManager::DBConnect();
 
-        $sql = 'INSERT INTO ' . get_class($entity) . ' ' . $entity->getKeysSQL() .' VALUES '. $entity->getValuesSQL();
-
-        echo $sql;
-
-//        $requete = $bdd->query($sql);
+        $sql = QueryBuilder::createSQL($entity);
+        $requete = $bdd->query($sql);
     }
 
     /**
-     * @param mixed $entity
+     * @param Entity $entity
      * @return void
      */
-    public function update($entity): void
+    public function update(Entity $entity): void
     {
         $bdd = DbManager::DBConnect();
-
-        $sql = 'UPDATE ' . get_class($entity) . ' ' ;
-
+        $sql = QueryBuilder::updateSQL($entity);
         $requete = $bdd->query($sql);
-
-
     }
 
     /**
      * @param int $id
-     * @param string $tablename
+     * @param string $entityName
      * @return void
      */
-    public function delete(int $id, string $tablename): void
+    public function delete(int $id, string $entityName): void
     {
         $bdd = DbManager::DBConnect();
 
-        $sql = 'DELETE FROM ' . htmlentities($tablename) . ' WHERE id = ' . htmlentities($id);
+        $sql = 'DELETE FROM ' . htmlentities($entityName) . ' WHERE id = ' . htmlentities($id);
 
         $requete = $bdd->query($sql);
 

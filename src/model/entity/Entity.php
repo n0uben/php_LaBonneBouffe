@@ -3,44 +3,55 @@
 class Entity
 {
     /**
-     * @return string
+     * @return iterable
      */
-    public function getKeysSQL(): string
+    public function getKeysArraySQL() : iterable
     {
-        $keys = '(';
-
-        $lastValue = end($this);
+        $keys = [];
 
         foreach ($this as $key => $value) {
-
-            $keys .= $key;
-            if ($value !== $lastValue) {
-                $keys .= ', ';
-            }
+            $keys[] = $key;
         }
-        $keys .= ')';
-
         return $keys;
     }
 
     /**
      * @return string
+     * Retourne une string de type 'key, key' …
      */
-    public function getValuesSQL(): string
+    public function getKeysSQL(): string
     {
-        $values = '(';
-
+        $keys = '';
         $lastValue = end($this);
 
         foreach ($this as $key => $value) {
-
-            $values .= '"' . $value . '"';
-            if ($value !== $lastValue) {
-                $values .= ', ';
+            if ($key !== 'id') {
+                $keys .= $key;
+                if ($value !== $lastValue) {
+                    $keys .= ', ';
+                }
             }
         }
-        $values .= ')';
+        return $keys;
+    }
 
+    /**
+     * @return string
+     * Retourne une string de type ' "value", "value" ' …
+     */
+    public function getValuesSQL(): string
+    {
+        $values = '';
+        $lastValue = end($this);
+
+        foreach ($this as $key => $value) {
+            if ($key !== 'id') {
+                $values .= '"' . $value . '"';
+                if ($value !== $lastValue) {
+                    $values .= ', ';
+                }
+            }
+        }
         return $values;
     }
 }

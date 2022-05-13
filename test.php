@@ -10,10 +10,5 @@ $donnees = ['nom' => 'bavette','uniteMesure' => 'g'];
 
 //$ingredient = new Ingredient('bavette', 'g');
 $ingredient = new Ingredient($donnees);
-var_dump($ingredient);
-echo '<br>';
-echo $ingredient->getNom();
-echo '<br>';
-echo $ingredient->getValuesSQL();
 
-$manager->create($ingredient);
+var_dump($ingredient);
