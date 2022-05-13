@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <p><a href="/index.php?p=recette">Retour à la liste des recettes</a> </p>
+                <p><a href="./index.php?p=recette">Retour à la liste des recettes</a> </p>
 
                 <h1>Recette # <?= $recette->getId(); ?> </h1>
 
@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="index.php?p=recette&action=update&id=<?= $recette->getId(); ?>" method="post">
+                <form action="./index.php?p=recette&action=update&id=<?= $recette->getId(); ?>" method="post">
                     <div class="form-group mt-2">
                         <label for="nom">Nom :</label>
                         <input type="text" name="nom" class="form-control" value="<?= $recette->getNom();?>">

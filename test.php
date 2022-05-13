@@ -10,3 +10,7 @@ $donnees = ['nom' => 'bavette','uniteMesure' => 'g'];
 
 //$ingredient = new Ingredient('bavette', 'g');
 $ingredient = new Ingredient($donnees);
+
+echo $_SERVER['SERVER_NAME'];
+echo $_SERVER['REQUEST_URI'];
+echo $_SERVER['DOCUMENT_ROOT'];

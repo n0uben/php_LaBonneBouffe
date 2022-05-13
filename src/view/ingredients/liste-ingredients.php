@@ -22,8 +22,8 @@
                             <td><?= $ingredient->getId(); ?></td>
                             <td><?= $ingredient->getNom(); ?></td>
                             <td><?= $ingredient->getUniteMesure(); ?></td>
-                            <td><a href='index.php?p=ingredient&action=edit&id=<?= $ingredient->getId(); ?>'>Modifier l’ingrédient</a></td>
-                            <td><a href="index.php?p=ingredient&action=delete&id=<?=$ingredient->getId()?>">Supprimer</a></td>
+                            <td><a href='./index.php?p=ingredient&action=edit&id=<?= $ingredient->getId(); ?>'>Modifier l’ingrédient</a></td>
+                            <td><a href="./index.php?p=ingredient&action=delete&id=<?=$ingredient->getId()?>">Supprimer</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

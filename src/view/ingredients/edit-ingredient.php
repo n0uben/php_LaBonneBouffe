@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col">
 
-                <p><a href="/index.php?p=ingredient">Retour à la liste des ingrédients</a> </p>
+                <p><a href="./index.php?p=ingredient">Retour à la liste des ingrédients</a> </p>
                 <h1>
                     Modifier l’ingrédient #<?= $ingredient->getId(); ?>
                 </h1>
