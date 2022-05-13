@@ -38,7 +38,7 @@ class UtilisateurManager extends EntityManager
     public function get($id){
         $id = (string) $id;
 
-        $req = $this->bdd->prepare('SELECT * FROM Utilisateur WHERE id = ?'); // WHERE à supprimer ???
+        $req = $this->bdd->prepare('SELECT * FROM Utilisateur WHERE id = ?');
         $req->excecute(array($id));
         $donnees = $req->fetch(PDO::FETCH_ASSOC);
 
