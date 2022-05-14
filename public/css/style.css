@@ -2,7 +2,9 @@
 
 :root {
     --bg-dark: #0f172a;
+    --title-dark: #0f172a;
     --text-light: #fefefe;
+    --text-dark: #1C294A;
 }
 
 body {
@@ -19,9 +21,11 @@ aside {
     max-height: 100vh;
     background: var(--bg-dark);
 }
+
 main {
     grid-area: content;
 }
+
 footer {
     grid-area: footer;
 }
@@ -35,14 +39,20 @@ header h1 {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Rubik', 'sans-serif';
     font-weight: bold;
+    color: var(--title-dark);
 }
-p, a, table, input, textarea {
+
+p, a, table, input, textarea, label {
     font-family: 'Rubik', 'sans-serif';
+}
+p, td, th, textarea, label, input[type='text'], input[type='email'], input[type='password'] {
+    color: var(--text-dark) !important;
 }
 
 aside .nav-link {
     color: var(--text-light) !important;
 }
+
 /*main design*/
 main {
     padding-top: 70px;
@@ -55,9 +65,11 @@ aside img {
     height: auto;
     margin: auto;
 }
+
 aside li {
     margin: 10px 0;
 }
+
 aside li a i {
     margin-right: 12px;
 }
