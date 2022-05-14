@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h1>Liste des ingrédients</h1>
+                <h1>Liste des régions</h1>
 
                 <table class="table table-striped">
                     <thead>
@@ -17,13 +17,12 @@
                     </thead>
                     <tbody>
                     <?php
-                    foreach ($ingredients as $ingredient): ?>
+                    foreach ($regions as $region): ?>
                         <tr>
-                            <td><?= $ingredient->getId(); ?></td>
-                            <td><?= $ingredient->getNom(); ?></td>
-                            <td><?= $ingredient->getUniteMesure(); ?></td>
-                            <td><a href='./index.php?p=ingredient&action=edit&id=<?= $ingredient->getId(); ?>'><i class="fa-solid fa-pen-to-square"></i> Modifier</a></td>
-                            <td><a href="./index.php?p=ingredient&action=delete&id=<?=$ingredient->getId()?>"><i class="fa-solid fa-trash-can"></i> Supprimer</a></td>
+                            <td><?= $region->getId(); ?></td>
+                            <td><?= $region->getNom(); ?></td>
+                            <td><a href='./index.php?p=region&action=edit&id=<?= $region->getId(); ?>'><i class="fa-solid fa-pen-to-square"></i> Modifier</a></td>
+                            <td><a href="./index.php?p=region&action=delete&id=<?=$region->getId()?>"><i class="fa-solid fa-trash-can"></i> Supprimer</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

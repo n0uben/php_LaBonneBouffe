@@ -17,71 +17,21 @@ class IngredientManager extends EntityManager
         $bdd = DbManager::DBConnect();
 
         $requete = $bdd->prepare('SELECT i.id as id, i.nom as nom, i.uniteMesure as uniteMesure, c.quantite as quantite 
-                                        FROM Ingrédients i
+                                        FROM Ingredient i
                                         JOIN composition c ON i.id = c.id_ingredient
-                                        JOIN Recettes r ON c.id_recette = r.id
-                                        WHERE r.id = ?;
+                                        JOIN Recette r ON c.id_recette = r.id
+                                        WHERE r.id = :id;
         ');
-        $requete->bindValue(1, $recipeId);
-
+        $requete->bindValue(':id', $recipeId);
         $requete->execute();
 
         $ingredients = [];
 
         while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-            $ingredient = new Ingredient($donnees['nom'], $donnees['uniteMesure']);
-            $ingredient->setId($donnees['id']);
-
+            $ingredient = new Ingredient($donnees);
             $ingredients[] = [$ingredient, $donnees['quantite']];
         }
+
         return $ingredients;
     }
-
-//    /**
-//     * @param Ingredient $ingredient
-//     * @return void
-//     */
-//    public function save(Ingredient $ingredient): void
-//    {
-//        $bdd = DbManager::DBConnect();
-//
-//        $requete = $bdd->prepare('INSERT INTO Ingrédients (nom, uniteMesure) VALUES (?, ?)');
-//        $requete->bindValue(1, $ingredient->getNom());
-//        $requete->bindValue(2, $ingredient->getUniteMesure());
-//
-//        $requete->execute();
-//
-//    }
-//
-//    /**
-//     * @param Ingredient $ingredient
-//     * @return void
-//     */
-//    public function modify(Ingredient $ingredient): void
-//    {
-//        $bdd = DbManager::DBConnect();
-//
-//        $requete = $bdd->prepare('UPDATE Ingrédients SET nom = ?, uniteMesure = ? WHERE id = ?');
-//        $requete->bindValue(1, $ingredient->getNom());
-//        $requete->bindValue(2, $ingredient->getUniteMesure());
-//        $requete->bindValue(3, $ingredient->getId());
-//
-//        $requete->execute();
-//    }
-//
-//    /**
-//     * @param int $id
-//     * @return void
-//     */
-//    public function delete(int $id): void
-//    {
-//        $bdd = DbManager::DBConnect();
-//
-//        $requete = $bdd->prepare('DELETE FROM Ingrédients WHERE id = ? ');
-//        $requete->bindValue(1, $id);
-//
-//        $requete->execute();
-//
-//    }
-
 }

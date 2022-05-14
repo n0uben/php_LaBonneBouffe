@@ -3,7 +3,7 @@
 ?>
 
 <main>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col">
                 <h1>Tableau de bord</h1>

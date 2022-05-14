@@ -1,6 +1,7 @@
 <?php
 
-require './src/model/manager/DbManager.php';
+require_once './src/model/manager/DbManager.php';
+require_once './src/model/manager/QueryBuilder.php';
 
 require_once './src/model/entity/Ingredient.php';
 require_once './src/model/entity/Recette.php';
@@ -9,7 +10,12 @@ require_once './src/model/entity/Utilisateur.php';
 
 class EntityManager
 {
-    public function getOne(int $id, string $entityName)
+    /**
+     * @param int $id
+     * @param string $entityName
+     * @return Entity
+     */
+    public function getOne(int $id, string $entityName): Entity
     {
         $bdd = DbManager::DBConnect();
 
@@ -36,63 +42,53 @@ class EntityManager
         // On execute la requete
         $sql = 'SELECT * FROM ' . htmlentities($entityName);
 
+        print_r($sql);
+
         $requete = $bdd->query($sql);
         $requete->setFetchMode(PDO::FETCH_CLASS, $entityName);
 
         //tant qu‘il y a des lignes en BDD
         while ($entity = $requete->fetch()) {
-
             //on ajoute l’entité à un tableau d’ingrédients
             $entities[] = $entity;
         }
-
         return $entities;
     }
 
     /**
-     * @param mixed $entity
+     * @param Entity $entity
      * @return void
      */
-    public function create($entity): void
+    public function create(Entity $entity): void
     {
-
-
         $bdd = DbManager::DBConnect();
 
-        $sql = 'INSERT INTO ' . get_class($entity) . ' ' . $entity->getKeysSQL() .' VALUES '. $entity->getValuesSQL();
-
-        echo $sql;
-
+        $sql = QueryBuilder::createSQL($entity);
         $requete = $bdd->query($sql);
-
     }
 
     /**
-     * @param Ingredient $ingredient
+     * @param Entity $entity
      * @return void
+     * Nécessite une entité avec ID initialisé
      */
-    public function update(Ingredient $ingredient): void
+    public function update(Entity $entity): void
     {
         $bdd = DbManager::DBConnect();
-
-        $requete = $bdd->prepare('UPDATE Ingrédients SET nom = ?, uniteMesure = ? WHERE id = ?');
-        $requete->bindValue(1, $ingredient->getNom());
-        $requete->bindValue(2, $ingredient->getUniteMesure());
-        $requete->bindValue(3, $ingredient->getId());
-
-        $requete->execute();
+        $sql = QueryBuilder::updateSQL($entity);
+        $requete = $bdd->query($sql);
     }
 
     /**
      * @param int $id
-     * @param string $tablename
+     * @param string $entityName
      * @return void
      */
-    public function delete(int $id, string $tablename): void
+    public function delete(int $id, string $entityName): void
     {
         $bdd = DbManager::DBConnect();
 
-        $sql = 'DELETE FROM ' . htmlentities($tablename) . ' WHERE id = ' . htmlentities($id);
+        $sql = 'DELETE FROM ' . htmlentities($entityName) . ' WHERE id = ' . htmlentities($id);
 
         $requete = $bdd->query($sql);
 

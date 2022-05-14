@@ -6,12 +6,13 @@ require_once './config.php';
 
 $manager = new IngredientManager();
 
-$donnees = ['nom' => 'bavette','uniteMesure' => 'g'];
+$ingredients = $manager->getAllByRecipe(1);
 
-//$ingredient = new Ingredient('bavette', 'g');
-$ingredient = new Ingredient($donnees);
-var_dump($ingredient);
-echo '<br>';
-echo $ingredient->getNom();
-echo '<br>';
-echo $ingredient->getValuesSQL();
+foreach ($ingredients as $ingredient) {
+    $ingredient1 = $ingredient[0];
+    $quantite = $ingredient[1];
+
+    echo "il faut ". $quantite . ' ' . $ingredient1->getUniteMesure() . " de " . $ingredient1->getNom();
+    echo "<br>";
+}
+

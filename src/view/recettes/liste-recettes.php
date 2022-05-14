@@ -3,7 +3,7 @@
 ?>
 
 <main>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col">
                 <h1>Liste des recettes</h1>
@@ -31,8 +31,8 @@
                             <td><?= $recette->getTpsCuisson(); ?></td>
                             <td><?= $recette->getBudget(); ?></td>
                             <td><?= $recette->getNbPers(); ?></td>
-                            <td><a href='index.php?p=recette&action=edit&id=<?= $recette->getId(); ?>'>Modifier la recette</a></td>
-                            <td><a href='index.php?p=recette&action=delete&id=<?= $recette->getId(); ?>'>Supprimer la recette</a></td>
+                            <td><a href='./index.php?p=recette&action=edit&id=<?= $recette->getId(); ?>'><i class="fa-solid fa-pen-to-square"></i>Modifier</a></td>
+                            <td><a href='./index.php?p=recette&action=delete&id=<?= $recette->getId(); ?>'><i class="fa-solid fa-trash-can"></i> Supprimer</a></td>
 
                         </tr>
                     <?php endforeach; ?>

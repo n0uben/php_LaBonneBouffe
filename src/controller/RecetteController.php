@@ -1,6 +1,7 @@
 <?php
 
 require_once './src/model/manager/RecetteManager.php';
+require_once './src/model/manager/IngredientManager.php';
 
 class RecetteController
 {
@@ -18,8 +19,11 @@ class RecetteController
     }
     public static function edit(string $id): void
     {
-        $manager = new RecetteManager();
-        $recette = $manager->getOne(intval($id), RecetteController::$tableName);
+        $recetteManager = new RecetteManager();
+        $ingredientManager = new IngredientManager();
+
+        $recette = $recetteManager->getOne(intval($id), RecetteController::$tableName);
+        $ingredients = $ingredientManager->getAllByRecipe($id);
 
         require_once './src/view/recettes/edit-recette.php';
 

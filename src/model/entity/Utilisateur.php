@@ -1,12 +1,13 @@
 <?php
+require_once './src/model/entity/Entity.php';
 
-class Utilisateur
+class Utilisateur extends Entity
 {
-    private int $id;
-    private string $email;
-    private string $mdp;
-    private string $nom;
-    private string $role;
+    protected int $id;
+    protected string $email;
+    protected string $mdp;
+    protected string $nom;
+    protected string $role;
 
     /**
      * @param array|null $donnees
@@ -101,58 +102,5 @@ class Utilisateur
     public function setRole(string $role): void
     {
         $this->role = $role;
-    }
-
-    /**
-     * @return string
-     */
-    public function getKeysSQL(): string
-    {
-        $keys = '(';
-
-        $lastValue = end($this);
-
-        foreach ($this as $key => $value) {
-
-            $keys .= $key;
-            if ($value !== $lastValue) {
-                $keys .= ', ';
-            }
-        }
-        $keys .= ')';
-
-        return $keys;
-    }
-
-    /**
-     * @return string
-     */
-    public function getValuesSQL(): string
-    {
-        $values = '(';
-
-        $lastValue = end($this);
-
-        foreach ($this as $key => $value) {
-
-            $values .= '"' . $value . '"';
-            if ($value !== $lastValue) {
-                $values .= ', ';
-            }
-        }
-        $values .= ')';
-
-        return $values;
-    }
-
-    // Kevin : ajout de hydrate pour pouvoir utiliser la pmethode get dans UtilisateurController
-
-    public function hydrate(array $donnees){
-        foreach ($donnees as $key => $value){
-            $method = 'set'.ucfirst($key);
-            if(method_exists($this, $method)){
-                $this->$method($value);
-            }
-        }
     }
 }

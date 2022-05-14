@@ -1,16 +1,19 @@
 <?php
+require_once './src/model/entity/Entity.php';
 
-class Region
+class Region extends Entity
 {
-    private int $id;
-    private string $nom;
+    protected int $id;
+    protected string $nom;
 
     /**
      * @param string|null $nom
      */
     public function __construct(string $nom = null)
     {
-        $this->nom = $nom;
+        if ($nom !== null) {
+            $this->nom = $nom;
+        }
     }
 
     /**
@@ -44,48 +47,4 @@ class Region
     {
         $this->nom = $nom;
     }
-
-    /**
-     * @return string
-     */
-    public function getKeysSQL(): string
-    {
-        $keys = '(';
-
-        $lastValue = end($this);
-
-        foreach ($this as $key => $value) {
-
-            $keys .= $key;
-            if ($value !== $lastValue) {
-                $keys .= ', ';
-            }
-        }
-        $keys .= ')';
-
-        return $keys;
-    }
-
-    /**
-     * @return string
-     */
-    public function getValuesSQL(): string
-    {
-        $values = '(';
-
-        $lastValue = end($this);
-
-        foreach ($this as $key => $value) {
-
-            $values .= '"' . $value . '"';
-            if ($value !== $lastValue) {
-                $values .= ', ';
-            }
-        }
-        $values .= ')';
-
-        return $values;
-    }
-
-
 }

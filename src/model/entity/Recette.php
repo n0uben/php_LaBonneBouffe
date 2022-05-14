@@ -1,17 +1,18 @@
 <?php
+require_once './src/model/entity/Entity.php';
 
-class Recette
+class Recette extends Entity
 {
-    private int $id;
-    private string $nom;
-    private string $categorie;
-    private int $niveau;
-    private int $tpsPrepa;
-    private int $tpsCuisson;
-    private string $budget;
-    private int $nbPers;
-    private string $etapes;
-    private int $utilisateurID;
+    protected int $id;
+    protected string $nom;
+    protected string $categorie;
+    protected int $niveau;
+    protected int $tpsPrepa;
+    protected int $tpsCuisson;
+    protected string $budget;
+    protected int $nbPers;
+    protected string $etapes;
+    protected int $utilisateurID;
 
     /**
      * @param array|null $donnees
@@ -188,47 +189,5 @@ class Recette
     {
         $this->utilisateurID = $utilisateurID;
     }
-
-    /**
-     * @return string
-     */
-    public function getKeysSQL(): string
-    {
-        $keys = '(';
-
-        $lastValue = end($this);
-
-        foreach ($this as $key => $value) {
-
-            $keys .= $key;
-            if ($value !== $lastValue) {
-                $keys .= ', ';
-            }
-        }
-        $keys .= ')';
-
-        return $keys;
-    }
-    /**
-     * @return string
-     */
-    public function getValuesSQL(): string
-    {
-        $values = '(';
-
-        $lastValue = end($this);
-
-        foreach ($this as $key => $value) {
-
-            $values .= '"'.$value.'"';
-            if ($value !== $lastValue) {
-                $values .= ', ';
-            }
-        }
-        $values .= ')';
-
-        return $values;
-    }
-
 
 }

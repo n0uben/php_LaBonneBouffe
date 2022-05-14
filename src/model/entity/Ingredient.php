@@ -1,10 +1,11 @@
 <?php
+require_once './src/model/entity/Entity.php';
 
-class Ingredient
+class Ingredient extends Entity
 {
-    private int $id;
-    private string $nom;
-    private string $uniteMesure;
+    protected int $id;
+    protected string $nom;
+    protected string $uniteMesure;
 
     /**
      * @param array|null $donnees
@@ -67,48 +68,6 @@ class Ingredient
     public function setUniteMesure(string $uniteMesure): void
     {
         $this->uniteMesure = $uniteMesure;
-    }
-
-    /**
-     * @return string
-     */
-    public function getKeysSQL(): string
-    {
-        $keys = '(';
-
-        $lastValue = end($this);
-
-        foreach ($this as $key => $value) {
-
-            $keys .= $key;
-            if ($value !== $lastValue) {
-                $keys .= ', ';
-            }
-        }
-        $keys .= ')';
-
-        return $keys;
-    }
-
-    /**
-     * @return string
-     */
-    public function getValuesSQL(): string
-    {
-        $values = '(';
-
-        $lastValue = end($this);
-
-        foreach ($this as $key => $value) {
-
-            $values .= '"' . $value . '"';
-            if ($value !== $lastValue) {
-                $values .= ', ';
-            }
-        }
-        $values .= ')';
-
-        return $values;
     }
 
     public function __hydrate($donnees)

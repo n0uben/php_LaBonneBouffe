@@ -41,6 +41,17 @@ switch ($page) {
                 break;
         }
         break;
+    case 'region':
+        require_once './src/controller/RegionController.php';
+        switch ($action) {
+            case 'edit':
+                RegionController::edit($id);
+                break;
+            default:
+                RegionController::index();
+                break;
+        }
+        break;
     case 'utilisateur':
         require_once './src/controller/UtilisateurController.php';
         switch ($action) {
