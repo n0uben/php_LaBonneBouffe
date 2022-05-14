@@ -6,7 +6,7 @@ require_once('./src/view/general/header.php');
     <!-- zone de connexion -->
     <div class="row">
         <div class="col">
-            <form action="./src/login/verificationConnexion.php" method="POST">
+            <form action="src/controller/ConnexionController.php" method="POST">
                 <h1>Connexion</h1>
 
                 <label><b>Nom d'utilisateur *</b></label>
