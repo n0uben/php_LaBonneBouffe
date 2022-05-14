@@ -3,9 +3,9 @@
 class Entity
 {
     /**
-     * @return iterable
+     * @return array
      */
-    public function getKeysArraySQL() : iterable
+    public function getKeysArraySQL() : array
     {
         $keys = [];
 

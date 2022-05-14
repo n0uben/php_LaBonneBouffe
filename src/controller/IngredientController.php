@@ -4,6 +4,7 @@ require_once './src/model/manager/IngredientManager.php';
 class IngredientController
 {
     private static string $tableName = 'Ingredient';
+
     /**
      * @return void
      */
@@ -22,10 +23,22 @@ class IngredientController
      */
     public static function edit(string $id): void
     {
-        $donneesPOST = isset($_POST) ? $_POST : [];
-
         $manager = new IngredientManager();
         $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
+
+        if (isset($_POST)) {
+            $donneesPOST = $_POST;
+            //on sanitize les donnees POST
+            $nomPOST = htmlentities($donneesPOST['nom']);
+            $unitePOST = htmlentities($donneesPOST['uniteMesure']);
+
+            //on enregistre l'ingrédient mis à jour
+            $ingredientUpdated = new Ingredient(['id' => $ingredient->getId(), 'nom' => $nomPOST, 'uniteMesure' => $unitePOST]);
+//            $manager->update($ingredientUpdated);
+
+            //on récupère l'ingrédient à jour depuis la bdd
+            $ingredient = $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
+        }
 
         require_once './src/view/ingredients/edit-ingredient.php';
     }

@@ -7,12 +7,17 @@ class Region extends Entity
     protected string $nom;
 
     /**
-     * @param string|null $nom
+     * @param array|null $donnees
      */
-    public function __construct(string $nom = null)
+    public function __construct(array $donnees = null)
     {
-        if ($nom !== null) {
-            $this->nom = $nom;
+        if ($donnees !== null) {
+            foreach ($donnees as $key => $value) {
+                $method = 'set' . ucfirst($key);
+                if (method_exists($this, $method)) {
+                    $this->$method($value);
+                }
+            }
         }
     }
 

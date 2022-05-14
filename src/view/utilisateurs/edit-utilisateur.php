@@ -8,7 +8,7 @@
             <div class="col">
                 <p><a href="/index.php?p=utilisateur">Retour à la liste des utilisateurs</a> </p>
 
-                <h1>Ingrédients #<?= $utilisateur->getId(); ?></h1>
+                <h1>Modifier l'utilisateur #<?= $utilisateur->getId(); ?></h1>
             </div>
         </div>
     </div>
@@ -22,6 +22,9 @@
 
                         <label for="nom">Nom*</label>
                         <input required type="text" name="nom" class="form-control" value="<?= $utilisateur->getNom();?>">
+
+                        <label for="mdp">Mot de passe*</label>
+                        <input required type="password" name="mdp" class="form-control" value="<?= $utilisateur->getMdp();?>">
 
                         <label for="role">Role*</label>
                         <input required type="text" name="role" class="form-control" value="<?= $utilisateur->getRole();?>">

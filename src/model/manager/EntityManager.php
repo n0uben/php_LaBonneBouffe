@@ -76,6 +76,7 @@ class EntityManager
     {
         $bdd = DbManager::DBConnect();
         $sql = QueryBuilder::updateSQL($entity);
+        echo $sql;
         $requete = $bdd->query($sql);
     }
 

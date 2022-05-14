@@ -10,6 +10,7 @@
                 <p><a href="./index.php?p=ingredient">Retour à la liste des ingrédients</a> </p>
                 <h1>
                     Modifier l’ingrédient #<?= $ingredient->getId(); ?>
+
                 </h1>
             </div>
         </div>
@@ -17,9 +18,9 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="index.php?p=ingredient&action=edit&id=<?= $ingredient->getId(); ?>" method="post">
+                <form action="/index.php?p=ingredient&action=edit&id=<?= $ingredient->getId(); ?>" method="post">
                     <div class="form-group mt-2">
-                        <?php print_r($donneesPOST); ?>
+
                         <label for="nom">Nom de l’ingrédient*</label>
                         <input id="nom" required type="text" name="nom" class="form-control" value="<?= $ingredient->getNom();?>">
 
@@ -30,6 +31,9 @@
                         <input class="btn btn-primary" type="submit" value="Enregistrer">
                     </div>
                 </form>
+                <?= '<br>' ?>
+                <?= '<br>' ?>
+
             </div>
         </div>
     </div>
