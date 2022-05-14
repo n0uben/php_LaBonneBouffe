@@ -16,13 +16,3 @@
     <title>La bonne bouffe</title>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>La bonne bouffe</h1>
-                    <p">Le super site des recettes du terroir</p>
-                </div>
-            </div>
-        </div>
-    </header>
