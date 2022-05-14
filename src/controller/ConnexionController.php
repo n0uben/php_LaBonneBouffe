@@ -4,12 +4,15 @@ require_once './src/model/manager/UtilisateurManager.php';
 
 class ConnexionController
 {
-    public function connect($donnees): bool
+    /**
+     * @param string $email
+     * retourne un utilisateur si il existe, SINON false
+     */
+    public function connect(string $email)
     {
-        foreach ($donnees as $donnee) {
-            echo $donnee;
-        }
-        return true;
+        $utilisateurManager = new UtilisateurManager();
+        $utilisateur = $utilisateurManager->getByEmail($email);
+        return $utilisateur;
     }
 }
 

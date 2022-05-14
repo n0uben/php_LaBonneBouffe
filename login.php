@@ -1,11 +1,7 @@
 <?php
 require_once './src/view/general/header.php';
 require_once './src/controller/ConnexionController.php';
-
-if (isset($_POST)) {
-    $controller = new ConnexionController();
-    $controller->connect($_POST);
-}
+require_once './src/model/manager/UtilisateurManager.php';
 
 ?>
 
@@ -29,6 +25,18 @@ if (isset($_POST)) {
                     $err = $_GET['erreur'];
                     if($err==1 || $err==2)
                         echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+                }
+                //2 retours a la ligne
+                echo '<br>';
+                echo '<br>';
+
+                if (isset($_POST['username'])) {
+                    $controller = new ConnexionController();
+                    $connected = $controller->connect($_POST['username']);
+                    if ($connected) {
+                        header('Location: /index.php');
+                    }
+                    echo "OOPSIE PAS LE BON EMAIL";
                 }
                 ?>
             </form>
