@@ -25,7 +25,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled" href="./index.php?p=region">
+            <a class="nav-link" href="./index.php?p=region">
                 <i class="fa-solid fa-signs-post"></i>
                 Régions
             </a>

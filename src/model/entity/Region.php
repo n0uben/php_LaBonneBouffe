@@ -11,7 +11,9 @@ class Region extends Entity
      */
     public function __construct(string $nom = null)
     {
-        $this->nom = $nom;
+        if ($nom !== null) {
+            $this->nom = $nom;
+        }
     }
 
     /**

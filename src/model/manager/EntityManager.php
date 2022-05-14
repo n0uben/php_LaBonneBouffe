@@ -10,7 +10,12 @@ require_once './src/model/entity/Utilisateur.php';
 
 class EntityManager
 {
-    public function getOne(int $id, string $entityName)
+    /**
+     * @param int $id
+     * @param string $entityName
+     * @return Entity
+     */
+    public function getOne(int $id, string $entityName): Entity
     {
         $bdd = DbManager::DBConnect();
 
@@ -37,12 +42,13 @@ class EntityManager
         // On execute la requete
         $sql = 'SELECT * FROM ' . htmlentities($entityName);
 
+        print_r($sql);
+
         $requete = $bdd->query($sql);
         $requete->setFetchMode(PDO::FETCH_CLASS, $entityName);
 
         //tant qu‘il y a des lignes en BDD
         while ($entity = $requete->fetch()) {
-
             //on ajoute l’entité à un tableau d’ingrédients
             $entities[] = $entity;
         }
