@@ -1,8 +1,8 @@
 <?php
 require './config.php';
 
-require_once('./src/view/general/header.php');
-require_once('./src/view/general/menu.php');
+require_once './src/view/general/header.php';
+require_once './src/view/general/menu.php';
 
 $page = '';
 if (isset($_GET['p'])) {
