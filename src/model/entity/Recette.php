@@ -13,6 +13,7 @@ class Recette extends Entity
     protected int $nbPers;
     protected string $etapes;
     protected int $utilisateurID;
+    protected int $regionID;
 
     /**
      * @param array|null $donnees
@@ -189,5 +190,22 @@ class Recette extends Entity
     {
         $this->utilisateurID = $utilisateurID;
     }
+
+    /**
+     * @return int
+     */
+    public function getRegionID(): int
+    {
+        return $this->regionID;
+    }
+
+    /**
+     * @param int $regionID
+     */
+    public function setRegionID(int $regionID): void
+    {
+        $this->regionID = $regionID;
+    }
+
 
 }
