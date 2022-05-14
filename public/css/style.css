@@ -1,3 +1,46 @@
+/*TEMPLATE GENERAL*/
+
+:root {
+    --bg-dark: #0f172a;
+    --text-light: #fefefe;
+}
+
+body {
+    display: grid;
+    grid-template: "menu header" "menu content" "menu footer";
+    grid-template-columns: 250px 1fr;
+}
+
+header {
+    grid-area: header;
+}
+aside {
+    position: sticky;
+    top: 0;
+    grid-area: menu;
+    min-height: 100vh;
+    max-height: 100vh;
+    background: var(--bg-dark);
+}
+main {
+    grid-area: content;
+}
+footer {
+    grid-area: footer;
+}
+
 header h1 {
     color: red;
+}
+
+/*typographie*/
+
+aside .nav-link {
+    color: var(--text-light) !important;
+}
+
+/*aside design*/
+
+aside li {
+    margin: 10px 0;
 }

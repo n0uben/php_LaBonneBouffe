@@ -3,8 +3,8 @@
 ?>
 
 
-<aside style="float:left;">
-    <ul class="nav flex-column">
+<aside>
+    <ul class="nav flex-column mt-4">
         <li class="nav-item">
             <a class="nav-link" href="./index.php">
                 <i class="fa-solid fa-gauge"></i>
