@@ -4,9 +4,11 @@ require_once './src/model/manager/UtilisateurManager.php';
 
 class ConnexionController
 {
-    public function connect(): bool
+    public function connect($donnees): bool
     {
-        echo "salut salut";
+        foreach ($donnees as $donnee) {
+            echo $donnee;
+        }
         return true;
     }
 }

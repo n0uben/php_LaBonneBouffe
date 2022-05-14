@@ -4,7 +4,7 @@ require_once './src/controller/ConnexionController.php';
 
 if (isset($_POST)) {
     $controller = new ConnexionController();
-    $controller->connect();
+    $controller->connect($_POST);
 }
 
 ?>
