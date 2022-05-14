@@ -2,12 +2,6 @@
 require_once('./src/view/general/header.php');
 ?>
 
-<html>
-<head>
-    <meta charset="utf-8">
-    <!-- importer le fichier de style -->
-</head>
-<body>
 <div id="container">
     <!-- zone de connexion -->
 
@@ -30,8 +24,6 @@ require_once('./src/view/general/header.php');
         ?>
     </form>
 </div>
-</body>
-</html>
 
 <?php
 require_once('./src/view/general/footer.php');
