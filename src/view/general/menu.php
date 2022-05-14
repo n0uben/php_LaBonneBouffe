@@ -12,7 +12,7 @@
 
 
 <aside>
-    <img src="./../../../public/img/logo-light.png">
+    <img src="./public/img/logo-light.png">
     <ul class="nav flex-column mt-4">
         <li class="nav-item">
             <a class="nav-link" href="./index.php">
