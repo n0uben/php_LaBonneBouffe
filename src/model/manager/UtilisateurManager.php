@@ -10,6 +10,22 @@ require_once './src/model/entity/Utilisateur.php';
 
 class UtilisateurManager extends EntityManager
 {
+    /**
+     * @param string $email
+     * @return Utilisateur
+     */
+    public function getByEmail(string $email) :Utilisateur
+    {
+        $bdd = DbManager::DBConnect();
+
+        $sql = 'SELECT * FROM Utilisateur WHERE email = ' . htmlentities($email);
+
+        $requete = $bdd->query($sql);
+
+        $requete->setFetchMode(PDO::FETCH_CLASS, 'Utilisateur');
+        $entity = $requete->fetch();
+        return $entity;
+    }
 //    private $bdd;
 //
 //    public function setBdd(PDO $bdd){

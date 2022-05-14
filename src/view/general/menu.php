@@ -10,7 +10,6 @@
 
 ?>
 
-
 <aside>
     <img src="./public/img/logo-light.png">
     <ul class="nav flex-column mt-4">
