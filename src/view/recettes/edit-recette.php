@@ -39,8 +39,15 @@
                         <label for="nbPers">Nombre de personnes*</label>
                         <input required type="text" name="nbPers" class="form-control" value="<?= $recette->getNbPers(); ?>">
 
-                        <label for="etapes">Étapes :</label>
+                        <label for="etapes">Étapes*</label>
                         <textarea required class="form-control" name="etapes" rows="6"><?= $recette->getEtapes(); ?></textarea>
+
+                        <label for="region">Région*</label>
+                        <input required type="text" name="region" class="form-control" value="<?= $region->getNom(); ?>">
+
+                        <label for="region">Auteur*</label>
+                        <input required type="text" name="region" class="form-control" value="<?= $utilisateur->getNom(); ?>">
+
                     </div>
                     <div class="col-6">
                         <h2>Les ingrédients</h2>

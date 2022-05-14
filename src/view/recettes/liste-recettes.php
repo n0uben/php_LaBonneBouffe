@@ -10,14 +10,14 @@
 
                 <table class="table table-striped">
                     <thead>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Niveau</th>
-                    <th scope="col">Temps Prépa</th>
-                    <th scope="col">Temps Cuisson</th>
-                    <th scope="col">Budget</th>
-                    <th scope="col">Nb Pers.</th>
-                    <th scope="col">Actions</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Niveau</th>
+                        <th scope="col">Temps Prépa</th>
+                        <th scope="col">Temps Cuisson</th>
+                        <th scope="col">Budget</th>
+                        <th scope="col">Nb Pers.</th>
+                        <th scope="col">Actions</th>
                     </thead>
                     <tbody>
                     <?php
