@@ -19,11 +19,12 @@
             <div class="col">
                 <form action="index.php?p=ingredient&action=edit&id=<?= $ingredient->getId(); ?>" method="post">
                     <div class="form-group mt-2">
+                        <?php print_r($donneesPOST); ?>
                         <label for="nom">Nom de l’ingrédient*</label>
-                        <input required type="text" name="nom" class="form-control" value="<?= $ingredient->getNom();?>">
+                        <input id="nom" required type="text" name="nom" class="form-control" value="<?= $ingredient->getNom();?>">
 
-                        <label for="unite">Unité de mesure*</label>
-                        <input required type="text" name="unite" class="form-control" value="<?= $ingredient->getUniteMesure();?>">
+                        <label for="uniteMesure">Unité de mesure*</label>
+                        <input id="uniteMesure" required type="text" name="uniteMesure" class="form-control" value="<?= $ingredient->getUniteMesure();?>">
                     </div>
                     <div class="form-group mt-4">
                         <input class="btn btn-primary" type="submit" value="Enregistrer">

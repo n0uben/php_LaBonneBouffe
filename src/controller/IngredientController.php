@@ -22,6 +22,8 @@ class IngredientController
      */
     public static function edit(string $id): void
     {
+        $donneesPOST = isset($_POST) ? $_POST : [];
+
         $manager = new IngredientManager();
         $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
 
