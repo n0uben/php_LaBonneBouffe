@@ -1,4 +1,12 @@
 <?php
+    /*
+    Kevin : Je ne suis pas certain que ce soit le bon fichier pour verifier quelle session utilisateur est ouverte
+    */
+//
+//    session_start();
+//    $_SESSION = array();
+//    session_destroy();
+//    header('Location:../menu.php');
 
 ?>
 
