@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="index.php?p=ingredient&action=update&id=<?= $ingredient->getId(); ?>" method="post">
+                <form action="index.php?p=ingredient&action=edit&id=<?= $ingredient->getId(); ?>" method="post">
                     <div class="form-group mt-2">
                         <label for="nom">Nom de l’ingrédient*</label>
                         <input required type="text" name="nom" class="form-control" value="<?= $ingredient->getNom();?>">

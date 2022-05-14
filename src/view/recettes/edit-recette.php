@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="./index.php?p=recette&action=update&id=<?= $recette->getId(); ?>" method="post" class="row">
+                <form action="./index.php?p=recette&action=edit&id=<?= $recette->getId(); ?>" method="post" class="row">
                     <div class="form-group mt-2 col-6">
                         <h2>Détails</h2>
 

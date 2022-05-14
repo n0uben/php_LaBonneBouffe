@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="index.php?p=region&action=update&id=<?= $region->getId(); ?>" method="post">
+                <form action="index.php?p=region&action=edit&id=<?= $region->getId(); ?>" method="post">
                     <div class="form-group mt-2">
                         <label for="nom">Nom*</label>
                         <input required type="text" name="nom" class="form-control" value="<?= $region->getNom();?>">
