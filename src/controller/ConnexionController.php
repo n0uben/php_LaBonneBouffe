@@ -11,7 +11,7 @@ class ConnexionController
     public function connect(string $email, string $mdp)
     {
         $utilisateurManager = new UtilisateurManager();
-        $utilisateur = $utilisateurManager->getByEmail($email) && $utilisateurManager->getByMDP($mdp);
+        $utilisateur = $utilisateurManager->getByEmail($email) && $utilisateurManager->getByMDP($email, $mdp);
         return $utilisateur;
     }
 

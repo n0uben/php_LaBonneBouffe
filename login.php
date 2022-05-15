@@ -30,7 +30,7 @@ require_once './src/model/manager/UtilisateurManager.php';
                     if ($connected) {
                         header('Location: ./index.php');
                     }
-                    echo "OOPSIE PAS LE BON EMAIL";
+                    echo "OOPSIE PAS LE BON EMAIL OU MDP";
                 }
                 ?>
             </form>

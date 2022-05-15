@@ -29,12 +29,13 @@ class UtilisateurManager extends EntityManager
      * @param string $mdp
      * @return Utilisateur
      */
-    public function getByMDP(string $mdp)
+    public function getByMDP(string $email, string $mdp)
     {
         $bdd = DbManager::DBConnect();
 
-        $requete = $bdd->prepare('SELECT * FROM Utilisateur WHERE mdp = :mdp');
+        $requete = $bdd->prepare('SELECT * FROM Utilisateur WHERE mdp = :mdp AND email = :email');
         $requete->bindValue(':mdp', $mdp);
+        $requete->bindValue(':email', $email);
         $requete->setFetchMode(PDO::FETCH_CLASS, 'Utilisateur');
         $requete->execute();
         $user = $requete->fetch();
