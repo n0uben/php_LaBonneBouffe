@@ -25,6 +25,7 @@ class IngredientController
     {
         $manager = new IngredientManager();
         $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
+        $enumUnite = $manager->getEnumValues('Ingredient', 'uniteMesure');
 
         //si des donnees sont transmises et ne sont pas vides
         if (isset($_POST) && sizeof($_POST) > 0) {

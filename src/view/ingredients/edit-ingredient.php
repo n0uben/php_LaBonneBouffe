@@ -25,7 +25,15 @@
                         <input id="nom" required type="text" name="nom" class="form-control" value="<?= $ingredient->getNom();?>">
 
                         <label for="uniteMesure">Unité de mesure*</label>
-                        <input id="uniteMesure" required type="text" name="uniteMesure" class="form-control" value="<?= $ingredient->getUniteMesure();?>">
+
+                        <select id="uniteMesure" name="uniteMesure" class="form-select">
+                            <option><?= $ingredient->getUniteMesure();?></option>
+                            <?php foreach ($enumUnite as $enumValue): ?>
+                                <?php if ($enumValue !== $ingredient->getUniteMesure()):  ?>
+                                    <option><?= $enumValue ?></option>
+                                <?php endif;?>
+                            <?php endforeach;?>
+                        </select>
                     </div>
                     <div class="form-group mt-4">
                         <input class="btn btn-primary" type="submit" value="Enregistrer">
