@@ -34,4 +34,15 @@ class IngredientManager extends EntityManager
 
         return $ingredients;
     }
+
+    public function isInRecipe(string $id): bool
+    {
+        $bdd = DbManager::DBConnect();
+
+        $requete = $bdd->prepare('SELECT COUNT(*) FROM composition WHERE id_ingredient = :id');
+        $requete->bindValue(':id', $id);
+        $requete->execute();
+
+        return $requete->fetch();
+    }
 }

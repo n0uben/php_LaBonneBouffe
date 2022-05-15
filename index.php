@@ -39,6 +39,9 @@ switch ($page) {
             case 'edit':
                 RecetteController::edit($id);
                 break;
+            case 'delete':
+                RecetteController::delete($id);
+                break;
             default:
                 RecetteController::index();
                 break;
@@ -50,6 +53,9 @@ switch ($page) {
             case 'edit':
                 RegionController::edit($id);
                 break;
+            case 'delete':
+                RegionController::delete($id);
+                break;
             default:
                 RegionController::index();
                 break;
@@ -60,6 +66,9 @@ switch ($page) {
         switch ($action) {
             case 'edit':
                 UtilisateurController::edit($id);
+                break;
+            case 'delete':
+                UtilisateurController::delete($id);
                 break;
             default:
                 UtilisateurController::index();

@@ -49,7 +49,7 @@ class IngredientController
      * @param string $id
      * @return void
      */
-    public function delete(string $id): void
+    public static function delete(string $id): void
     {
         $manager = new IngredientManager();
 

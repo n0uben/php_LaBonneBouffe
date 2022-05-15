@@ -42,4 +42,22 @@ class RegionController
 
         require_once './src/view/regions/edit-region.php';
     }
+
+    /**
+     * @param string $id
+     * @return void
+     */
+    public static function delete(string $id): void
+    {
+        $manager = new RegionManager();
+
+        $regionAsuppr = $manager->getOne($id, RegionController::$tableName );
+
+        if ($regionAsuppr) {
+            $manager->delete($id, RegionController::$tableName);
+        }
+
+        header('Location: /index.php?p=region');
+
+    }
 }

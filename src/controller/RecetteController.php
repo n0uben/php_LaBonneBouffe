@@ -49,4 +49,22 @@ class RecetteController
         require_once './src/view/recettes/edit-recette.php';
 
     }
+
+    /**
+     * @param string $id
+     * @return void
+     */
+    public static function delete(string $id): void
+    {
+        $manager = new RecetteManager();
+
+        $recetteAsuppr = $manager->getOne($id, RecetteController::$tableName);
+
+        if ($recetteAsuppr) {
+            $manager->delete($id, RecetteController::$tableName);
+        }
+
+        header('Location: /index.php?p=recette');
+
+    }
 }

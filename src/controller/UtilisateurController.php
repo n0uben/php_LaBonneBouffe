@@ -48,4 +48,22 @@ class UtilisateurController
 
         require_once './src/view/utilisateurs/edit-utilisateur.php';
     }
+
+    /**
+     * @param string $id
+     * @return void
+     */
+    public static function delete(string $id): void
+    {
+        $manager = new UtilisateurManager();
+
+        $utilisateurAsuppr = $manager->getOne($id, UtilisateurController::$tableName );
+
+        if ($utilisateurAsuppr) {
+            $manager->delete($id, UtilisateurController::$tableName);
+        }
+
+        header('Location: /index.php?p=utilisateur');
+
+    }
 }
