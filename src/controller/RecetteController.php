@@ -19,6 +19,11 @@ class RecetteController
         require_once './src/view/recettes/liste-recettes.php';
 
     }
+
+    /**
+     * @param string $id
+     * @return void
+     */
     public static function edit(string $id): void
     {
         $recetteManager = new RecetteManager();
@@ -27,9 +32,19 @@ class RecetteController
         $regionManager = new RegionManager();
 
         $recette = $recetteManager->getOne(intval($id), RecetteController::$tableName);
+        $enumCateg = $recetteManager->getEnumValues('Recette', 'categorie');
+        $enumNiveau = $recetteManager->getEnumValues('Recette', 'niveau');
+        $enumBudget = $recetteManager->getEnumValues('Recette', 'budget');
+
+        //Retourne un array sous la forme [[ingredient1, quantite (int)], [ingredient2, quantite (int)]]
         $ingredients = $ingredientManager->getAllByRecipe($id);
+        $enumUnite = $ingredientManager->getEnumValues('Ingredient', 'uniteMesure');
+
         $region = $regionManager->getOne($recette->getRegionID(), 'Region');
+        $regions = $regionManager->getAll('Region');
+
         $utilisateur = $utilisateurManager->getOne($recette->getUtilisateurID(), 'Utilisateur');
+        $utilisateurs = $utilisateurManager->getAll('Utilisateur');
 
         require_once './src/view/recettes/edit-recette.php';
 

@@ -16,40 +16,81 @@
     <div class="container">
         <div class="row">
             <div class="col">
+
                 <form action="./index.php?p=recette&action=edit&id=<?= $recette->getId(); ?>" method="post" class="row">
-                    <div class="form-group mt-2 col-6">
+                    <div class="form-group mt-2 col-12 col-lg-6 mb-2">
                         <h2>Détails</h2>
 
                         <label for="nom">Nom*</label>
                         <input required type="text" name="nom" class="form-control" value="<?= $recette->getNom(); ?>">
 
+                        <label for="categorie">Catégorie*</label>
+                        <select id="categorie" name="categorie" class="form-select">
+                            <option><?= $recette->getCategorie();?></option>
+                            <?php foreach ($enumCateg as $enumValue): ?>
+                                <?php if ($enumValue !== $recette->getCategorie()):  ?>
+                                    <option><?= $enumValue ?></option>
+                                <?php endif;?>
+                            <?php endforeach;?>
+                        </select>
+
                         <label for="niveau">Niveau*</label>
-                        <input required type="text" name="niveau" class="form-control" value="<?= $recette->getNiveau(); ?>">
+                        <select id="niveau" name="niveau" class="form-select">
+                            <option><?= $recette->getNiveau();?></option>
+                            <?php foreach ($enumNiveau as $enumValue): ?>
+                                <?php if ((int) $enumValue !== $recette->getNiveau()):  ?>
+                                    <option><?= $enumValue ?></option>
+                                <?php endif;?>
+                            <?php endforeach;?>
+                        </select>
 
                         <label for="tpsPrepa">Préparation (min)*</label>
-                        <input required type="text" name="tpsPrepa" class="form-control" value="<?= $recette->getTpsPrepa(); ?>">
+                        <input required type="number" min="0" max ="1440" name="tpsPrepa" class="form-control" value="<?= $recette->getTpsPrepa(); ?>">
 
-                        <label for="tpsCuisson">Cuisson (min) :</label>
-                        <input required type="text" name="tpsCuisson" class="form-control"
+                        <label for="tpsCuisson">Cuisson (min)* :</label>
+                        <input required type="number" min="0" max ="1440" name="tpsCuisson" class="form-control"
                                value="<?= $recette->getTpsCuisson(); ?>">
 
                         <label for="budget">Budget*</label>
-                        <input required type="text" name="budget" class="form-control" value="<?= $recette->getBudget(); ?>">
+                        <select id="budget" name="budget" class="form-select">
+                            <option><?= $recette->getBudget();?></option>
+                            <?php foreach ($enumBudget as $enumValue): ?>
+                                <?php if ($enumValue !== $recette->getBudget()):  ?>
+                                    <option><?= $enumValue ?></option>
+                                <?php endif;?>
+                            <?php endforeach;?>
+                        </select>
+
 
                         <label for="nbPers">Nombre de personnes*</label>
-                        <input required type="text" name="nbPers" class="form-control" value="<?= $recette->getNbPers(); ?>">
+                        <input required type="number" min="1" max="20" name="nbPers" class="form-control" value="<?= $recette->getNbPers(); ?>">
 
                         <label for="etapes">Étapes*</label>
                         <textarea required class="form-control" name="etapes" rows="6"><?= $recette->getEtapes(); ?></textarea>
 
                         <label for="region">Région*</label>
-                        <input required type="text" name="region" class="form-control" value="<?= $region->getNom(); ?>">
+                        <select id="region" name="region" class="form-select">
+                            <option><?= $region->getNom();?></option>
+                            <?php foreach ($regions as $bddValue): ?>
+                                <?php if ($bddValue->getNom() !== $region->getNom()):  ?>
+                                    <option><?= $bddValue->getNom() ?></option>
+                                <?php endif;?>
+                            <?php endforeach;?>
+                        </select>
 
-                        <label for="region">Auteur*</label>
-                        <input required type="text" name="region" class="form-control" value="<?= $utilisateur->getNom(); ?>">
+
+                        <label for="auteur">Auteur*</label>
+                        <select id="auteur" name="auteur" class="form-select">
+                            <option><?= $utilisateur->getNom();?></option>
+                            <?php foreach ($utilisateurs as $bddValue): ?>
+                                <?php if ($bddValue->getNom() !== $utilisateur->getNom()):  ?>
+                                    <option><?= $bddValue->getNom() ?></option>
+                                <?php endif;?>
+                            <?php endforeach;?>
+                        </select>
 
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-lg-6">
                         <h2>Les ingrédients</h2>
 
                         <div class="row">
@@ -60,11 +101,18 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="nomIngredient">Quantite :</label>
-                                    <input type="text" name="nomIngredient" class="form-control" value="<?= $ingredient[1]; ?>">
+                                    <input type="number" min="1" max="999" name="nomIngredient" class="form-control" value="<?= $ingredient[1]; ?>">
                                 </div>
                                 <div class="col-3">
-                                    <label for="nomIngredient">Unite :</label>
-                                    <input type="text" name="nomIngredient" class="form-control" value="<?= $ingredient[0]->getUniteMesure(); ?>">
+                                    <label for="uniteMesure">Unite :</label>
+                                    <select id="uniteMesure" name="uniteMesure" class="form-select">
+                                        <option><?= $ingredient[0]->getUniteMesure();?></option>
+                                        <?php foreach ($enumUnite as $enumValue): ?>
+                                            <?php if ($enumValue !== $ingredient[0]->getUniteMesure()):  ?>
+                                                <option><?= $enumValue ?></option>
+                                            <?php endif;?>
+                                        <?php endforeach;?>
+                                    </select>
                                 </div>
                             <?php endforeach;?>
                         </div>
