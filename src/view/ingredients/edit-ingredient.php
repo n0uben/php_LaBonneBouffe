@@ -1,5 +1,6 @@
 <?php
 //Details Ingredients
+//if ($ingredient):
 ?>
 
 <main>
@@ -43,3 +44,4 @@
         </div>
     </div>
 </main>
+<?php //endif;?>

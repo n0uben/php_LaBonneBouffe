@@ -6,7 +6,12 @@ require_once './src/model/entity/Recette.php';
 
 class RecetteManager extends EntityManager
 {
-    public function getAllByRegion($id) {
+    /**
+     * @param $id
+     * @return array
+     */
+    public function getAllByRegion($id): array
+    {
         $bdd = DbManager::DBConnect();
 
         $requete = $bdd->prepare('SELECT * FROM Recette WHERE regionID = :regionID ');
@@ -21,7 +26,13 @@ class RecetteManager extends EntityManager
         }
         return $recettes;
     }
-    public function getAllByUser($id) {
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function getAllByUser($id): array
+    {
         $bdd = DbManager::DBConnect();
 
         $requete = $bdd->prepare('SELECT * FROM Recette WHERE utilisateurID = :utilisateurID ');

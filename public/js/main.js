@@ -10,8 +10,8 @@ function addIngredient() {
                 <input required type="text" name="nomIngredient" class="form-control" value="">
             </div>
             <div class="col-3">
-                <label for="nomIngredient">Quantite :</label>
-                <input required type="number" min="1" max="999" name="nomIngredient" class="form-control" value="">
+                <label for="quantiteIngredient">Quantite :</label>
+                <input required type="number" min="1" max="999" name="quantiteIngredient" class="form-control" value="">
             </div>
             <div class="col-3">
                 <label for="uniteMesure">Unite :</label>
@@ -32,5 +32,3 @@ function addIngredient() {
         newIngredients.insertAdjacentHTML('beforeend', rowIngredient);
     });
 }
-
-addIngredient()
