@@ -44,4 +44,22 @@ class IngredientController
 
         require_once './src/view/ingredients/edit-ingredient.php';
     }
+
+    /**
+     * @param string $id
+     * @return void
+     */
+    public function delete(string $id): void
+    {
+        $manager = new IngredientManager();
+
+        $ingredientAsuppr = $manager->getOne($id, IngredientController::$tableName);
+
+        if ($ingredientAsuppr) {
+            $manager->delete($id, IngredientController::$tableName);
+        }
+
+        header('Location: /index.php?p=ingredient');
+
+    }
 }

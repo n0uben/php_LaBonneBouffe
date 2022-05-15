@@ -13,9 +13,9 @@ class EntityManager
     /**
      * @param int $id
      * @param string $entityName
-     * @return Entity
+     * @return Entity | false
      */
-    public function getOne(int $id, string $entityName): Entity
+    public function getOne(int $id, string $entityName)
     {
         $bdd = DbManager::DBConnect();
 
@@ -30,9 +30,9 @@ class EntityManager
 
     /**
      * @param string $entityName
-     * @return iterable
+     * @return array|bool
      */
-    public function getAll(string $entityName): iterable
+    public function getAll(string $entityName)
     {
 
         $entities = [];

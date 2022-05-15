@@ -25,6 +25,9 @@ switch ($page) {
             case 'edit':
                 IngredientController::edit($id);
                 break;
+            case 'delete':
+                IngredientController::delete($id);
+                break;
             default:
                 IngredientController::index();
                 break;
