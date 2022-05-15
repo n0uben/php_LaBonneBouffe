@@ -47,7 +47,6 @@
                 Déconnexion
             </a>
         </li>
-
 <!--        <button onclick="disconnect();">-->
 <!--            DECONNEXION-->
 <!--        </button>-->

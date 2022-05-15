@@ -130,6 +130,7 @@ INSERT INTO `Region` (`id`, `nom`) VALUES
 CREATE TABLE `Utilisateur` (
   `id` int NOT NULL,
   `email` varchar(255) NOT NULL,
+    CONSTRAINT AK_email UNIQUE(email),
   `mdp` varchar(50) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `role` varchar(50) NOT NULL
