@@ -8,11 +8,16 @@ class ConnexionController
      * @param string $email
      * retourne un utilisateur si il existe, SINON false
      */
-    public function connect(string $email)
+    public function connect(string $email, string $mdp)
     {
         $utilisateurManager = new UtilisateurManager();
-        $utilisateur = $utilisateurManager->getByEmail($email);
+        $utilisateur = $utilisateurManager->getByEmail($email) && $utilisateurManager->getByMDP($mdp);
         return $utilisateur;
+    }
+
+    public function password(string $mdp)
+    {
+
     }
 }
 

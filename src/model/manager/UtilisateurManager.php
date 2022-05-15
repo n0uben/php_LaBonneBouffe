@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Pour l'instanr je n'ai fait que copier/m'inspiré du cours de PHP sur la PDO
+ *
  */
 
 require_once './src/model/manager/EntityManager.php';
@@ -25,6 +25,22 @@ class UtilisateurManager extends EntityManager
         $user = $requete->fetch();
         return $user;
     }
+    /**
+     * @param string $mdp
+     * @return Utilisateur
+     */
+    public function getByMDP(string $mdp)
+    {
+        $bdd = DbManager::DBConnect();
+
+        $requete = $bdd->prepare('SELECT * FROM Utilisateur WHERE mdp = :mdp');
+        $requete->bindValue(':mdp', $mdp);
+        $requete->setFetchMode(PDO::FETCH_CLASS, 'Utilisateur');
+        $requete->execute();
+        $user = $requete->fetch();
+        return $user;
+    }
+
 //    private $bdd;
 //
 //    public function setBdd(PDO $bdd){
