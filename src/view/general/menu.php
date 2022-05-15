@@ -41,9 +41,15 @@
                 Utilisateurs
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./login.php">
+                <i class="fa-solid fa-user"></i>
+                Déconnexion
+            </a>
+        </li>
 
-        <button onclick="deconnexion();">
-            DECONNEXION
-        </button>
+<!--        <button onclick="disconnect();">-->
+<!--            DECONNEXION-->
+<!--        </button>-->
     </ul>
 </aside>

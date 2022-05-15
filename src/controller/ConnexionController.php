@@ -15,10 +15,10 @@ class ConnexionController
         return $utilisateur;
     }
 
-    public function password(string $mdp)
-    {
-
-    }
+//    public function disconnect()
+//    {
+//        header('Location: ./login.php');
+//    }
 }
 
 //
