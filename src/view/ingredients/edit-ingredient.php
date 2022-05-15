@@ -31,9 +31,6 @@
                         <input class="btn btn-primary" type="submit" value="Enregistrer">
                     </div>
                 </form>
-                <?= '<br>' ?>
-                <?= '<br>' ?>
-
             </div>
         </div>
     </div>

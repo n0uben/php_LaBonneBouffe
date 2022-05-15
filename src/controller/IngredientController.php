@@ -26,7 +26,8 @@ class IngredientController
         $manager = new IngredientManager();
         $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
 
-        if (isset($_POST)) {
+        //si des donnees sont transmises et ne sont pas vides
+        if (isset($_POST) && sizeof($_POST) > 0) {
             $donneesPOST = $_POST;
             //on sanitize les donnees POST
             $nomPOST = htmlentities($donneesPOST['nom']);
@@ -34,10 +35,10 @@ class IngredientController
 
             //on enregistre l'ingrédient mis à jour
             $ingredientUpdated = new Ingredient(['id' => $ingredient->getId(), 'nom' => $nomPOST, 'uniteMesure' => $unitePOST]);
-//            $manager->update($ingredientUpdated);
+            $manager->update($ingredientUpdated);
 
             //on récupère l'ingrédient à jour depuis la bdd
-            $ingredient = $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
+            $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
         }
 
         require_once './src/view/ingredients/edit-ingredient.php';

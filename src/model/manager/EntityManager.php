@@ -94,4 +94,26 @@ class EntityManager
         $requete = $bdd->query($sql);
 
     }
+
+    /**
+     * @param string $table
+     * @param string $field
+     * @return array
+     * retourne les valeurs d’une ENUM d‘un champ en BDD (uniteMesure, niveau…)
+     */
+    public function getEnumValues(string $table, string $field): array
+    {
+        $bdd = DbManager::DBConnect();
+        //requete SQL pour récupérer les données contenant l’enum d’une colonne
+        $type = $bdd->query("SHOW COLUMNS FROM {$table} WHERE Field = '{$field}'");
+        //stocke temporairement le resultat de la requete dans tmp
+        $tmp = $type->fetchAll();
+        // récupère le champ du tableau contenant l’enum sous forme string 'enum('enum1, enum2, …)'
+        $tmp = $tmp[0]['Type'];
+        //coupe la string pour n’avoir que 'enum1, enum2, …'
+        preg_match("/^enum\(\'(.*)\'\)$/", $tmp, $matches);
+        //crée un tableau à partir de la string des enums
+        $enum = explode("','", $matches[1]);
+        return $enum;
+    }
 }

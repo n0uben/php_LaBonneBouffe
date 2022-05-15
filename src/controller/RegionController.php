@@ -27,7 +27,7 @@ class RegionController
         $region = $manager->getOne(intval($id), RegionController::$tableName);
 
         //si l’utilisateur a cliqué sur "enregistrer"
-        if (isset($_POST)) {
+        if (isset($_POST) && sizeof($_POST) > 0) {
             $donneesPOST = $_POST;
             //on sanitize les donnees POST
             $nomPOST = htmlentities($donneesPOST['nom']);

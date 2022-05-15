@@ -27,8 +27,8 @@ class UtilisateurController
         $manager = new UtilisateurManager();
         $utilisateur = $manager->getOne($id, UtilisateurController::$tableName);
 
-        //si l’utilisateur a cliqué sur "enregistrer"
-        if (isset($_POST)) {
+        //si des donnees sont transmises et ne sont pas vides
+        if (isset($_POST) && sizeof($_POST) > 0) {
             $donneesPOST = $_POST;
 
             //on sanitize les donnees POST
