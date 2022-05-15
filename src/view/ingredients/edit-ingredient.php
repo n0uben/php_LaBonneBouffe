@@ -6,7 +6,7 @@
 $messageErreur = '';
 if (isset($_GET['error'])) {
     if ($_GET['error'] == '1') {
-        $messageErreur = 'Vous avez essayé de supprimer un ingrédient utilisé dans une ou plusieurs recettes ! <br>Vous ne pouvez pas le supprimer, essayez de le modifier plutôt :';
+        $messageErreur = 'Cet ingrédient est utilisé dans une ou plusieurs recettes ! <br>Vous ne pouvez pas le supprimer, essayez de le modifier plutôt :';
     }
 }
 ?>
