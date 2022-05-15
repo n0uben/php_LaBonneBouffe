@@ -26,9 +26,7 @@ function addIngredient() {
                 </select>
             </div>
         </div>
-    `
-
-    addNewIngredient.addEventListener('click', () => {
-        newIngredients.insertAdjacentHTML('beforeend', rowIngredient);
-    });
+    `;
+    newIngredients.insertAdjacentHTML('beforeend', rowIngredient);
 }
+addNewIngredient.addEventListener('click', addIngredient);
