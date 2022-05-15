@@ -93,15 +93,15 @@
                     <div class="col-12 col-lg-6">
                         <h2>Les ingrédients</h2>
 
+                        <?php foreach ($ingredients as $ingredient):?>
                         <div class="row">
-                            <?php foreach ($ingredients as $ingredient):?>
                                 <div class="col-6">
                                     <label for="nomIngredient">Nom de l’ingrédient :</label>
-                                    <input type="text" name="nomIngredient" class="form-control" value="<?= $ingredient[0]->getNom(); ?>">
+                                    <input required type="text" name="nomIngredient" class="form-control" value="<?= $ingredient[0]->getNom(); ?>">
                                 </div>
                                 <div class="col-3">
                                     <label for="nomIngredient">Quantite :</label>
-                                    <input type="number" min="1" max="999" name="nomIngredient" class="form-control" value="<?= $ingredient[1]; ?>">
+                                    <input required type="number" min="1" max="999" name="nomIngredient" class="form-control" value="<?= $ingredient[1]; ?>">
                                 </div>
                                 <div class="col-3">
                                     <label for="uniteMesure">Unite :</label>
@@ -114,7 +114,17 @@
                                         <?php endforeach;?>
                                     </select>
                                 </div>
-                            <?php endforeach;?>
+                        </div>
+                        <?php endforeach;?>
+                        <div class="row">
+                            <div id="newIngredients" class="col">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end mt-4">
+                                <a id="addNewIngredient" class="btn btn-primary">Ajouter un Ingrédient</a>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group mt-4">
