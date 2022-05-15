@@ -53,13 +53,15 @@ class IngredientController
     {
         $manager = new IngredientManager();
 
-        $ingredientAsuppr = $manager->getOne($id, IngredientController::$tableName);
-
-        if ($ingredientAsuppr) {
-            $manager->delete($id, IngredientController::$tableName);
+        if ($manager->isInRecipe($id) == true) {
+            $redirection = 'Location: /index.php?p=ingredient&action=edit&id=' . $id . '&error=1';
+            header($redirection);
+        } else {
+            $ingredientAsuppr = $manager->getOne($id, IngredientController::$tableName);
+            if ($ingredientAsuppr) {
+                $manager->delete($id, IngredientController::$tableName);
+            }
+            header('Location: /index.php?p=ingredient');
         }
-
-        header('Location: /index.php?p=ingredient');
-
     }
 }

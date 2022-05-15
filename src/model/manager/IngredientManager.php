@@ -35,6 +35,11 @@ class IngredientManager extends EntityManager
         return $ingredients;
     }
 
+    /**
+     * @param string $id
+     * @return bool
+     * Renvoie true si l’ingredient est dans au moins une recette (table composition), false sinon
+     */
     public function isInRecipe(string $id): bool
     {
         $bdd = DbManager::DBConnect();
@@ -42,7 +47,10 @@ class IngredientManager extends EntityManager
         $requete = $bdd->prepare('SELECT COUNT(*) FROM composition WHERE id_ingredient = :id');
         $requete->bindValue(':id', $id);
         $requete->execute();
+        $result = $requete->fetch();
+        $count = $result['COUNT(*)'];
 
-        return $requete->fetch();
+        //si superieur a 0, renvoie true, sinon false
+        return ($count > 0);
     }
 }

@@ -3,18 +3,13 @@ require_once './src/model/entity/Ingredient.php';
 //require_once './src/model/manager/EntityManager.php';
 require_once './src/model/manager/IngredientManager.php';
 require_once './src/controller/ConnexionController.php';
+require_once './src/controller/IngredientController.php';
+
 
 $manager = new IngredientManager();
-$ingredientUpdated = new Ingredient(['id' => 1, 'nom' => 'concombre', 'uniteMesure' => 'g']);
-//var_dump($ingredientUpdated);
+var_dump($manager->isInRecipe(2));
+IngredientController::delete('1');
 
-$bdd = DbManager::DBConnect();
-
-$donnees = $manager->getEnumValues('Ingredient', 'UniteMesure');
-foreach ($donnees as $donnee) {
-    print_r($donnee);
-    echo '<br>';
-}
 //print_r($donnees['Type']);
 //
 //foreach ($donnees['Type'] as $donnee):
