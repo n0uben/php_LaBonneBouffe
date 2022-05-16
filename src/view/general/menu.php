@@ -1,7 +1,5 @@
 <?php
-    /*
-    Kevin : Je ne suis pas certain que ce soit le bon fichier pour verifier quelle session utilisateur est ouverte
-    */
+
 //
 //    session_start();
 //    $_SESSION = array();
@@ -43,5 +41,14 @@
                 Utilisateurs
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./login.php">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Déconnexion
+            </a>
+        </li>
+<!--        <button onclick="disconnect();">-->
+<!--            DECONNEXION-->
+<!--        </button>-->
     </ul>
 </aside>

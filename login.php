@@ -9,7 +9,7 @@ require_once './src/model/manager/UtilisateurManager.php';
     <!-- zone de connexion -->
     <div class="row">
         <div class="col">
-            <form action="login.php" method="POST">
+            <form action="./login.php" method="POST">
                 <h1>Connexion</h1>
 
                 <label><b>Nom d'utilisateur *</b></label>
@@ -26,11 +26,11 @@ require_once './src/model/manager/UtilisateurManager.php';
 
                 if (isset($_POST['username'])) {
                     $controller = new ConnexionController();
-                    $connected = $controller->connect($_POST['username']);
+                    $connected = $controller->connect($_POST['username'], $_POST['password']);
                     if ($connected) {
-                        header('Location: /index.php');
+                        header('Location: ./index.php');
                     }
-                    echo "OOPSIE PAS LE BON EMAIL";
+                    echo "OOPSIE PAS LE BON EMAIL OU MDP";
                 }
                 ?>
             </form>
