@@ -12,7 +12,12 @@ class ConnexionController
     {
         $utilisateurManager = new UtilisateurManager();
         $utilisateur = $utilisateurManager->getByEmail($email) && $utilisateurManager->getByMDP($email, $mdp);
+        echo $mdp;
         return $utilisateur;
+    }
+
+    public function hashMDP(string $mdp){
+        return password_hash($mdp, PASSWORD_ARGON2I);
     }
 
 //    public function disconnect()

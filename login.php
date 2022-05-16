@@ -26,7 +26,7 @@ require_once './src/model/manager/UtilisateurManager.php';
 
                 if (isset($_POST['username'])) {
                     $controller = new ConnexionController();
-                    $connected = $controller->connect($_POST['username'], $_POST['password']);
+                    $connected = $controller->connect($_POST['username'], $_POST[$controller->hashMDP('password')]);
                     if ($connected) {
                         header('Location: ./index.php');
                     }
