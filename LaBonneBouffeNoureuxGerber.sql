@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : lun. 09 mai 2022 à 11:41
+-- Généré le : ven. 13 mai 2022 à 19:58
 -- Version du serveur :  8.0.29-0ubuntu0.20.04.3
 -- Version de PHP : 7.4.3
 
@@ -32,7 +32,7 @@ CREATE TABLE `composition` (
   `id_ingredient` int NOT NULL,
   `id_recette` int NOT NULL,
   `quantite` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `composition`
@@ -50,9 +50,9 @@ INSERT INTO `composition` (`id_ingredient`, `id_recette`, `quantite`) VALUES
 
 CREATE TABLE `Ingredient` (
   `id` int NOT NULL,
-  `nom` varchar(50) NOT NULL,
-  `uniteMesure` enum('g','kg','cl','l','cac','cas','pincée') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `nom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `uniteMesure` enum('g','kg','cl','l','cac','cas','pincée') COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `Ingredient`
@@ -62,7 +62,8 @@ INSERT INTO `Ingredient` (`id`, `nom`, `uniteMesure`) VALUES
 (1, 'Concombre', 'g'),
 (2, 'pommes de terre', 'g'),
 (14, 'tomates', 'g'),
-(15, 'cotes de porc', 'g');
+(15, 'cotes de porc', 'g'),
+(16, 'bavette', 'g');
 
 -- --------------------------------------------------------
 
@@ -72,17 +73,17 @@ INSERT INTO `Ingredient` (`id`, `nom`, `uniteMesure`) VALUES
 
 CREATE TABLE `Recette` (
   `id` int NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `categorie` varchar(255) NOT NULL,
+  `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `categorie` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `niveau` int NOT NULL,
   `tpsPrepa` int NOT NULL,
   `tpsCuisson` int NOT NULL,
-  `budget` varchar(50) NOT NULL,
+  `budget` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `nbPers` int NOT NULL,
-  `etapes` text NOT NULL,
+  `etapes` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
   `utilisateurID` int NOT NULL,
   `regionID` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `Recette`
@@ -99,8 +100,8 @@ INSERT INTO `Recette` (`id`, `nom`, `categorie`, `niveau`, `tpsPrepa`, `tpsCuiss
 
 CREATE TABLE `Region` (
   `id` int NOT NULL,
-  `nom` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `nom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `Region`
@@ -129,12 +130,12 @@ INSERT INTO `Region` (`id`, `nom`) VALUES
 
 CREATE TABLE `Utilisateur` (
   `id` int NOT NULL,
-  `email` varchar(255) NOT NULL,
-    CONSTRAINT AK_email UNIQUE(email),
-  `mdp` varchar(50) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  CONSTRAINT AK_email UNIQUE(email),
+  `mdp` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `role` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `Utilisateur`
@@ -189,7 +190,7 @@ ALTER TABLE `Utilisateur`
 -- AUTO_INCREMENT pour la table `Ingredient`
 --
 ALTER TABLE `Ingredient`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- AUTO_INCREMENT pour la table `Recette`
