@@ -43,7 +43,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="./login.php">
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 Déconnexion
             </a>
         </li>
