@@ -26,8 +26,19 @@ class ConnexionController
         return password_hash($mdp, PASSWORD_ARGON2I);
     }
 
-    public static function initSession(Utilisateur $user) {
+    public static function initSession(string $email) {
+        //on recupere l'utilisateur enregistré en BDD
+        $utilisateurManager = new UtilisateurManager();
+        $utilisateur = $utilisateurManager->getByEmail($email);
 
+        //on demarre la session
+        session_start();
+
+        //on initie les variables de session de l'utilisateur
+        $_SESSION["email"] = $utilisateur->getEmail();
+        $_SESSION["nom"] = $utilisateur->getNom();
+        $_SESSION["password"] = $utilisateur->getMdp();
+        $_SESSION['role'] = $utilisateur->getRole();
     }
 
     public static function destroySession() {
