@@ -1,10 +1,7 @@
 <?php
 //Details Recettes
 
-// Kevin : ajout pour autocompletion
-require_once '/Users/Kevin/ProjetPHP/php_LaBonneBouffe/src/autocompletion/autocompletion.php';
 ?>
-
 
 
 <main>
@@ -107,7 +104,7 @@ require_once '/Users/Kevin/ProjetPHP/php_LaBonneBouffe/src/autocompletion/autoco
                                     <div id=suggestion"></div>
                                     // le script suivant : selectionne la suggestion et la met dans le champ ingredient
                                     <script>
-                                        document.getElementById("suggestion").onclick=function(){
+                                        document.getElementById("suggestion").onclick=function(event){
                                             document.getElementById("mot").value=event.target.textContent;
                                         }
                                     </script>
