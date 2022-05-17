@@ -6,23 +6,43 @@ class ConnexionController
 {
     /**
      * @param string $email
+     * @param string $mdp
      * retourne un booleen si l'utilisateur et le mdp sont bons, SINON false
      */
-    public function connect(string $email, string $mdp)
+    public static function connect(string $email, string $mdp): bool
     {
         $identificationOK = false;
 
         $utilisateurManager = new UtilisateurManager();
         $utilisateur = $utilisateurManager->getByEmail($email);
         if($utilisateur){
-            $identificationOK = password_verify($utilisateur->getMdp(), $mdp);
+            $identificationOK = password_verify($mdp, $utilisateur->getMdp());
         }
 
         return $identificationOK;
     }
 
-    public function hashMDP(string $mdp){
+    public static function hashMDP(string $mdp){
         return password_hash($mdp, PASSWORD_ARGON2I);
+    }
+
+    public static function initSession(Utilisateur $user) {
+
+    }
+
+    public static function destroySession() {
+        session_start();
+        $_SESSION = array();
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        session_destroy();
     }
 
 

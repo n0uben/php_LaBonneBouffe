@@ -13,7 +13,7 @@ require_once './src/model/manager/UtilisateurManager.php';
                 <h1>Connexion</h1>
 
                 <label><b>Nom d'utilisateur *</b></label>
-                <input type="text" placeholder="Entrer l'email utilisateur" name="email" required>
+                <input type="email" placeholder="Entrer l'email utilisateur" name="email" required>
 
                 <label><b>Mot de passe *</b></label>
                 <input type="text" placeholder="Entrer le mot de passe" name="password" required>
@@ -24,16 +24,36 @@ require_once './src/model/manager/UtilisateurManager.php';
                 echo '<br>';
                 echo '<br>';
 
-                if (isset($_POST['email'])) {
-                    $controller = new ConnexionController();
+                if (isset($_POST['email']) && isset($_POST['password'])) {
                     $email = htmlentities($_POST['email']);
-                    $connected = $controller->connect($email, $_POST['password']);
+                    $password = htmlentities($_POST['password']);
+
+                    //on tente la connection, renvoie true ou false
+                    $connected = ConnexionController::connect($email, $password);
+
                     if ($connected) {
+                        //on recupere l'utilisateur enregistré en BDD
+                        $utilisateurManager = new UtilisateurManager();
+                        $utilisateur = $utilisateurManager->getByEmail($email);
                         session_start();
-                        $_SESSION["email"] = $email;
+
+                        //on initie les variables de session de l'utilisateur
+                        $_SESSION["email"] = $utilisateur->getEmail();
+                        $_SESSION["nom"] = $utilisateur->getNom();
+                        $_SESSION["password"] = $utilisateur->getMdp();
+                        $_SESSION['role'] = $utilisateur->getRole();
+
+                        //on renvoie vers l'accueil du backoffice
                         header('Location: ./index.php');
                     }
-                    echo "OOPSIE PAS LE BON EMAIL OU MDP";
+                    echo "Votre email ou votre mot de passe ne sont pas corrects.";
+                }
+
+                //on test si l'utilisateur veut se déconnecter
+                if (isset($_GET['disconnect'])) {
+                    if ($_GET['disconnect'] == "true") {
+                        ConnexionController::destroySession();
+                    }
                 }
                 ?>
             </form>
