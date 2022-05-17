@@ -6,14 +6,25 @@ class ConnexionController
 {
     /**
      * @param string $email
-     * retourne un utilisateur si il existe, SINON false
+     * retourne un booleen si l'utilisateur et le mdp sont bons, SINON false
      */
     public function connect(string $email, string $mdp)
     {
+        $identificationOK = false;
+
         $utilisateurManager = new UtilisateurManager();
-        $utilisateur = $utilisateurManager->getByEmail($email) && $utilisateurManager->getByMDP($email, $mdp);
-        return $utilisateur;
+        $utilisateur = $utilisateurManager->getByEmail($email);
+        if($utilisateur){
+            $identificationOK = password_verify($utilisateur->getMdp(), $mdp);
+        }
+
+        return $identificationOK;
     }
+
+    public function hashMDP(string $mdp){
+        return password_hash($mdp, PASSWORD_ARGON2I);
+    }
+
 
 //    public function disconnect()
 //    {
