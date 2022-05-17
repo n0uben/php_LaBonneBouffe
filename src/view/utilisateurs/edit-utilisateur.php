@@ -30,6 +30,7 @@
                         <input required type="text" name="role" class="form-control" value="<?= $utilisateur->getRole();?>">
                     </div>
                     <div class="form-group mt-4">
+                        <a class="btn btn-danger" href='./index.php?p=utilisateur&action=delete&id=<?= $utilisateur->getId(); ?>'><i class="fa-solid fa-trash-can"></i> Supprimer</a>
                         <input class="btn btn-primary" type="submit" value="Enregistrer">
                     </div>
                 </form>

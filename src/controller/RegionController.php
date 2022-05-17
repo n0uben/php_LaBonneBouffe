@@ -10,7 +10,6 @@ class RegionController
     public static function index(): void
     {
         $manager = new RegionManager();
-        var_dump($manager);
         $regions = $manager->getAll(RegionController::$tableName);
 
         require_once './src/view/regions/liste-regions.php';
@@ -51,13 +50,17 @@ class RegionController
     {
         $manager = new RegionManager();
 
-        $regionAsuppr = $manager->getOne($id, RegionController::$tableName );
-
-        if ($regionAsuppr) {
-            $manager->delete($id, RegionController::$tableName);
+        if ($manager->hasRecipe($id)) {
+            $redirection = 'Location: /index.php?p=region&action=edit&id=' . $id . '&error=1';
+            header($redirection);
+        } else {
+            $regionAsuppr = $manager->getOne($id, RegionController::$tableName );
+            if ($regionAsuppr) {
+                $manager->delete($id, RegionController::$tableName);
+            }
+            header('Location: /index.php?p=region');
         }
 
-        header('Location: /index.php?p=region');
 
     }
 }

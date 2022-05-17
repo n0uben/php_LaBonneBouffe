@@ -1,5 +1,12 @@
 <?php
 //Details Ingredients
+
+$messageErreur = '';
+if (isset($_GET['error'])) {
+    if ($_GET['error'] == '1') {
+        $messageErreur = 'Cette région contient une ou plusieurs recettes ! <br>Vous ne pouvez pas la supprimer, essayez plutôt de la modifier :';
+    }
+}
 ?>
 
 <main>
@@ -11,6 +18,11 @@
                 <h1>
                     Modifier la région #<?= $region->getId(); ?>
                 </h1>
+                <?php if ($messageErreur): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $messageErreur; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -23,6 +35,7 @@
                         <input required type="text" name="nom" class="form-control" value="<?= $region->getNom();?>">
                     </div>
                     <div class="form-group mt-4">
+                        <a class="btn btn-danger" href="./index.php?p=region&action=delete&id=<?=$region->getId()?>"><i class="fa-solid fa-trash-can"></i> Supprimer</a>
                         <input class="btn btn-primary" type="submit" value="Enregistrer">
                     </div>
                 </form>
