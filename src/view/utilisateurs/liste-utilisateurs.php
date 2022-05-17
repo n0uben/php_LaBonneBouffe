@@ -25,7 +25,10 @@
                             <td><?= $utilisateur->getEmail(); ?></td>
                             <td><?= $utilisateur->getNom(); ?></td>
                             <td><?= $utilisateur->getRole(); ?></td>
-                            <td><a class="btn btn-primary" href='./index.php?p=utilisateur&action=edit&id=<?= $utilisateur->getId(); ?>'><i class="fa-solid fa-pen-to-square"></i> Modifier</a> - <a class="btn btn-danger" href='./index.php?p=utilisateur&action=delete&id=<?= $utilisateur->getId(); ?>'><i class="fa-solid fa-trash-can"></i> Supprimer</a></td>
+                            <td>
+                                <a class="btn btn-primary" href='./index.php?p=utilisateur&action=edit&id=<?= $utilisateur->getId(); ?>'><i class="fa-solid fa-pen-to-square"></i> Modifier</a> -
+                                <a class="btn btn-danger" href='./index.php?p=utilisateur&action=delete&id=<?= $utilisateur->getId(); ?>'><i class="fa-solid fa-trash-can"></i> Supprimer</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
