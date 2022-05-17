@@ -17,7 +17,7 @@ class ConnexionController
     }
 
     public function hashMDP(string $mdp){
-        return password_hash($mdp, PASSWORD_ARGON2I);
+        return password_hash($mdp, PASSWORD_ARGON2I); // ne fonctionne pas (pas encore)
     }
 
 //    public function disconnect()
