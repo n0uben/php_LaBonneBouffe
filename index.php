@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+// Test d'une session ouverte : si pas de session ouverte, retour sur login.php
+if (!$_SESSION['email']){
+    header('Location: ./login.php');
+}
+
 require './config.php';
 
 require_once './src/view/general/header.php';

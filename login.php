@@ -13,7 +13,7 @@ require_once './src/model/manager/UtilisateurManager.php';
                 <h1>Connexion</h1>
 
                 <label><b>Nom d'utilisateur *</b></label>
-                <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
+                <input type="text" placeholder="Entrer l'email utilisateur" name="email" required>
 
                 <label><b>Mot de passe *</b></label>
                 <input type="text" placeholder="Entrer le mot de passe" name="password" required>
@@ -24,10 +24,13 @@ require_once './src/model/manager/UtilisateurManager.php';
                 echo '<br>';
                 echo '<br>';
 
-                if (isset($_POST['username'])) {
+                if (isset($_POST['email'])) {
                     $controller = new ConnexionController();
-                    $connected = $controller->connect($_POST['username'], $_POST[$controller->hashMDP('password')]);
+                    $email = htmlentities($_POST['email']);
+                    $connected = $controller->connect($email, $_POST['password']);
                     if ($connected) {
+                        session_start();
+                        $_SESSION["email"] = $email;
                         header('Location: ./index.php');
                     }
                     echo "OOPSIE PAS LE BON EMAIL OU MDP";
