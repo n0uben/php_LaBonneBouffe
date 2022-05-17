@@ -6,9 +6,11 @@ require_once './src/controller/ConnexionController.php';
 require_once './src/controller/IngredientController.php';
 
 
-$manager = new IngredientManager();
-var_dump($manager->isInRecipe(2));
-IngredientController::delete('1');
+$mdp = "benjamin";
+
+$hash = password_hash($mdp, PASSWORD_ARGON2I);
+
+var_dump($hash);
 
 //print_r($donnees['Type']);
 //

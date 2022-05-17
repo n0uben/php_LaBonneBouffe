@@ -42,13 +42,10 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="./login.php">
+            <a class="nav-link" href="./login.php?disconnect=true">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 Déconnexion
             </a>
         </li>
-<!--        <button onclick="disconnect();">-->
-<!--            DECONNEXION-->
-<!--        </button>-->
     </ul>
 </aside>

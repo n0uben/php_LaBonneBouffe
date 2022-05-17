@@ -6,14 +6,56 @@ class ConnexionController
 {
     /**
      * @param string $email
-     * retourne un utilisateur si il existe, SINON false
+     * @param string $mdp
+     * retourne un booleen si l'utilisateur et le mdp sont bons, SINON false
      */
-    public function connect(string $email, string $mdp)
+    public static function connect(string $email, string $mdp): bool
     {
+        $identificationOK = false;
+
         $utilisateurManager = new UtilisateurManager();
-        $utilisateur = $utilisateurManager->getByEmail($email) && $utilisateurManager->getByMDP($email, $mdp);
-        return $utilisateur;
+        $utilisateur = $utilisateurManager->getByEmail($email);
+        if($utilisateur){
+            $identificationOK = password_verify($mdp, $utilisateur->getMdp());
+        }
+
+        return $identificationOK;
     }
+
+    public static function hashMDP(string $mdp){
+        return password_hash($mdp, PASSWORD_ARGON2I);
+    }
+
+    public static function initSession(string $email) {
+        //on recupere l'utilisateur enregistré en BDD
+        $utilisateurManager = new UtilisateurManager();
+        $utilisateur = $utilisateurManager->getByEmail($email);
+
+        //on demarre la session
+        session_start();
+
+        //on initie les variables de session de l'utilisateur
+        $_SESSION["email"] = $utilisateur->getEmail();
+        $_SESSION["nom"] = $utilisateur->getNom();
+        $_SESSION["password"] = $utilisateur->getMdp();
+        $_SESSION['role'] = $utilisateur->getRole();
+    }
+
+    public static function destroySession() {
+        session_start();
+        $_SESSION = array();
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        session_destroy();
+    }
+
 
 //    public function disconnect()
 //    {
