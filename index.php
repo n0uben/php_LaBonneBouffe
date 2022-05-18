@@ -66,6 +66,9 @@ switch ($page) {
             case 'delete':
                 RegionController::delete($id);
                 break;
+            case 'add':
+                RegionController::add();
+                break;
             default:
                 RegionController::index();
                 break;
