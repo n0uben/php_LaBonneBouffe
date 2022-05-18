@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <p><a href="/index.php?p=utilisateur">Retour à la liste des utilisateurs</a> </p>
+                <p><a href="./index.php?p=utilisateur">Retour à la liste des utilisateurs</a> </p>
 
                 <h1>Modifier l'utilisateur #</h1>
             </div>
@@ -27,7 +27,12 @@
                         <input required type="password" name="mdp" class="form-control" value="">
 
                         <label for="role">Role*</label>
-                        <input required type="text" name="role" class="form-control" value="">
+                        <select required id="uniteMesure" name="role" class="form-select">
+                            <option></option>
+                            <?php foreach ($enumRole as $enumValue): ?>
+                                <option><?= $enumValue ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group mt-4">
                         <a class="btn btn-danger" href='./index.php?p=utilisateur&action=add'><i class="fa-solid fa-trash-can"></i> Supprimer</a>

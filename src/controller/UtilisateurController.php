@@ -26,6 +26,8 @@ class UtilisateurController
     {
         $manager = new UtilisateurManager();
         $utilisateur = $manager->getOne($id, UtilisateurController::$tableName);
+        $enumRole = $manager->getEnumValues('Utilisateur', 'role');
+
 
         //si des donnees sont transmises et ne sont pas vides
         if (isset($_POST) && sizeof($_POST) > 0) {
@@ -43,6 +45,9 @@ class UtilisateurController
 
             //on récupère l'entité à jour depuis la bdd
             $utilisateur = $manager->getOne(intval($id), UtilisateurController::$tableName);
+
+            header('Location: ./index.php?p=utilisateur');
+
 
         }
 
@@ -63,7 +68,28 @@ class UtilisateurController
             $manager->delete($id, UtilisateurController::$tableName);
         }
 
-        header('Location: /index.php?p=utilisateur');
+        header('Location: ./index.php?p=utilisateur');
 
+    }
+
+    public static function add(): void
+    {
+        $manager = new UtilisateurManager();
+        $enumRole = $manager->getEnumValues('Utilisateur', 'role');
+
+        if (isset($_POST) && sizeof($_POST) > 0) {
+            $donneesPOST = $_POST;
+            //on sanitize les donnees POST
+            $emailPOST = htmlentities($donneesPOST['email']);
+            $mdpPOST = htmlentities($donneesPOST['mdp']);
+            $nomPOST = htmlentities($donneesPOST['nom']);
+            $rolePOST = htmlentities($donneesPOST['role']);
+            $utilisateur = new Utilisateur(['email' => $emailPOST, 'mdp' => $mdpPOST, 'nom' => $nomPOST, 'role' => $rolePOST]);
+
+            $manager->create($utilisateur);
+            header('location: ./index.php?p=utilisateur');
+        } else {
+            require_once './src/view/utilisateurs/ajout-utilisateur.php';
+        }
     }
 }

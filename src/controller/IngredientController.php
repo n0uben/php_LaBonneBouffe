@@ -39,7 +39,8 @@ class IngredientController
             $manager->update($ingredientUpdated);
 
             //on récupère l'ingrédient à jour depuis la bdd
-            $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
+//            $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
+            header('Location: ./index.php?p=ingredient');
         }
 
         require_once './src/view/ingredients/edit-ingredient.php';
@@ -54,7 +55,7 @@ class IngredientController
         $manager = new IngredientManager();
 
         if ($manager->isInRecipe($id) == true) {
-            $redirection = 'Location: /index.php?p=ingredient&action=edit&id=' . $id . '&error=1';
+            $redirection = 'Location: ./index.php?p=ingredient&action=edit&id=' . $id . '&error=1';
             header($redirection);
         } else {
             $ingredientAsuppr = $manager->getOne($id, IngredientController::$tableName);

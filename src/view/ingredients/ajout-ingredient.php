@@ -21,12 +21,12 @@
                     <div class="form-group mt-2">
 
                         <label for="nom">Nom de l’ingrédient*</label>
-                        <input id="nom" required type="text" name="nom" class="form-control"
+                        <input required id="nom" required type="text" name="nom" class="form-control"
                                value="">
 
                         <label for="uniteMesure">Unité de mesure*</label>
 
-                        <select id="uniteMesure" name="uniteMesure" class="form-select">
+                        <select required id="uniteMesure" name="uniteMesure" class="form-select">
                             <option></option>
                             <?php foreach ($enumUnite as $enumValue): ?>
                                     <option><?= $enumValue ?></option>

@@ -80,6 +80,9 @@ switch ($page) {
             case 'delete':
                 UtilisateurController::delete($id);
                 break;
+            case 'add':
+                UtilisateurController::add();
+                break;
             default:
                 UtilisateurController::index();
                 break;
