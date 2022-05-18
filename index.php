@@ -2,9 +2,9 @@
 
 session_start();
 // Test d'une session ouverte : si pas de session ouverte avec email, retour sur login.php
-//if (!isset($_SESSION['email'])) {
-//    header('Location: ./login.php');
-//}
+if (!isset($_SESSION['email'])) {
+    header('Location: ./login.php');
+}
 
 require './config.php';
 require_once './src/view/general/header.php';
