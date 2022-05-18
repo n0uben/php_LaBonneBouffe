@@ -75,6 +75,7 @@ class EntityManager
 
         $sql = QueryBuilder::createSQL($entity);
         $requete = $bdd->query($sql);
+        var_dump($requete);
     }
 
     /**

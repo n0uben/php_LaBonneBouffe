@@ -55,4 +55,5 @@ class UtilisateurManager extends EntityManager
         //si superieur a 0, renvoie true, sinon false
         return ($count > 0);
     }
+
 }

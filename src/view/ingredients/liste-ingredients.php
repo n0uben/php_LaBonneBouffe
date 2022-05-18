@@ -8,6 +8,8 @@
             <div class="col">
                 <h1>Liste des ingrédients</h1>
 
+                <a class="btn btn-primary" href='./index.php?p=ingredient&action=add'><i class="fa-solid fa-pen-to-square"></i> Ajouter</a>
+
                 <table class="table table-striped">
                     <thead>
                     <th scope="col">#</th>

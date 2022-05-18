@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <p><a href="/index.php?p=utilisateur">Retour à la liste des utilisateurs</a> </p>
+                <p><a href="./index.php?p=utilisateur">Retour à la liste des utilisateurs</a> </p>
 
                 <h1>Modifier l'utilisateur #<?= $utilisateur->getId(); ?></h1>
             </div>
@@ -27,7 +27,14 @@
                         <input required type="password" name="mdp" class="form-control" value="<?= $utilisateur->getMdp();?>">
 
                         <label for="role">Role*</label>
-                        <input required type="text" name="role" class="form-control" value="<?= $utilisateur->getRole();?>">
+                        <select id="uniteMesure" name="role" class="form-select">
+                            <option><?= $utilisateur->getRole(); ?></option>
+                            <?php foreach ($enumRole as $enumValue): ?>
+                                <?php if ($enumValue !== $utilisateur->getRole()): ?>
+                                    <option><?= $enumValue ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group mt-4">
                         <a class="btn btn-danger" href='./index.php?p=utilisateur&action=delete&id=<?= $utilisateur->getId(); ?>'><i class="fa-solid fa-trash-can"></i> Supprimer</a>

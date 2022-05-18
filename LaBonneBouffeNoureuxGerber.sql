@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le : ven. 13 mai 2022 à 19:58
--- Version du serveur :  8.0.29-0ubuntu0.20.04.3
--- Version de PHP : 7.4.3
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mer. 18 mai 2022 à 21:33
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `LaBonneBouffeNoureuxGerber`
+-- Base de données : `labonnebouffenoureuxgerber`
 --
 
 -- --------------------------------------------------------
@@ -28,11 +27,14 @@ SET time_zone = "+00:00";
 -- Structure de la table `composition`
 --
 
-CREATE TABLE `composition` (
-  `id_ingredient` int NOT NULL,
-  `id_recette` int NOT NULL,
-  `quantite` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `composition`;
+CREATE TABLE IF NOT EXISTS `composition` (
+  `id_ingredient` int(11) NOT NULL,
+  `id_recette` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL,
+  PRIMARY KEY (`id_ingredient`,`id_recette`),
+  KEY `id_recette` (`id_recette`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `composition`
@@ -45,170 +47,122 @@ INSERT INTO `composition` (`id_ingredient`, `id_recette`, `quantite`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Ingredient`
+-- Structure de la table `ingredient`
 --
 
-CREATE TABLE `Ingredient` (
-  `id` int NOT NULL,
-  `nom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `uniteMesure` enum('g','kg','cl','l','cac','cas','pincée') COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `ingredient`;
+CREATE TABLE IF NOT EXISTS `ingredient` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `uniteMesure` enum('g','kg','cl','l','cac','cas','pincée') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `Ingredient`
+-- Déchargement des données de la table `ingredient`
 --
 
-INSERT INTO `Ingredient` (`id`, `nom`, `uniteMesure`) VALUES
+INSERT INTO `ingredient` (`id`, `nom`, `uniteMesure`) VALUES
 (1, 'Concombre', 'g'),
 (2, 'pommes de terre', 'g'),
 (14, 'tomates', 'g'),
 (15, 'cotes de porc', 'g'),
-(16, 'bavette', 'g');
+(16, 'bavette', 'g'),
+(17, 'test', 'g'),
+(18, 'chips', 'l'),
+(19, 'tomate', 'cac'),
+(20, 'a', 'g'),
+(21, 'b', 'kg'),
+(22, 'aaaaa', 'l'),
+(23, 'test', 'kg');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Recette`
+-- Structure de la table `recette`
 --
 
-CREATE TABLE `Recette` (
-  `id` int NOT NULL,
-  `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `categorie` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `niveau` int NOT NULL,
-  `tpsPrepa` int NOT NULL,
-  `tpsCuisson` int NOT NULL,
-  `budget` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `nbPers` int NOT NULL,
-  `etapes` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `utilisateurID` int NOT NULL,
-  `regionID` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `recette`;
+CREATE TABLE IF NOT EXISTS `recette` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `categorie` varchar(255) NOT NULL,
+  `niveau` int(11) NOT NULL,
+  `tpsPrepa` int(11) NOT NULL,
+  `tpsCuisson` int(11) NOT NULL,
+  `budget` varchar(50) NOT NULL,
+  `nbPers` int(11) NOT NULL,
+  `etapes` mediumtext NOT NULL,
+  `utilisateurID` int(11) NOT NULL,
+  `regionID` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `utilisateurID` (`utilisateurID`),
+  KEY `regionID` (`regionID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `Recette`
+-- Déchargement des données de la table `recette`
 --
 
-INSERT INTO `Recette` (`id`, `nom`, `categorie`, `niveau`, `tpsPrepa`, `tpsCuisson`, `budget`, `nbPers`, `etapes`, `utilisateurID`, `regionID`) VALUES
+INSERT INTO `recette` (`id`, `nom`, `categorie`, `niveau`, `tpsPrepa`, `tpsCuisson`, `budget`, `nbPers`, `etapes`, `utilisateurID`, `regionID`) VALUES
 (1, 'salade de concombre et pommes de terre', 'entrées', 1, 10, 20, 'pas cher', 2, '- cuire les pommes de terre\r\n- éplucher le concombre\r\n- couper le concombre en fines rondelles\r\n- idem pour les pdts\r\n- mélanger le tout dans un saladier avec un filet d’huile d’olive', 2, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Region`
+-- Structure de la table `region`
 --
 
-CREATE TABLE `Region` (
-  `id` int NOT NULL,
-  `nom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `region`;
+CREATE TABLE IF NOT EXISTS `region` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `Region`
+-- Déchargement des données de la table `region`
 --
 
-INSERT INTO `Region` (`id`, `nom`) VALUES
-(1, 'Auvergne-Rhône-Alpes'),
-(2, 'Bourgogne-Franche-Comté'),
+INSERT INTO `region` (`id`, `nom`) VALUES
+(1, 'Auvergne-Rhone-Alpes'),
+(2, 'Bourgogne-Franche-Comte'),
 (3, 'Bretagne'),
 (4, 'Centre-Val de Loire'),
 (5, 'Corse'),
 (6, 'Grand Est'),
 (7, 'Hauts-de-France'),
-(8, 'Île-de-France'),
+(8, 'Ile-de-France'),
 (9, 'Normandie'),
 (10, 'Nouvelle-Aquitaine'),
 (11, 'Occitanie'),
 (12, 'Pays de la Loire'),
-(13, 'Provence-Alpes-Côte d\'Azur');
+(13, 'Provence-Alpes-Cote dAzur');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Utilisateur`
+-- Structure de la table `utilisateur`
 --
 
-CREATE TABLE `Utilisateur` (
-  `id` int NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  CONSTRAINT AK_email UNIQUE(email),
-  `mdp` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `role` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `utilisateur`;
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `mdp` varchar(50) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `role` enum('admin') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `Utilisateur`
+-- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `Utilisateur` (`id`, `email`, `mdp`, `nom`, `role`) VALUES
+INSERT INTO `utilisateur` (`id`, `email`, `mdp`, `nom`, `role`) VALUES
 (1, 'kevin@example.com', 'kevin', 'Kevin', 'admin'),
-(2, 'benjamin@example.com', 'benjamin', 'Benjamin', 'admin');
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `composition`
---
-ALTER TABLE `composition`
-  ADD PRIMARY KEY (`id_ingredient`,`id_recette`),
-  ADD KEY `id_recette` (`id_recette`);
-
---
--- Index pour la table `Ingredient`
---
-ALTER TABLE `Ingredient`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `Recette`
---
-ALTER TABLE `Recette`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `utilisateurID` (`utilisateurID`),
-  ADD KEY `regionID` (`regionID`);
-
---
--- Index pour la table `Region`
---
-ALTER TABLE `Region`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `Utilisateur`
---
-ALTER TABLE `Utilisateur`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `Ingredient`
---
-ALTER TABLE `Ingredient`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
-
---
--- AUTO_INCREMENT pour la table `Recette`
---
-ALTER TABLE `Recette`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT pour la table `Region`
---
-ALTER TABLE `Region`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT pour la table `Utilisateur`
---
-ALTER TABLE `Utilisateur`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+(2, 'benjamin@example.com', 'benjamin', 'Benjamin', 'admin'),
+(5, 'tzerfzef@ehfuyh.com', 'francis', 'franciss', 'admin');
 
 --
 -- Contraintes pour les tables déchargées
@@ -218,14 +172,14 @@ ALTER TABLE `Utilisateur`
 -- Contraintes pour la table `composition`
 --
 ALTER TABLE `composition`
-  ADD CONSTRAINT `composition_ibfk_1` FOREIGN KEY (`id_ingredient`) REFERENCES `Ingredient` (`id`),
-  ADD CONSTRAINT `composition_ibfk_2` FOREIGN KEY (`id_recette`) REFERENCES `Recette` (`id`);
+  ADD CONSTRAINT `composition_ibfk_1` FOREIGN KEY (`id_ingredient`) REFERENCES `ingredient` (`id`),
+  ADD CONSTRAINT `composition_ibfk_2` FOREIGN KEY (`id_recette`) REFERENCES `recette` (`id`);
 
 --
--- Contraintes pour la table `Recette`
+-- Contraintes pour la table `recette`
 --
-ALTER TABLE `Recette`
-  ADD CONSTRAINT `id` FOREIGN KEY (`regionID`) REFERENCES `Region` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `recette`
+  ADD CONSTRAINT `id` FOREIGN KEY (`regionID`) REFERENCES `region` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

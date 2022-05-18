@@ -112,7 +112,7 @@ class RecetteController
             $manager->delete($id, RecetteController::$tableName);
         }
 
-        header('Location: /index.php?p=recette');
+        header('Location: ./index.php?p=recette');
 
     }
 }

@@ -39,7 +39,8 @@ class IngredientController
             $manager->update($ingredientUpdated);
 
             //on récupère l'ingrédient à jour depuis la bdd
-            $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
+//            $ingredient = $manager->getOne(intval($id), IngredientController::$tableName);
+            header('Location: ./index.php?p=ingredient');
         }
 
         require_once './src/view/ingredients/edit-ingredient.php';
@@ -54,7 +55,7 @@ class IngredientController
         $manager = new IngredientManager();
 
         if ($manager->isInRecipe($id) == true) {
-            $redirection = 'Location: /index.php?p=ingredient&action=edit&id=' . $id . '&error=1';
+            $redirection = 'Location: ./index.php?p=ingredient&action=edit&id=' . $id . '&error=1';
             header($redirection);
         } else {
             $ingredientAsuppr = $manager->getOne($id, IngredientController::$tableName);
@@ -62,6 +63,25 @@ class IngredientController
                 $manager->delete($id, IngredientController::$tableName);
             }
             header('Location: /index.php?p=ingredient');
+        }
+    }
+
+    public static function add(): void
+    {
+        $manager = new IngredientManager();
+        $enumUnite = $manager->getEnumValues('Ingredient', 'uniteMesure');
+
+        if (isset($_POST) && sizeof($_POST) > 0) {
+            $donneesPOST = $_POST;
+            //on sanitize les donnees POST
+            $nomPOST = htmlentities($donneesPOST['nom']);
+            $unitePOST = htmlentities($donneesPOST['uniteMesure']);
+            $ingredient = new Ingredient(['nom' => $nomPOST, 'uniteMesure' => $unitePOST]);
+
+            $manager->create($ingredient);
+            header('location: ./index.php?p=ingredient');
+        } else {
+            require_once './src/view/ingredients/ajout-ingredient.php';
         }
     }
 }
