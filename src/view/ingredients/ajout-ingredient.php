@@ -23,8 +23,12 @@
                         <label for="uniteMesure">Unité de mesure*</label>
 
                         <select id="uniteMesure" name="uniteMesure" class="form-select">
-                            <option></option>
-                                    <option></option>
+                            <option><?= $ingredient->getUniteMesure(); ?></option>
+                            <?php foreach ($enumUnite as $enumValue): ?>
+                                <?php if ($enumValue !== $ingredient->getUniteMesure()): ?>
+                                    <option><?= $enumValue ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group mt-4">

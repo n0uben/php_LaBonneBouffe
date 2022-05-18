@@ -64,4 +64,11 @@ class IngredientController
             header('Location: /index.php?p=ingredient');
         }
     }
+
+    public static function add(): void
+    {
+        require_once './src/view/ingredients/ajout-ingredient.php';
+        $ingredient = new IngredientManager();
+
+    }
 }
