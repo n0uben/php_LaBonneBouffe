@@ -61,6 +61,5 @@ class RegionController
             header('Location: /index.php?p=region');
         }
 
-
     }
 }

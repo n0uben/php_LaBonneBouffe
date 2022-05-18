@@ -1,3 +1,7 @@
+<?php
+// Pour le menu deroulant des quantités :
+?>
+
 <main>
     <div class="container">
         <div class="row">
@@ -23,11 +27,9 @@
                         <label for="uniteMesure">Unité de mesure*</label>
 
                         <select id="uniteMesure" name="uniteMesure" class="form-select">
-                            <option><?= $ingredient->getUniteMesure(); ?></option>
+                            <option></option>
                             <?php foreach ($enumUnite as $enumValue): ?>
-                                <?php if ($enumValue !== $ingredient->getUniteMesure()): ?>
                                     <option><?= $enumValue ?></option>
-                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>

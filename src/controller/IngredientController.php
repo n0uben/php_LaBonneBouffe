@@ -67,8 +67,20 @@ class IngredientController
 
     public static function add(): void
     {
-        require_once './src/view/ingredients/ajout-ingredient.php';
-        $ingredient = new IngredientManager();
+        $manager = new IngredientManager();
+        $enumUnite = $manager->getEnumValues('Ingredient', 'uniteMesure');
 
+        if (isset($_POST) && sizeof($_POST) > 0) {
+            $donneesPOST = $_POST;
+            //on sanitize les donnees POST
+            $nomPOST = htmlentities($donneesPOST['nom']);
+            $unitePOST = htmlentities($donneesPOST['uniteMesure']);
+            $ingredient = new Ingredient(['nom' => $nomPOST, 'uniteMesure' => $unitePOST]);
+
+            $manager->create($ingredient);
+            header('location: ./index.php?p=ingredient');
+        } else {
+            require_once './src/view/ingredients/ajout-ingredient.php';
+        }
     }
 }

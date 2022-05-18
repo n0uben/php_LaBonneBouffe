@@ -90,7 +90,7 @@ CREATE TABLE `Recette` (
 --
 
 INSERT INTO `Recette` (`id`, `nom`, `categorie`, `niveau`, `tpsPrepa`, `tpsCuisson`, `budget`, `nbPers`, `etapes`, `utilisateurID`, `regionID`) VALUES
-(1, 'salade de concombre et pommes de terre', 'entrées', 1, 10, 20, 'pas cher', 2, '- cuire les pommes de terre\r\n- éplucher le concombre\r\n- couper le concombre en fines rondelles\r\n- idem pour les pdts\r\n- mélanger le tout dans un saladier avec un filet d’huile d’olive', 2, 1);
+(1, 'salade de concombre et pommes de terre', 'entrees', 1, 10, 20, 'pas cher', 2, '- cuire les pommes de terre\r\n- éplucher le concombre\r\n- couper le concombre en fines rondelles\r\n- idem pour les pdts\r\n- mélanger le tout dans un saladier avec un filet d’huile d’olive', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -108,19 +108,19 @@ CREATE TABLE `Region` (
 --
 
 INSERT INTO `Region` (`id`, `nom`) VALUES
-(1, 'Auvergne-Rhône-Alpes'),
-(2, 'Bourgogne-Franche-Comté'),
+(1, 'Auvergne-Rhone-Alpes'),
+(2, 'Bourgogne-Franche-Comte'),
 (3, 'Bretagne'),
 (4, 'Centre-Val de Loire'),
 (5, 'Corse'),
 (6, 'Grand Est'),
 (7, 'Hauts-de-France'),
-(8, 'Île-de-France'),
+(8, 'Ile-de-France'),
 (9, 'Normandie'),
 (10, 'Nouvelle-Aquitaine'),
 (11, 'Occitanie'),
 (12, 'Pays de la Loire'),
-(13, 'Provence-Alpes-Côte d\'Azur');
+(13, 'Provence-Alpes-Cote d\'Azur');
 
 -- --------------------------------------------------------
 
@@ -142,8 +142,8 @@ CREATE TABLE `Utilisateur` (
 --
 
 INSERT INTO `Utilisateur` (`id`, `email`, `mdp`, `nom`, `role`) VALUES
-(1, 'kevin@example.com', 'kevin', 'Kevin', 'admin'),
-(2, 'benjamin@example.com', 'benjamin', 'Benjamin', 'admin');
+(1, 'kevin@example.com', '$argon2i$v=19$m=16,t=2,p=1$MmR3TFI4QTFONE01QlpWZw$WoZHf+BFKtYjOZTH3fWyeA', 'Kevin', 'admin'),
+(2, 'benjamin@example.com', '$argon2i$v=19$m=16,t=2,p=1$dEl6VEl3bG1GSDlRa085UQ$07v0ib3pCQ/qSBSJbz/V5A', 'Benjamin', 'admin');
 
 --
 -- Index pour les tables déchargées
@@ -231,3 +231,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
