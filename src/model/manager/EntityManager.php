@@ -28,6 +28,18 @@ class EntityManager
         return $entity;
     }
 
+    public function getOneByNom(string $nom, string $entityName) {
+        $bdd = DbManager::DBConnect();
+
+        $sql = 'SELECT * FROM ' . htmlentities($entityName) . ' WHERE nom = "' . htmlentities($nom).'"';
+
+        $requete = $bdd->query($sql);
+
+        $requete->setFetchMode(PDO::FETCH_CLASS, $entityName);
+        $entity = $requete->fetch();
+        return $entity;
+    }
+
     /**
      * @param string $entityName
      * @return array|bool
@@ -41,8 +53,6 @@ class EntityManager
         $bdd = DbManager::DBConnect();
         // On execute la requete
         $sql = 'SELECT * FROM ' . htmlentities($entityName);
-
-        print_r($sql);
 
         $requete = $bdd->query($sql);
         $requete->setFetchMode(PDO::FETCH_CLASS, $entityName);
@@ -78,6 +88,8 @@ class EntityManager
         $sql = QueryBuilder::updateSQL($entity);
         echo $sql;
         $requete = $bdd->query($sql);
+
+        var_dump($requete);
     }
 
     /**

@@ -15,19 +15,23 @@ class Recette extends Entity
     protected int $utilisateurID;
     protected int $regionID;
 
+    protected $ingredients = array();
+
     /**
      * @param array|null $donnees
      */
-    // CONSTRUCTEUR A REFACTORER AVEC ARRAY ET FOREACH
-    public function __construct(array $donnees=null)
+    public function __construct(array $donnees=null, array $ingredients=null)
     {
         if ($donnees !== null) {
             foreach ($donnees as $key => $value){
                 $method = 'set' .ucfirst($key);
-                if(method_exists($this, $method)){
+                if(method_exists($this, $method) && $method !== 'setIngredients'){
                     $this->$method($value);
                 }
             }
+        }
+        if ($ingredients !== null) {
+            $this->setIngredients($ingredients);
         }
     }
 
@@ -206,6 +210,24 @@ class Recette extends Entity
     {
         $this->regionID = $regionID;
     }
+
+    /**
+     * @return array
+     */
+    public function getIngredients(): array
+    {
+        return $this->ingredients;
+    }
+
+    /**
+     * @param array $ingredients
+     */
+    public function setIngredients(array $ingredients): void
+    {
+        $this->ingredients = $ingredients;
+    }
+
+
 
 
 }

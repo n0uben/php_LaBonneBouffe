@@ -10,7 +10,7 @@ class QueryBuilder
      */
     public static function createSQL(Entity $entity): string
     {
-        $sql = 'INSERT INTO ' . get_class($entity) . ' (' . $entity->getKeysSQL() .') VALUES ('. $entity->getValuesSQL() . ')';
+        $sql = 'INSERT INTO ' . get_class($entity) . ' (' . $entity->getKeysSQL() . ') VALUES (' . $entity->getValuesSQL() . ')';
 
         return $sql;
     }
@@ -24,18 +24,24 @@ class QueryBuilder
     public static function updateSQL(Entity $entity): string
     {
         $keys = $entity->getKeysArraySQL();
-        $length = sizeof($keys);
+        $last = end($keys);
         $compteur = 0;
         $columnsUpdate = '';
 
         foreach ($keys as $key => $value) {
             $method = 'get' . ucfirst($value);
-            if (method_exists($entity, $method) && $method !== 'getId') {
+            if (method_exists($entity, $method) && $method !== 'getId' && $method !== 'getIngredients') {
                 $columnsUpdate .= $value;
                 $columnsUpdate .= ' = ';
-                if ($compteur < ($length - 1)) {
-                    $columnsUpdate .= '"' . $entity->$method() . '", ';
-                } else {
+                if (!($value == $last)) {
+                    //cas particulier recette (a cause de lattribut ingredients
+                    if ($value == 'regionID') {
+                        $columnsUpdate .= '"' . $entity->$method() . '" ';
+                    } else {
+                        $columnsUpdate .= '"' . $entity->$method() . '", ';
+                    }
+
+                } else if ($value == $last){
                     $columnsUpdate .= '"' . $entity->$method() . '" ';
                 }
             }
