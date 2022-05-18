@@ -81,13 +81,12 @@ class RecetteManager extends EntityManager
 
         $requeteRecette->execute();
 
-//        foreach ($recette->getIngredients() as $ingredient) {
-//            $ingredientInBDD = $this->getOneByNom($ingredient['nom'], 'Ingredient');
-//            if (!$ingredientInBDD) {
-//                $this->create($ingredient);
-//            }
-//
-//        }
+        foreach ($recette->getIngredients() as $ingredient) {
+            $ingredientInBDD = $this->getOneByNom($ingredient[0]->getNom(), 'Ingredient');
+            if (!$ingredientInBDD) {
+                $this->create($ingredient[0]);
+            }
+        }
         $recetteBDD = $this->getOneByNom($recette->getNom(), 'Recette');
         $recetteBDD->setIngredients();
 

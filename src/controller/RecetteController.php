@@ -68,30 +68,30 @@ class RecetteController
             ];
 
             $recetteUpdated = new Recette($donneesPOST);
-            $recetteManager->update($recetteUpdated);
+            $recetteManager->updateWithIngredients($recetteUpdated);
             $recette = $recetteManager->getOne($id, 'Recette');
 
 //            si au moins 1 ingrédient a été transmis
-//            if (isset($_POST['ingredient']) && sizeof($_POST['ingredient']) > 0) {
-//                foreach ($_POST['ingredient'] as $ingredientPOST) {
-//                    $nomPOST = htmlentities($ingredientPOST['nom']);
-//                    $uniteMesurePOST = htmlentities($ingredientPOST['uniteMesure']);
-//                    $quantitePOST = htmlentities($ingredientPOST['quantite']);
-//
-//                    //on check si l’ingredient existe en BDD
-//                    $ingredientBDD = $ingredientManager->getOneByNom($nomPOST, 'Ingredient');
-//                    //s’il n’existe pas en BDD
-//                    if (!$ingredientBDD) {
-////                        on crée un objet
-//                        $ingredientObj = new Ingredient(['nom' => $ingredientPOST['nom'], 'uniteMesure' => $uniteMesurePOST]);
-////                        on l’enregistre en BDD
-//                        $ingredientManager->create($ingredientObj);
-//                    }
-////                    on crée notre array d’ingredient et quantités
-//                    $ingredientsPOST[] = [$ingredientObj, $ingredientPOST['quantite']];
-//                }
-//                $recetteManager->addIngredientsToRecipe($recette, $ingredientsPOST);
-//            }
+            if (isset($_POST['ingredient']) && sizeof($_POST['ingredient']) > 0) {
+                foreach ($_POST['ingredient'] as $ingredientPOST) {
+                    $nomPOST = htmlentities($ingredientPOST['nom']);
+                    $uniteMesurePOST = htmlentities($ingredientPOST['uniteMesure']);
+                    $quantitePOST = htmlentities($ingredientPOST['quantite']);
+
+                    //on check si l’ingredient existe en BDD
+                    $ingredientBDD = $ingredientManager->getOneByNom($nomPOST, 'Ingredient');
+                    //s’il n’existe pas en BDD
+                    if (!$ingredientBDD) {
+//                        on crée un objet
+                        $ingredientBDD = new Ingredient(['nom' => $ingredientPOST['nom'], 'uniteMesure' => $uniteMesurePOST]);
+//                        on l’enregistre en BDD
+                        $ingredientManager->create($ingredientBDD);
+                    }
+//                    on crée notre array d’ingredient et quantités
+                    $ingredientsPOST[] = [$ingredientBDD, $ingredientPOST['quantite']];
+                }
+                $recetteManager->addIngredientsToRecipe($recette, $ingredientsPOST);
+            }
         }
 
         require_once './src/view/recettes/edit-recette.php';
