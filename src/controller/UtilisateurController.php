@@ -35,7 +35,7 @@ class UtilisateurController
 
             //on sanitize les donnees POST
             $emailPOST = htmlentities($donneesPOST['email']);
-            $mdpPOST = password_hash(htmlentities($donneesPOST['mdp']),  PASSWORD_BCRYPT );
+            $mdpPOST = password_hash($donneesPOST['mdp'],  PASSWORD_ARGON2I );
             $nomPOST = htmlentities($donneesPOST['nom']);
             $rolePOST = htmlentities($donneesPOST['role']);
 
@@ -81,7 +81,7 @@ class UtilisateurController
             $donneesPOST = $_POST;
             //on sanitize les donnees POST
             $emailPOST = htmlentities($donneesPOST['email']);
-            $mdpPOST = password_hash(htmlentities($donneesPOST['mdp']),  PASSWORD_BCRYPT );
+            $mdpPOST = password_hash($donneesPOST['mdp'],  PASSWORD_ARGON2I );
             $nomPOST = htmlentities($donneesPOST['nom']);
             $rolePOST = htmlentities($donneesPOST['role']);
             $utilisateur = new Utilisateur(['email' => $emailPOST, 'mdp' => $mdpPOST, 'nom' => $nomPOST, 'role' => $rolePOST]);

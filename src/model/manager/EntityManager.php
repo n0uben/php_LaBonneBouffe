@@ -64,6 +64,7 @@ class EntityManager
         $bdd = DbManager::DBConnect();
 
         $sql = QueryBuilder::createSQL($entity);
+        echo $sql;
         $requete = $bdd->query($sql);
         var_dump($requete);
     }
@@ -77,7 +78,6 @@ class EntityManager
     {
         $bdd = DbManager::DBConnect();
         $sql = QueryBuilder::updateSQL($entity);
-        echo $sql;
         $requete = $bdd->query($sql);
     }
 
