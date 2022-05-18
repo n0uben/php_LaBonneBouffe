@@ -1,10 +1,10 @@
 <?php
 
-//session_start();
-//// Test d'une session ouverte : si pas de session ouverte avec email, retour sur login.php
-//if (!isset($_SESSION['email'])) {
-//    header('Location: ./login.php');
-//}
+session_start();
+// Test d'une session ouverte : si pas de session ouverte avec email, retour sur login.php
+if (!isset($_SESSION['email'])) {
+    header('Location: ./login.php');
+}
 
 require './config.php';
 require_once './src/view/general/header.php';
@@ -35,6 +35,9 @@ switch ($page) {
             case 'delete':
                 IngredientController::delete($id);
                 break;
+            case 'add' :
+                IngredientController::add();
+                break;
             default:
                 IngredientController::index();
                 break;
@@ -63,6 +66,9 @@ switch ($page) {
             case 'delete':
                 RegionController::delete($id);
                 break;
+            case 'add':
+                RegionController::add();
+                break;
             default:
                 RegionController::index();
                 break;
@@ -76,6 +82,9 @@ switch ($page) {
                 break;
             case 'delete':
                 UtilisateurController::delete($id);
+                break;
+            case 'add':
+                UtilisateurController::add();
                 break;
             default:
                 UtilisateurController::index();

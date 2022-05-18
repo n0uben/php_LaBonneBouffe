@@ -5,20 +5,20 @@ require_once './src/model/manager/UtilisateurManager.php';
 
 ?>
 
-<div class="container">
+<div class="container-fluid bg-secondary">
     <!-- zone de connexion -->
     <div class="row">
         <div class="col">
             <form action="./login.php" method="POST">
-                <h1>Connexion</h1>
+                <h1 class="text-white">Connexion</h1>
 
-                <label><b>Nom d'utilisateur *</b></label>
-                <input type="email" placeholder="Entrer l'email utilisateur" name="email" required>
+                <label for="email"><b>Nom d'utilisateur *</b></label>
+                <input class="form-control" type="email" placeholder="Entrer l'email utilisateur" name="email" required>
 
-                <label><b>Mot de passe *</b></label>
-                <input type="text" placeholder="Entrer le mot de passe" name="password" required>
+                <label for="password"><b>Mot de passe *</b></label>
+                <input class="form-control" type="text" placeholder="Entrer le mot de passe" name="password" required>
 
-                <input type="submit" id='submit' value='LOGIN'>
+                <input class="btn btn-primary" type="submit" id='submit' value='LOGIN'>
                 <?php
                 echo '<br>';
                 echo '<br>';

@@ -62,4 +62,21 @@ class RegionController
         }
 
     }
+
+    public static function add()
+    {
+        $manager = new RegionManager();
+
+        if (isset($_POST) && sizeof($_POST) > 0) {
+            $donneesPOST = $_POST;
+            //on sanitize les donnees POST
+            $nomPOST = htmlentities($donneesPOST['nom']);
+            $region = new Region(['nom' => $nomPOST]);
+
+            $manager->create($region);
+            header('location: ./index.php?p=region');
+        } else {
+            require_once './src/view/regions/ajout-region.php';
+        }
+    }
 }
