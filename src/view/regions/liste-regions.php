@@ -20,7 +20,10 @@
                         <tr>
                             <td><?= $region->getId(); ?></td>
                             <td><?= $region->getNom(); ?></td>
-                            <td><a class="btn btn-primary" href='./index.php?p=region&action=edit&id=<?= $region->getId(); ?>'><i class="fa-solid fa-pen-to-square"></i> Modifier</a> - <a class="btn btn-danger" href="./index.php?p=region&action=delete&id=<?=$region->getId()?>"><i class="fa-solid fa-trash-can"></i> Supprimer</a></td>
+                            <td>
+                                <a class="btn btn-primary" href='./index.php?p=region&action=edit&id=<?= $region->getId(); ?>'><i class="fa-solid fa-pen-to-square"></i> Modifier</a> -
+                                <a class="btn btn-danger" href="./index.php?p=region&action=delete&id=<?=$region->getId()?>"><i class="fa-solid fa-trash-can"></i> Supprimer</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

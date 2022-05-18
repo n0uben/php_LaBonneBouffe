@@ -50,6 +50,7 @@ if (isset($_GET['error'])) {
                         </select>
                     </div>
                     <div class="form-group mt-4">
+                        <a class="btn btn-danger" href="./index.php?p=ingredient&action=delete&id=<?=$ingredient->getId()?>"><i class="fa-solid fa-trash-can"></i> Supprimer</a>
                         <input class="btn btn-primary" type="submit" value="Enregistrer">
                     </div>
                 </form>

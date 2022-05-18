@@ -1,6 +1,8 @@
 <?php
 //Details Recettes
+
 ?>
+
 
 <main>
     <div class="container">
@@ -96,8 +98,16 @@
                         <?php foreach ($ingredients as $ingredient):?>
                         <div class="row">
                                 <div class="col-6">
+                                    // Kevin : Ajout autocompletion
                                     <label for="nomIngredient">Nom de l’ingrédient :</label>
-                                    <input required type="text" name="nomIngredient" class="form-control" value="<?= $ingredient[0]->getNom(); ?>">
+                                    <input required type="text" id="mot" name="nomIngredient" class="form-control" value="<?= $ingredient[0]->getNom(); ?>" onKeyUp="ajaxing()">
+                                    <div id=suggestion"></div>
+                                    // le script suivant : selectionne la suggestion et la met dans le champ ingredient
+                                    <script>
+                                        document.getElementById("suggestion").onclick=function(event){
+                                            document.getElementById("mot").value=event.target.textContent;
+                                        }
+                                    </script>
                                 </div>
                                 <div class="col-3">
                                     <label for="nomIngredient">Quantite :</label>
@@ -128,7 +138,6 @@
                         </div>
                     </div>
                     <div class="form-group mt-4">
-                        <a class="btn btn-danger" href='./index.php?p=recette&action=delete&id=<?= $recette->getId(); ?>'><i class="fa-solid fa-trash-can"></i> Supprimer</a>
                         <input class="btn btn-primary" type="submit" value="Enregistrer">
                     </div>
                 </form>
