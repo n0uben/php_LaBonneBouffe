@@ -13,7 +13,7 @@ Backend de notre projet de site de recettes du terroir.
 - Ingredients : Crud ok
 - Users : Crud ok
 - Region : Crud ok
-- Recette : read only (add ingredients to recipe ok)
+- Recette : read only
 
 ## Run the project
 
