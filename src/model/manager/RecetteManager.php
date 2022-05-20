@@ -137,7 +137,7 @@ class RecetteManager extends EntityManager
     {
         $bdd = DbManager::DBConnect();
 
-        $requeteRecette = $bdd->prepare('UPDATE Recette (nom, categorie, niveau, tpsPrepa, tpsCuisson, budget, nbPers, etapes, utilisateurID, regionID) VALUES (:nom, :categorie, :niveau, :tpsPrepa, :tpsCuisson, :budget, :nbPers, :etapes, :utilisateurID, :regionID) ');
+        $requeteRecette = $bdd->prepare('UPDATE Recette SET nom = :nom, categorie = :categorie, niveau = :niveau, tpsPrepa = :tpsPrepa, tpsCuisson = :tpsCuisson, budget = :budget, nbPers = :nbPers, etapes = :etapes, utilisateurID = :utilisateurID, regionID = :regionID WHERE id = :id');
 
         $requeteRecette->bindValue(':nom', $recette->getNom());
         $requeteRecette->bindValue(':categorie', $recette->getCategorie());
@@ -149,7 +149,12 @@ class RecetteManager extends EntityManager
         $requeteRecette->bindValue(':etapes', $recette->getEtapes());
         $requeteRecette->bindValue(':utilisateurID', $recette->getUtilisateurID());
         $requeteRecette->bindValue(':regionID', $recette->getRegionID());
+        $requeteRecette->bindValue(':id', $recette->getId());
 
-        $requeteRecette->execute();
+        if ($requeteRecette->execute()) {
+            echo "La recette a bien été mise à jour";
+        } else {
+            echo "Il y a un eu probleme lors de la sauvegarde de votre recette";
+        }
     }
 }

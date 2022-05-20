@@ -69,6 +69,7 @@ class RecetteController
 
             $recetteUpdated = new Recette($donneesPOST);
             $recetteManager->updateWithIngredients($recetteUpdated);
+
             $recette = $recetteManager->getOne($id, 'Recette');
 
 //            si au moins 1 ingrédient a été transmis
@@ -90,7 +91,7 @@ class RecetteController
 //                    on crée notre array d’ingredient et quantités
                     $ingredientsPOST[] = [$ingredientBDD, $ingredientPOST['quantite']];
                 }
-                $recetteManager->addIngredientsToRecipe($recette, $ingredientsPOST);
+//                $recetteManager->addIngredientsToRecipe($recette, $ingredientsPOST);
             }
         }
 
