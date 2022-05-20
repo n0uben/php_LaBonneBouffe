@@ -12,7 +12,7 @@ class RecetteController
     /**
      * @return void
      */
-    public static function index(): void
+    public function index(): void
     {
         $manager = new RecetteManager();
         $recettes = $manager->getAll(RecetteController::$tableName);
@@ -25,7 +25,7 @@ class RecetteController
      * @param string $id
      * @return void
      */
-    public static function edit(string $id): void
+    public function edit(string $id): void
     {
         $recetteManager = new RecetteManager();
         $ingredientManager = new IngredientManager();
@@ -50,7 +50,6 @@ class RecetteController
         if ((isset($_POST)) && (sizeof($_POST) > 0)) {
 
             //on récupère et sanitize les données transmises
-            $utilisateurPOST = $utilisateurManager->getOneByNom(htmlentities($_POST['auteur']), 'Utilisateur');
             $regionPOST = $regionManager->getOneByNom(htmlentities($_POST['region']), 'Region');
             //on prepare l'array a transmettre au constructeur de Recette
             $donneesPOST = [
@@ -63,12 +62,11 @@ class RecetteController
                 'budget' => htmlentities($_POST['budget']),
                 'nbPers' => (intval(htmlentities($_POST['nbPers']))),
                 'etapes' => htmlentities($_POST['etapes']),
-                'utilisateurID' => $utilisateurPOST->getId(),
                 'regionID' => $regionPOST->getId(),
             ];
 
             $recetteUpdated = new Recette($donneesPOST);
-            $recetteManager->updateWithIngredients($recetteUpdated);
+            $recetteManager->updateRecette($recetteUpdated);
 
             $recette = $recetteManager->getOne($id, 'Recette');
 
@@ -93,6 +91,7 @@ class RecetteController
                 }
 //                $recetteManager->addIngredientsToRecipe($recette, $ingredientsPOST);
             }
+            header('Location: ./index.php?p=recette');
         }
 
         require_once './src/view/recettes/edit-recette.php';
@@ -103,7 +102,7 @@ class RecetteController
      * @param string $id
      * @return void
      */
-    public static function delete(string $id): void
+    public function delete(string $id): void
     {
         $manager = new RecetteManager();
 

@@ -12,9 +12,7 @@ class RecetteManager extends EntityManager
      */
     public function getAllByRegion($id): array
     {
-        $bdd = DbManager::DBConnect();
-
-        $requete = $bdd->prepare('SELECT * FROM Recette WHERE regionID = :regionID ');
+        $requete = $this->bdd->prepare('SELECT * FROM Recette WHERE regionID = :regionID ');
         $requete->bindValue('regionID', $id);
         $requete->setFetchMode(PDO::FETCH_CLASS, 'Recette');
         $requete->execute();
@@ -33,9 +31,7 @@ class RecetteManager extends EntityManager
      */
     public function getAllByUser($id): array
     {
-        $bdd = DbManager::DBConnect();
-
-        $requete = $bdd->prepare('SELECT * FROM Recette WHERE utilisateurID = :utilisateurID ');
+        $requete = $this->bdd->prepare('SELECT * FROM Recette WHERE utilisateurID = :utilisateurID ');
         $requete->bindValue('utilisateurID', $id);
         $requete->setFetchMode(PDO::FETCH_CLASS, 'Recette');
         $requete->execute();
@@ -64,9 +60,7 @@ class RecetteManager extends EntityManager
 
     public function createWithIngredients(Recette $recette)
     {
-        $bdd = DbManager::DBConnect();
-
-        $requeteRecette = $bdd->prepare('INSERT INTO Recette (nom, categorie, niveau, tpsPrepa, tpsCuisson, budget, nbPers, etapes, utilisateurID, regionID) VALUES (:nom, :categorie, :niveau, :tpsPrepa, :tpsCuisson, :budget, :nbPers, :etapes, :utilisateurID, :regionID) ');
+        $requeteRecette = $this->bdd->prepare('INSERT INTO Recette (nom, categorie, niveau, tpsPrepa, tpsCuisson, budget, nbPers, etapes, utilisateurID, regionID) VALUES (:nom, :categorie, :niveau, :tpsPrepa, :tpsCuisson, :budget, :nbPers, :etapes, :utilisateurID, :regionID) ');
 
         $requeteRecette->bindValue(':nom', $recette->getNom());
         $requeteRecette->bindValue(':categorie', $recette->getCategorie());
@@ -100,9 +94,7 @@ class RecetteManager extends EntityManager
      */
     public function hasIngredientAlready(Recette $recette, Ingredient $ingredient): bool
     {
-        $bdd = DbManager::DBConnect();
-
-        $requete = $bdd->prepare('SELECT COUNT(*) FROM composition WHERE id_ingredient = :idIngredient AND id_recette = :idRecette');
+        $requete = $this->bdd->prepare('SELECT COUNT(*) FROM composition WHERE id_ingredient = :idIngredient AND id_recette = :idRecette');
 
         $requete->bindValue(':idIngredient', $ingredient->getId());
         $requete->bindValue(':idRecette', $recette->getId());
@@ -117,13 +109,13 @@ class RecetteManager extends EntityManager
 
     public function addIngredientsToRecipe(Recette $recette, array $ingredients)
     {
-        $bdd = DbManager::DBConnect();
+        $requete = $this->bdd->prepare('INSERT INTO composition (id_ingredient, id_recette, quantite) VALUES (:idIngredient, :idRecette, :quantite)');
+
         foreach ($ingredients as $ingredient) {
             // on teste si l’association entre l’ingrédient et la recette existe déja dans la table composition
             $hasIngredient = $this->hasIngredientAlready($recette, $ingredient[0]);
-            // si ce n’est pas la cas, on enregistre en BDD l’association dans la table composition
+            // si ce n’est pas le cas, on enregistre en BDD l’association dans la table composition
             if (!$hasIngredient) {
-                $requete = $bdd->prepare('INSERT INTO composition (id_ingredient, id_recette, quantite) VALUES (:idIngredient, :idRecette, :quantite)');
                 $requete->bindValue(':idIngredient', $ingredient[0]->getId());
                 $requete->bindValue(':idRecette', $recette->getId());
                 $requete->bindValue(':quantite', $ingredient[1]);
@@ -133,11 +125,18 @@ class RecetteManager extends EntityManager
         }
     }
 
-    public function updateWithIngredients(Recette $recette)
+    /**
+     * @param Recette $recette
+     * @return bool
+     * Met a jour une recette sans les ingrédients
+     */
+    public function updateRecette(Recette $recette): bool
     {
         $bdd = DbManager::DBConnect();
 
-        $requeteRecette = $bdd->prepare('UPDATE Recette SET nom = :nom, categorie = :categorie, niveau = :niveau, tpsPrepa = :tpsPrepa, tpsCuisson = :tpsCuisson, budget = :budget, nbPers = :nbPers, etapes = :etapes, utilisateurID = :utilisateurID, regionID = :regionID WHERE id = :id');
+        $requeteRecette = $bdd->prepare('UPDATE Recette SET nom = :nom, categorie = :categorie, niveau = :niveau, tpsPrepa = :tpsPrepa, tpsCuisson = :tpsCuisson, budget = :budget, nbPers = :nbPers, etapes = :etapes, regionID = :regionID WHERE Recette.id = :id');
+//        , utilisateurID = :utilisateurID
+        //        $requeteRecette = $bdd->prepare('');
 
         $requeteRecette->bindValue(':nom', $recette->getNom());
         $requeteRecette->bindValue(':categorie', $recette->getCategorie());
@@ -147,14 +146,10 @@ class RecetteManager extends EntityManager
         $requeteRecette->bindValue(':budget', $recette->getBudget());
         $requeteRecette->bindValue(':nbPers', $recette->getNbPers());
         $requeteRecette->bindValue(':etapes', $recette->getEtapes());
-        $requeteRecette->bindValue(':utilisateurID', $recette->getUtilisateurID());
         $requeteRecette->bindValue(':regionID', $recette->getRegionID());
+//        $requeteRecette->bindValue(':utilisateurID', $recette->getUtilisateurID());
         $requeteRecette->bindValue(':id', $recette->getId());
 
-        if ($requeteRecette->execute()) {
-            echo "La recette a bien été mise à jour";
-        } else {
-            echo "Il y a un eu probleme lors de la sauvegarde de votre recette";
-        }
+        return $requeteRecette->execute();
     }
 }

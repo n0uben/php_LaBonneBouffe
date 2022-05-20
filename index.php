@@ -7,6 +7,7 @@ if (!isset($_SESSION['email'])) {
 }
 
 require './config.php';
+
 require_once './src/view/general/header.php';
 require_once './src/view/general/menu.php';
 
@@ -28,72 +29,78 @@ if (isset($_GET['action'])) {
 switch ($page) {
     case 'ingredient':
         require_once './src/controller/IngredientController.php';
+        $controller = new IngredientController();
+
         switch ($action) {
             case 'edit':
-                IngredientController::edit($id);
+                $controller->edit($id);
                 break;
             case 'delete':
-                IngredientController::delete($id);
+                $controller->delete($id);
                 break;
             case 'add' :
-                IngredientController::add();
+                $controller->add();
                 break;
             default:
-                IngredientController::index();
+                $controller->index();
                 break;
         }
         break;
     case 'recette':
         require_once './src/controller/RecetteController.php';
+        $controller = new RecetteController();
         switch ($action) {
             case 'edit':
-                RecetteController::edit($id);
+                $controller->edit($id);
                 break;
             case 'delete':
-                RecetteController::delete($id);
+                $controller->delete($id);
                 break;
             default:
-                RecetteController::index();
+                $controller->index();
                 break;
         }
         break;
     case 'region':
         require_once './src/controller/RegionController.php';
+        $controller = new RegionController();
         switch ($action) {
             case 'edit':
-                RegionController::edit($id);
+                $controller->edit($id);
                 break;
             case 'delete':
-                RegionController::delete($id);
+                $controller->delete($id);
                 break;
             case 'add':
-                RegionController::add();
+                $controller->add();
                 break;
             default:
-                RegionController::index();
+                $controller->index();
                 break;
         }
         break;
     case 'utilisateur':
         require_once './src/controller/UtilisateurController.php';
+        $controller = new UtilisateurController();
         switch ($action) {
             case 'edit':
-                UtilisateurController::edit($id);
+                $controller->edit($id);
                 break;
             case 'delete':
-                UtilisateurController::delete($id);
+                $controller->delete($id);
                 break;
             case 'add':
-                UtilisateurController::add();
+                $controller->add();
                 break;
             default:
-                UtilisateurController::index();
+                $controller->index();
                 break;
         }
         break;
     default:
         require_once './src/controller/HomeController.php';
-        HomeController::index();
+        $controller = new HomeController();
+        $controller->index();
 }
 
 require_once('./src/view/general/footer.php');
