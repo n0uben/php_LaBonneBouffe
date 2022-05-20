@@ -13,15 +13,15 @@ Backend de notre projet de site de recettes du terroir.
 - Ingredients : Crud ok
 - Users : Crud ok
 - Region : Crud ok
-- Recette : read only (add ingredients to recipe ok)
+- Recette : read only
 
 ## Run the project
 
-- Import the SQL file (the first one)
+- Import the SQL file
 - copy config-sample.php into config.php
 - set your db credentials in config.php
 
-You can connect with :
+Access the URL given by your server and connect with the following:
 - email :  	demo@example.com
 - password : demo
 
