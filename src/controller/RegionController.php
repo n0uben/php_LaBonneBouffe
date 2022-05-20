@@ -35,8 +35,7 @@ class RegionController
             $regionUpdated = new Region(['id' => $region->getId(), 'nom' => $nomPOST]);
             $manager->update($regionUpdated);
 
-            //on récupère l'entité à jour depuis la bdd
-            $region = $manager->getOne(intval($id), RegionController::$tableName);
+            header('Location: /index.php?p=region');
         }
 
         require_once './src/view/regions/edit-region.php';
