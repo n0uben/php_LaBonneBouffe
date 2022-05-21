@@ -35,7 +35,7 @@ class RegionController
             $regionUpdated = new Region(['id' => $region->getId(), 'nom' => $nomPOST]);
             $manager->update($regionUpdated);
 
-            header('Location: /index.php?p=region');
+            header('Location: ./index.php?p=region');
         }
 
         require_once './src/view/regions/edit-region.php';
@@ -57,7 +57,7 @@ class RegionController
             if ($regionAsuppr) {
                 $manager->delete($id, RegionController::$tableName);
             }
-            header('Location: /index.php?p=region');
+            header('Location: ./index.php?p=region');
         }
 
     }
