@@ -127,16 +127,12 @@ class RecetteManager extends EntityManager
 
     /**
      * @param Recette $recette
-     * @return bool
+     * @return Recette|bool
      * Met a jour une recette sans les ingrédients
      */
-    public function updateRecette(Recette $recette): bool
+    public function updateRecette(Recette $recette)
     {
-        $bdd = DbManager::DBConnect();
-
-        $requeteRecette = $bdd->prepare('UPDATE Recette SET nom = :nom, categorie = :categorie, niveau = :niveau, tpsPrepa = :tpsPrepa, tpsCuisson = :tpsCuisson, budget = :budget, nbPers = :nbPers, etapes = :etapes, regionID = :regionID WHERE Recette.id = :id');
-//        , utilisateurID = :utilisateurID
-        //        $requeteRecette = $bdd->prepare('');
+        $requeteRecette = $this->bdd->prepare('UPDATE Recette SET nom = :nom, categorie = :categorie, niveau = :niveau, tpsPrepa = :tpsPrepa, tpsCuisson = :tpsCuisson, budget = :budget, nbPers = :nbPers, etapes = :etapes, regionID = :regionID WHERE id = :id');
 
         $requeteRecette->bindValue(':nom', $recette->getNom());
         $requeteRecette->bindValue(':categorie', $recette->getCategorie());
@@ -147,7 +143,6 @@ class RecetteManager extends EntityManager
         $requeteRecette->bindValue(':nbPers', $recette->getNbPers());
         $requeteRecette->bindValue(':etapes', $recette->getEtapes());
         $requeteRecette->bindValue(':regionID', $recette->getRegionID());
-//        $requeteRecette->bindValue(':utilisateurID', $recette->getUtilisateurID());
         $requeteRecette->bindValue(':id', $recette->getId());
 
         return $requeteRecette->execute();
