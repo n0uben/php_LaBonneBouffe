@@ -81,7 +81,6 @@ class EntityManager
         $sql = QueryBuilder::createSQL($entity);
         echo $sql;
         $requete = $this->bdd->query($sql);
-        var_dump($requete);
     }
 
     /**
@@ -98,9 +97,9 @@ class EntityManager
     /**
      * @param int $id
      * @param string $entityName
-     * @return bool
+     * @return Entity|bool
      */
-    public function delete(int $id, string $entityName): bool
+    public function delete(int $id, string $entityName)
     {
         $sql = 'DELETE FROM ' . htmlentities($entityName) . ' WHERE id = ' . htmlentities($id);
 
