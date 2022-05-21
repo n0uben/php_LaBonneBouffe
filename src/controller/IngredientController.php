@@ -62,7 +62,7 @@ class IngredientController
             if ($ingredientAsuppr) {
                 $manager->delete($id, IngredientController::$tableName);
             }
-            header('Location: /index.php?p=ingredient');
+            header('Location: ./index.php?p=ingredient');
         }
     }
 
