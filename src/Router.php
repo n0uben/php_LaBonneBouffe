@@ -2,10 +2,6 @@
 
 class Router
 {
-    private string $page;
-    private string $action;
-    private string $id;
-
     private array $routesAuthorized;
     private array $actionsAuthorized;
 
