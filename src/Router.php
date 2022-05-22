@@ -12,45 +12,19 @@ class Router
     /**
      * Init with list of authorized routes
      */
-    public function __construct($page, $action, $id)
+    public function __construct()
     {
         $this->routesAuthorized = ['recette', 'ingredient', 'region', 'utilisateur'];
         $this->actionsAuthorized = ['index', 'edit', 'add', 'delete'];
-        $this->setGetUrlParams($page, $action, $id);
-    }
-
-    /**
-     * @param string $page
-     * @param string $action
-     * @param string $id
-     * @return void
-     */
-    public function setGetUrlParams(string $page, string $action, string $id)
-    {
-        if ($page) {
-            if (in_array($page, $this->routesAuthorized)) {
-                $this->page = $page;
-            }
-        }
-        if ($action) {
-            if (in_array($action, $this->actionsAuthorized)) {
-                $this->action = $action;
-            }
-        }
-        if ($id) {
-            $this->id = $id;
-        }
     }
 
     /**
      * @return void
      */
-    public function displayPage()
+    public function displayPage(string $page, string $action, string $id)
     {
-
-        $page = isset($this->page) ? $this->page : '';
-        $action = isset($this->action) ? $this->action : '';
-        $id = isset($this->id) ? $this->id : '';
+        $page = in_array($page, $this->routesAuthorized) ? $page : '';
+        $action = in_array($action, $this->actionsAuthorized) ? $action : '';
 
         require_once __DIR__ . '/controller/' . ucfirst($page) . 'Controller.php';
         $controllerName = ucfirst($page) . 'Controller';

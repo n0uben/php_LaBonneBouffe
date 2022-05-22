@@ -27,8 +27,8 @@ if (isset($_GET['id'])) {
 }
 
 //declare router
-$router = new Router($page, $action, $id);
+$router = new Router();
 
-$router->displayPage();
+$router->displayPage($page, $action, $id);
 
 require_once('./src/view/general/footer.php');
