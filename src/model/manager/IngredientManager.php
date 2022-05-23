@@ -6,7 +6,6 @@ require_once './src/model/entity/Ingredient.php';
 class IngredientManager extends EntityManager
 {
 
-
     /**
      * @param int $recipeId
      * @return iterable
@@ -14,9 +13,8 @@ class IngredientManager extends EntityManager
 //    retourne un array sous la forme [[ingredient1, quantite (int)], [ingredient2, quantite (int)]]
     public function getAllByRecipe(int $recipeId): iterable
     {
-        $bdd = DbManager::DBConnect();
 
-        $requete = $bdd->prepare('SELECT i.id as id, i.nom as nom, i.uniteMesure as uniteMesure, c.quantite as quantite 
+        $requete = $this->bdd->prepare('SELECT i.id as id, i.nom as nom, i.uniteMesure as uniteMesure, c.quantite as quantite 
                                         FROM Ingredient i
                                         JOIN composition c ON i.id = c.id_ingredient
                                         JOIN Recette r ON c.id_recette = r.id
@@ -42,9 +40,7 @@ class IngredientManager extends EntityManager
      */
     public function isInRecipe(string $id): bool
     {
-        $bdd = DbManager::DBConnect();
-
-        $requete = $bdd->prepare('SELECT COUNT(*) FROM composition WHERE id_ingredient = :id');
+        $requete = $this->bdd->prepare('SELECT COUNT(*) FROM composition WHERE id_ingredient = :id');
         $requete->bindValue(':id', $id);
         $requete->execute();
         $result = $requete->fetch();

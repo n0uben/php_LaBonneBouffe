@@ -10,6 +10,15 @@ require_once './src/model/entity/Utilisateur.php';
 
 class EntityManager
 {
+
+    protected $bdd;
+
+    public function __construct()
+    {
+        $bddManager = new DbManager();
+        $this->bdd = $bddManager->bdd;
+    }
+
     /**
      * @param int $id
      * @param string $entityName
@@ -17,23 +26,25 @@ class EntityManager
      */
     public function getOne(int $id, string $entityName)
     {
-        $bdd = DbManager::DBConnect();
-
         $sql = 'SELECT * FROM ' . htmlentities($entityName) . ' WHERE id = ' . htmlentities($id);
 
-        $requete = $bdd->query($sql);
+        $requete = $this->bdd->query($sql);
 
         $requete->setFetchMode(PDO::FETCH_CLASS, $entityName);
         $entity = $requete->fetch();
         return $entity;
     }
 
-    public function getOneByNom(string $nom, string $entityName) {
-        $bdd = DbManager::DBConnect();
+    /**
+     * @param string $nom
+     * @param string $entityName
+     * @return mixed
+     */
+    public function getOneByNom(string $nom, string $entityName)
+    {
+        $sql = 'SELECT * FROM ' . htmlentities($entityName) . ' WHERE nom = "' . htmlentities($nom) . '"';
 
-        $sql = 'SELECT * FROM ' . htmlentities($entityName) . ' WHERE nom = "' . htmlentities($nom).'"';
-
-        $requete = $bdd->query($sql);
+        $requete = $this->bdd->query($sql);
 
         $requete->setFetchMode(PDO::FETCH_CLASS, $entityName);
         $entity = $requete->fetch();
@@ -46,15 +57,11 @@ class EntityManager
      */
     public function getAll(string $entityName)
     {
-
         $entities = [];
 
-        // On se connecte a la bdd;
-        $bdd = DbManager::DBConnect();
-        // On execute la requete
         $sql = 'SELECT * FROM ' . htmlentities($entityName);
 
-        $requete = $bdd->query($sql);
+        $requete = $this->bdd->query($sql);
         $requete->setFetchMode(PDO::FETCH_CLASS, $entityName);
 
         //tant qu‘il y a des lignes en BDD
@@ -71,40 +78,32 @@ class EntityManager
      */
     public function create(Entity $entity): void
     {
-        $bdd = DbManager::DBConnect();
-
         $sql = QueryBuilder::createSQL($entity);
         echo $sql;
-        $requete = $bdd->query($sql);
-        var_dump($requete);
+        $requete = $this->bdd->query($sql);
     }
 
     /**
      * @param Entity $entity
-     * @return void
+     * @return Entity|bool
      * Nécessite une entité avec ID initialisé
      */
-    public function update(Entity $entity): void
+    public function update(Entity $entity)
     {
-        $bdd = DbManager::DBConnect();
         $sql = QueryBuilder::updateSQL($entity);
-        $requete = $bdd->query($sql);
-
-        var_dump($requete);
+        return $this->bdd->query($sql);
     }
 
     /**
      * @param int $id
      * @param string $entityName
-     * @return void
+     * @return Entity|bool
      */
-    public function delete(int $id, string $entityName): void
+    public function delete(int $id, string $entityName)
     {
-        $bdd = DbManager::DBConnect();
-
         $sql = 'DELETE FROM ' . htmlentities($entityName) . ' WHERE id = ' . htmlentities($id);
 
-        $requete = $bdd->query($sql);
+        return $this->bdd->query($sql);
 
     }
 
@@ -116,9 +115,8 @@ class EntityManager
      */
     public function getEnumValues(string $table, string $field): array
     {
-        $bdd = DbManager::DBConnect();
         //requete SQL pour récupérer les données contenant l’enum d’une colonne
-        $type = $bdd->query("SHOW COLUMNS FROM {$table} WHERE Field = '{$field}'");
+        $type = $this->bdd->query("SHOW COLUMNS FROM {$table} WHERE Field = '{$field}'");
         //stocke temporairement le resultat de la requete dans tmp
         $tmp = $type->fetchAll();
         // récupère le champ du tableau contenant l’enum sous forme string 'enum('enum1, enum2, …)'

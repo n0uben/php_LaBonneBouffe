@@ -3,14 +3,21 @@ require_once './src/model/manager/RegionManager.php';
 
 class RegionController
 {
+
+    private RegionManager $manager;
+
+    public function __construct()
+    {
+        $this->manager = new RegionManager();
+    }
+
     private static string $tableName = 'Region';
     /**
      * @return void
      */
-    public static function index(): void
+    public function index(): void
     {
-        $manager = new RegionManager();
-        $regions = $manager->getAll(RegionController::$tableName);
+        $regions = $this->manager->getAll(RegionController::$tableName);
 
         require_once './src/view/regions/liste-regions.php';
 
@@ -20,10 +27,9 @@ class RegionController
      * @param string $id
      * @return void
      */
-    public static function edit(string $id): void
+    public function edit(string $id): void
     {
-        $manager = new RegionManager();
-        $region = $manager->getOne(intval($id), RegionController::$tableName);
+        $region = $this->manager->getOne(intval($id), RegionController::$tableName);
 
         //si l’utilisateur a cliqué sur "enregistrer"
         if (isset($_POST) && sizeof($_POST) > 0) {
@@ -33,7 +39,7 @@ class RegionController
 
             //on enregistre l'entité mise à jour
             $regionUpdated = new Region(['id' => $region->getId(), 'nom' => $nomPOST]);
-            $manager->update($regionUpdated);
+            $this->manager->update($regionUpdated);
 
             header('Location: ./index.php?p=region');
         }
@@ -45,34 +51,30 @@ class RegionController
      * @param string $id
      * @return void
      */
-    public static function delete(string $id): void
+    public function delete(string $id): void
     {
-        $manager = new RegionManager();
-
-        if ($manager->hasRecipe($id)) {
+        if ($this->manager->hasRecipe($id)) {
             $redirection = 'Location: /index.php?p=region&action=edit&id=' . $id . '&error=1';
             header($redirection);
         } else {
-            $regionAsuppr = $manager->getOne($id, RegionController::$tableName );
+            $regionAsuppr = $this->manager->getOne($id, RegionController::$tableName );
             if ($regionAsuppr) {
-                $manager->delete($id, RegionController::$tableName);
+                $this->manager->delete($id, RegionController::$tableName);
             }
             header('Location: ./index.php?p=region');
         }
 
     }
 
-    public static function add()
+    public function add()
     {
-        $manager = new RegionManager();
-
         if (isset($_POST) && sizeof($_POST) > 0) {
             $donneesPOST = $_POST;
             //on sanitize les donnees POST
             $nomPOST = htmlentities($donneesPOST['nom']);
             $region = new Region(['nom' => $nomPOST]);
 
-            $manager->create($region);
+            $this->manager->create($region);
             header('location: ./index.php?p=region');
         } else {
             require_once './src/view/regions/ajout-region.php';

@@ -9,29 +9,11 @@
                 <p><a href="./index.php?p=recette">Retour à la liste des recettes</a></p>
 
                 <h1>Recette # <?= $recette->getId(); ?> </h1>
-
-<!--                --><?php
-//
-//                var_dump($donneesPOST);
-//                echo "<br>";
-//                echo "<br>";
-//                var_dump($recette);echo "<br>";
-//                echo "<br>";
-//                var_dump($recetteUpdated);
-
-                ////                print_r($_POST['ingredient[0]']);
-//                foreach ($_POST['ingredient'] as $ingredient) {
-//                    echo $ingredient['nom'] . "<br>";
-//                    echo $ingredient['quantite'] . "<br>";
-//                    $ingredient['uniteMesure'] . "<br>";
-//                    echo "---------<br>" ;
-//                }
-//                ?>
-
+                <p>Recette créée par <strong><?= $utilisateur->getNom(); ?></strong></p>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container pt-4">
         <div class="row">
             <div class="col">
 
@@ -98,18 +80,6 @@
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
-
-
-                        <label for="auteur">Auteur*</label>
-                        <select id="auteur" name="auteur" class="form-select">
-                            <option><?= $utilisateur->getNom(); ?></option>
-                            <?php foreach ($utilisateurs as $bddValue): ?>
-                                <?php if ($bddValue->getNom() !== $utilisateur->getNom()): ?>
-                                    <option><?= $bddValue->getNom() ?></option>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </select>
-
                     </div>
                     <div class="col-12 col-lg-6">
                         <h2>Les ingrédients</h2>

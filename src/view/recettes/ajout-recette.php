@@ -62,14 +62,6 @@
 
                         </select>
 
-
-                        <label for="auteur">Auteur*</label>
-                        <select id="auteur" name="auteur" class="form-select">
-                            <option></option>
-                                    <option></option>
-
-                        </select>
-
                     </div>
                     <div class="col-12 col-lg-6">
                         <h2>Les ingrédients</h2>

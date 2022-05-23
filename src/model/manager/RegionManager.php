@@ -6,11 +6,13 @@ require_once './src/model/entity/Region.php';
 
 class RegionManager extends EntityManager
 {
+    /**
+     * @param string $id
+     * @return bool
+     */
     public function hasRecipe(string $id): bool
     {
-        $bdd = DbManager::DBConnect();
-
-        $requete = $bdd->prepare('SELECT COUNT(*) FROM Recette WHERE regionID = :id');
+        $requete = $this->bdd->prepare('SELECT COUNT(*) FROM Recette WHERE regionID = :id');
         $requete->bindValue(':id', $id);
         $requete->execute();
         $result = $requete->fetch();

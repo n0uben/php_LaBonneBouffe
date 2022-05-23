@@ -15,7 +15,7 @@ class Recette extends Entity
     protected int $utilisateurID;
     protected int $regionID;
 
-    protected $ingredients = array();
+    protected array $ingredients = array();
 
     /**
      * @param array|null $donnees
