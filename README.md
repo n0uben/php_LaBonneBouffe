@@ -1,6 +1,7 @@
 # Projet PHP "La Bonne Bouffe"
 
-Backend de notre projet de site de recettes du terroir.
+"La bonne bouffe" is the backend of a local recipes websites.
+Admin users can log in and create, update and delete recipes, regions, ingredients and users.
 
 
 ## Authors
