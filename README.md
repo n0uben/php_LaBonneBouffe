@@ -1,6 +1,6 @@
 # Projet PHP "La Bonne Bouffe"
 
-"La bonne bouffe" is the backend of a local recipes websites.
+"La bonne bouffe" is the backend of a local recipes website.
 Admin users can log in and create, update and delete recipes, regions, ingredients and users.
 
 
